@@ -1,22 +1,47 @@
+import javafx.scene.image.Image;
+
+
 class Object{
-  private int posX;
-  private int posY;
-  private int typeid;
+  private int x;
+  private int y;
+  private int typeId;
   private Image sprite;
   
-  public int gettypeid(){
+  public Object(Image sprite, int x, int y) {
+    this.sprite = sprite;
+    this.x = x;
+    this.y = y;
+  }
+  
+  public int getTypeId(){
     return this.typeid;
   }
  
-  public int getposX(){
-    return this.posX;
+  public int getX(){
+    return this.x;
   }
   
-  public int getposY(){
-    return this.posY;
-  } 
+  public int getY(){
+    return this.y;
+  }
   
-  public void setSprite(){
-    Image imgIcon = new Image(getClass().getResource("Pfad/icon.png").toExternalForm());
+  public Image getSprite() {
+    return this.sprite; 
+  }
+  
+  public void setTypeId(int newTypeId) {
+    this.typeId = typeId;
+  }
+  
+  public void setX(int newX) {
+    this.x = newX;
+  }
+  
+  public void setY(int newY){
+    this.y = newY;
+  }
+  
+  public void setSprite(Image newSprite) {
+    this.sprite = newSprite;
   }
 }

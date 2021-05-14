@@ -1,14 +1,13 @@
 class Object{
   private int posX;
   private int posY;
-  private int height;
-  private int width;
-  private String name;
+  private int typeid;
+  private Image sprite;
   
-  public String getname(){
-    return this.name;
+  public int gettypeid(){
+    return this.typeid;
   }
-  
+ 
   public int getposX(){
     return this.posX;
   }
@@ -17,11 +16,7 @@ class Object{
     return this.posY;
   } 
   
-  public int getheight(){
-    return this.height;
+  public void setSprite(){
+    Image imgIcon = new Image(getClass().getResource("Pfad/icon.png").toExternalForm());
   }
-  
-  public int getwidth(){
-    return this.width;
-  } 
 }

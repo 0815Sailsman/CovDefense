@@ -1,4 +1,4 @@
-class Tower extends Object{
+class Tower extends Objeckt{
   private int type;
   private float attackRange;
   

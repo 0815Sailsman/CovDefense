@@ -1,17 +1,21 @@
 class Enemy extends Objeckt{
   private int type;
   private float speed;
-  private float progress;
   
-  public int gettype(){
+  public int getType(){
     return this.type;
   }
   
-  public float getspeed(){
+  public float getSpeed(){
     return this.speed;
   }
   
-  public float getprogress(){
-    return this.progress;
+  public void setType(int newType) {
+    this.type = newType;
   }
+  
+  public void setSpeed(int newSpeed) {
+    this.speed = newSpeed;
+  }
+  
 }

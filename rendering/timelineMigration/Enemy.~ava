@@ -1,0 +1,64 @@
+import javafx.scene.image.Image;
+import java.lang.Math;
+
+
+class Enemy extends Basis{
+  private int hp;
+  private int damage;
+  private int moneyValue;
+  private double speed;
+  private int target;
+  
+  public Enemy(Image sprite, double x, double y, double speed, int hp, int damage, int moneyValue) {
+    super(sprite, x, y);
+    this.speed = speed;
+    this.hp = hp;
+    this.damage = damage;
+    this.moneyValue = moneyValue;
+    this.target = 0;
+  }
+  
+  public int getHp(){
+    return this.hp;
+  }
+  
+  public int getDamage(){
+    return this.damage;
+  }
+  
+  public int getMoneyValue(){
+    return this.moneyValue;
+  }
+  
+  public double getSpeed(){
+    return this.speed;
+  }
+  
+  public int getTaget() {
+    return this.target;
+  }
+  
+  public void setHp(int newHp) {
+    this.hp = newHp;
+  }
+  
+  public void setDamage(int newDamage) {
+    this.damage = newDamage;
+  }
+  
+  public void setMoneyValue(int newMoneyValue) {
+    this.moneyValue = newMoneyValue;
+  }
+  
+  public void setSpeed(double newSpeed) {
+    this.speed = newSpeed;
+  }
+  
+  public void setTaget(int newTarget) {
+    this.target = newTarget;
+  }
+  
+  public void move(map_point[] path) {
+    
+  }
+}

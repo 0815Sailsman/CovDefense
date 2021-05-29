@@ -14,6 +14,9 @@ import java.util.TimerTask;
 import java.lang.Math;
 import javafx.scene.layout.BackgroundImage;
 import java.util.ArrayList;
+import javafx.animation.Timeline;
+import javafx.animation.*;
+import javafx.util.Duration;
 
 /**
  *
@@ -53,9 +56,13 @@ public class cleanEngine extends Application {
   mp1, mp2, mp3, mp4, mp5 ,mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16
     };
   
-  private Enemy testEnemy;
-  private Enemy fastEnemy;
-  private Enemy slowEnemy;
+  private ArrayList<Runde> rounds = new ArrayList<Runde>();
+  private int roundCount = 0;
+  private Runde testRunde = new Runde(10);
+  private Runde fastRunde = new Runde(10);
+  
+  private Timeline loop;
+  
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   
   int tick;
@@ -89,6 +96,28 @@ public class cleanEngine extends Application {
     primaryStage.setTitle("cleanEngine");
     primaryStage.setScene(scene);
     primaryStage.show();
+    
+    testRunde.setEnemyOnFrame(0*30 + 0, 1);
+    testRunde.setEnemyOnFrame(1*30 + 0, 2);
+    testRunde.setEnemyOnFrame(2*30 + 0, 3);
+    testRunde.setEnemyOnFrame(3*30 + 0, 1);
+    testRunde.setEnemyOnFrame(4*30 + 0, 2);
+    testRunde.setEnemyOnFrame(5*30 + 0, 3);
+    testRunde.setEnemyOnFrame(6*30 + 0, 1);
+    testRunde.setEnemyOnFrame(7*30 + 0, 2);
+    testRunde.setEnemyOnFrame(8*30 + 0, 3);
+    rounds.add(testRunde);
+    
+    fastRunde.setEnemyOnFrame(0*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(1*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(2*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(3*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(4*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(5*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(6*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(7*30 + 0, 2);
+    fastRunde.setEnemyOnFrame(8*30 + 0, 2);
+    rounds.add(fastRunde);
   } // end of public 
   
   // Anfang Methoden
@@ -104,24 +133,6 @@ public class cleanEngine extends Application {
     ivbg.setFitHeight(700);
     ivbg.setFitWidth(1200);
     root.getChildren().add(ivbg); 
-      
-    testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
-    testEnemy.getIV().setFitHeight(70);
-    testEnemy.getIV().setFitWidth(120);
-    enemies.add(testEnemy);  
-    root.getChildren().add(testEnemy.getIV());
-    
-    fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
-    fastEnemy.getIV().setFitHeight(70);
-    fastEnemy.getIV().setFitWidth(120);
-    enemies.add(fastEnemy);  
-    root.getChildren().add(fastEnemy.getIV());
-    
-    slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
-    slowEnemy.getIV().setFitHeight(70);
-    slowEnemy.getIV().setFitWidth(120);
-    enemies.add(slowEnemy); 
-    root.getChildren().add(slowEnemy.getIV());
     
     Image num = new Image("bum.png");
     ivbum.setImage(num);
@@ -134,11 +145,35 @@ public class cleanEngine extends Application {
   }
   
   public void move_img() {
-    tick = 0;
-    Timer timer = new Timer();
-    timer.scheduleAtFixedRate(new TimerTask() {
+    tick = 0;   
+    loop = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {  
         @Override
-        public void run() {
+        public void handle(final ActionEvent t) {
+        // Here are the new enemies being spawned
+        int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
+        if (enemyIdToSpawn == 1) {
+          Enemy testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
+          testEnemy.getIV().setFitHeight(70);
+          testEnemy.getIV().setFitWidth(120);
+          enemies.add(testEnemy);  
+          root.getChildren().add(testEnemy.getIV());
+        }
+        else if (enemyIdToSpawn == 2) {
+          Enemy fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
+          fastEnemy.getIV().setFitHeight(70);
+          fastEnemy.getIV().setFitWidth(120);
+          enemies.add(fastEnemy);  
+          root.getChildren().add(fastEnemy.getIV());
+        }
+        else if (enemyIdToSpawn == 3) {
+          Enemy slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
+          slowEnemy.getIV().setFitHeight(70);
+          slowEnemy.getIV().setFitWidth(120);
+          enemies.add(slowEnemy); 
+          root.getChildren().add(slowEnemy.getIV());
+        }
+        
+        // Here are all enemies being moved
         for (int i = 0; i < enemies.size(); i++) {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
@@ -153,17 +188,20 @@ public class cleanEngine extends Application {
             enemies.remove(enemies.get(i));
             
             // Der Check hier muss später auch die noch nicht gespawnten Gegner betrachten
-            if (enemies.size() == 0) {
-              timer.cancel();
-              timer.purge();
+            if (enemies.size() == 0 && rounds.get(roundCount).getRoundLength() < tick) {
+              loop.stop();
               System.out.println("Round over!");
+              roundCount++;
             }
           } 
         } // end of for
     
         tick++;
         }
-    }, 0, 33); 
+    }));
+  
+    loop.setCycleCount(Timeline.INDEFINITE);
+    loop.play();
   }
   
   public void button1_Action(Event evt) {

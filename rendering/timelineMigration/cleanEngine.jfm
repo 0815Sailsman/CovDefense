@@ -1,6 +1,6 @@
-object cleanEngine: TFXGuiForm
-  Left = 87
-  Top = 240
+object cleanEngine1: TFXGuiForm
+  Left = -1371
+  Top = 116
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 761

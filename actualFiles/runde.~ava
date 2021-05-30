@@ -20,4 +20,9 @@ class Runde {
       return -1;
     }
   }
+  
+  public int getRoundLength() {
+    return this.timeline.length;
+  }
+
 }

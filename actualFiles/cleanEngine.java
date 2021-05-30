@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageView.*;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import javafx.animation.Timeline;
 import javafx.animation.*;
 import javafx.util.Duration;
+import java.util.Scanner;
+
 
 /**
  *
@@ -97,7 +100,7 @@ public class cleanEngine extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
     
-    testRunde.setEnemyOnFrame(0*30 + 0, 1);
+    /* testRunde.setEnemyOnFrame(0*30 + 0, 1);
     testRunde.setEnemyOnFrame(1*30 + 0, 2);
     testRunde.setEnemyOnFrame(2*30 + 0, 3);
     testRunde.setEnemyOnFrame(3*30 + 0, 1);
@@ -117,9 +120,27 @@ public class cleanEngine extends Application {
     fastRunde.setEnemyOnFrame(6*30 + 0, 2);
     fastRunde.setEnemyOnFrame(7*30 + 0, 2);
     fastRunde.setEnemyOnFrame(8*30 + 0, 2);
-    rounds.add(fastRunde);
-  } // end of public 
-  
+    rounds.add(fastRunde);  */
+    
+    try {
+      File Runde = new File("C://Users//Nelly//Documents//GitHub//CovDefense//actualFiles//Runde1.txt");
+      Scanner sc = new Scanner(Runde);
+      
+      while (sc.hasNextLine()) { 
+        String text = sc.nextLine();
+        String[] split = text.split(", ");
+        
+        //fastRunde.setEnemyOnFrame(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+        System.out.println(Integer.parseInt(split[0]));
+      }  
+      
+      //sc.close();
+      
+    } catch(FileNotFoundException e) {
+        System.out.println("Datei nicht da!");
+        e.printStackTrace();        
+    } 
+  }
   // Anfang Methoden
   
   public static void main(String[] args) {

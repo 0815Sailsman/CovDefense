@@ -36,7 +36,7 @@ class Runde {
   
   public void loadRoundFromFile(String filename) {
     try {
-      File Runde = new File("C://Users//Daniel//Documents//GitHub//CovDefense//actualFiles//" + filename);
+      File Runde = new File("C://Users//m3klp//Documents//GitHub//CovDefense//actualFiles//" + filename);
       Scanner sc = new Scanner(Runde);
       
       this.timeline = new int[Integer.parseInt(sc.nextLine())];

@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 class Tower extends Basis {
   
   private double attackRange;

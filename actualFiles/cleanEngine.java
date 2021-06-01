@@ -124,6 +124,9 @@ public class cleanEngine extends Application {
     Runde testRunde4 = new Runde(10);
     testRunde4.loadRoundFromFile("Runde4.txt");
     rounds.add(testRunde4);
+    Runde testRunde5 = new Runde(10);
+    testRunde5.loadRoundFromFile("Runde5.txt");
+    rounds.add(testRunde5);
    
   }
   // Anfang Methoden
@@ -158,46 +161,34 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemey = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 25.0, 1, 1, 1);
-          testEnemy.getIV().setFitHeight(70);
-          testEnemy.getIV().setFitWidth(120);
-          enemies.add(testEnemy);  
-          root.getChildren().add(testEnemy.getIV());
+          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 15.0, 1, 1, 5);
+          enemies.add(redEnemy);  
+          root.getChildren().add(redEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
-          fastEnemy.getIV().setFitHeight(70);
-          fastEnemy.getIV().setFitWidth(120);
-          enemies.add(fastEnemy);  
-          root.getChildren().add(fastEnemy.getIV());
+          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 20.0, 3, 2, 10);
+          enemies.add(cyanEnemy);  
+          root.getChildren().add(cyanEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
-          slowEnemy.getIV().setFitHeight(70);
-          slowEnemy.getIV().setFitWidth(120);
-          enemies.add(slowEnemy); 
-          root.getChildren().add(slowEnemy.getIV());
+          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 30.0, 5, 5, 20);
+          enemies.add(yellowEnemy);  
+          root.getChildren().add(yellowEnemy.getIV());
         }
         else if (enemyIdToSpawn == 4) {
-          Enemy testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
-          testEnemy.getIV().setFitHeight(70);
-          testEnemy.getIV().setFitWidth(120);
-          enemies.add(testEnemy);  
-          root.getChildren().add(testEnemy.getIV());
+          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 69.0, 5, 5, 30);
+          enemies.add(greenEnemy);  
+          root.getChildren().add(greenEnemy.getIV());
         }
         else if (enemyIdToSpawn == 5) {
-          Enemy fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
-          fastEnemy.getIV().setFitHeight(70);
-          fastEnemy.getIV().setFitWidth(120);
-          enemies.add(fastEnemy);  
-          root.getChildren().add(fastEnemy.getIV());
+          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 550.0, 1.0, 10.0, 150, 100, 1000);
+          enemies.add(pinkEnemy);  
+          root.getChildren().add(pinkEnemy.getIV());
         }
         else if (enemyIdToSpawn == 6) {
-          Enemy slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
-          slowEnemy.getIV().setFitHeight(70);
-          slowEnemy.getIV().setFitWidth(120);
-          enemies.add(slowEnemy); 
-          root.getChildren().add(slowEnemy.getIV());
+          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 30.0, 200, 50, 100);
+          enemies.add(purpleEnemy);  
+          root.getChildren().add(purpleEnemy.getIV());
         }
         
         /*

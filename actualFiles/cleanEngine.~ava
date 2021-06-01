@@ -74,7 +74,7 @@ public class cleanEngine extends Application {
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1200, 800);
+    Scene scene = new Scene(root, 1184, 762);
     // Anfang Komponenten
     button1.setOnAction(
       (event) -> {button1_Action(event);} 
@@ -124,9 +124,6 @@ public class cleanEngine extends Application {
     Runde testRunde4 = new Runde(10);
     testRunde4.loadRoundFromFile("Runde4.txt");
     rounds.add(testRunde4);
-    Runde testRunde5 = new Runde(10);
-    testRunde5.loadRoundFromFile("Runde5.txt");
-    rounds.add(testRunde5);
    
   }
   // Anfang Methoden
@@ -161,46 +158,26 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 15.0, 1, 1, 5);
-          enemies.add(redEnemy);  
-          root.getChildren().add(redEnemy.getIV());
+          Enemy testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
+          testEnemy.getIV().setFitHeight(70);
+          testEnemy.getIV().setFitWidth(120);
+          enemies.add(testEnemy);  
+          root.getChildren().add(testEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 20.0, 3, 2, 10);
-          enemies.add(cyanEnemy);  
-          root.getChildren().add(cyanEnemy.getIV());
+          Enemy fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
+          fastEnemy.getIV().setFitHeight(70);
+          fastEnemy.getIV().setFitWidth(120);
+          enemies.add(fastEnemy);  
+          root.getChildren().add(fastEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 30.0, 5, 5, 20);
-          enemies.add(yellowEnemy);  
-          root.getChildren().add(yellowEnemy.getIV());
+          Enemy slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
+          slowEnemy.getIV().setFitHeight(70);
+          slowEnemy.getIV().setFitWidth(120);
+          enemies.add(slowEnemy); 
+          root.getChildren().add(slowEnemy.getIV());
         }
-        else if (enemyIdToSpawn == 4) {
-          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 69.0, 5, 5, 30);
-          enemies.add(greenEnemy);  
-          root.getChildren().add(greenEnemy.getIV());
-        }
-        else if (enemyIdToSpawn == 5) {
-          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 550.0, 1.0, 10.0, 150, 100, 1000);
-          enemies.add(pinkEnemy);  
-          root.getChildren().add(pinkEnemy.getIV());
-        }
-        else if (enemyIdToSpawn == 6) {
-          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 30.0, 200, 50, 100);
-          enemies.add(purpleEnemy);  
-          root.getChildren().add(purpleEnemy.getIV());
-        }
-        
-        /*
-        Eigentliche Konstellation der EnemyIds sind
-        Hier geordnet nach ID und gleichzeitig mit steigender Stärke
-        1 -> Rot
-        2 -> Cyan
-        3 -> Gelb
-        4 -> Grün
-        5 -> Pink
-        6 -> Lila
-        */
         
         // Here are all enemies being moved
         for (int i = 0; i < enemies.size(); i++) {
@@ -253,27 +230,10 @@ public class cleanEngine extends Application {
         System.out.println(checkIsTowerOnPath(x,y));
         System.out.println(checkIsTowerOnTower(x,y));
         if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
           Tower temptower = new Tower(new Image("Spahn.png"), x, y, 1.0, 1.0, 1.0); 
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-          
-        }
+          towers.add(temptower); 
+          root.getChildren().add(temptower.getIV());
+        } // end of if
         root.setOnMouseClicked(null);
       }
     });
@@ -284,7 +244,7 @@ public class cleanEngine extends Application {
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
+      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
         return true; 
       } // end of if
       
@@ -296,53 +256,12 @@ public class cleanEngine extends Application {
     for (int i = 0;i < towers.size(); i++) {
       double tmpX = towers.get(i).getX();
       double tmpY = towers.get(i).getY();
-      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
+      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
         return true; 
       } // end of if
       
     } // end of for
     return false;
-  }
-  
-  public boolean checkIsTowerOutWindowUp(double x, double y){
-    if (y < 50) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowDown(double x, double y){
-    if (y > 650) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowRight(double x, double y){
-    if (x > 1150) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowLeft(double x, double y){
-    if (x < 50) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerInWindow(double x, double y){
-    if (checkIsTowerOutWindowUp(x,y)==false && checkIsTowerOutWindowDown(x,y)==false && checkIsTowerOutWindowRight(x,y)==false && checkIsTowerOutWindowLeft(x,y)==false) {
-      return true;
-    } else {
-      return false;  
-    } // end of if-else
-      
   }
   // Ende Methoden
 } // end of class rendertest1

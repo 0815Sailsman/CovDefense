@@ -73,11 +73,13 @@ public class cleanEngine extends Application {
   
   int tick;
   private Button button3 = new Button();
+  
+  private boolean running = false;
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 762);
+    Scene scene = new Scene(root, 1200, 800);
     // Anfang Komponenten
     button1.setOnAction(
       (event) -> {button1_Action(event);} 
@@ -224,6 +226,7 @@ public class cleanEngine extends Application {
               loop.stop();
               System.out.println("Round over!");
               roundCount++;
+              running = false;
             }
           } 
         } // end of for
@@ -241,7 +244,10 @@ public class cleanEngine extends Application {
   } // end of button1_Action
 
   public void button2_Action(Event evt) {
-    move_img();
+    if (running == false) {
+      running = true; 
+      move_img();
+    }
   } // end of button2_Action
 
 
@@ -256,10 +262,27 @@ public class cleanEngine extends Application {
         System.out.println(checkIsTowerOnPath(x,y));
         System.out.println(checkIsTowerOnTower(x,y));
         if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
           Tower temptower = new Tower(new Image("Spahn.png"), x, y, 1.0, 1.0, 1.0); 
-          towers.add(temptower); 
-          root.getChildren().add(temptower.getIV());
-        } // end of if
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
         root.setOnMouseClicked(null);
       }
     });
@@ -270,7 +293,7 @@ public class cleanEngine extends Application {
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
         return true; 
       } // end of if
       
@@ -282,12 +305,53 @@ public class cleanEngine extends Application {
     for (int i = 0;i < towers.size(); i++) {
       double tmpX = towers.get(i).getX();
       double tmpY = towers.get(i).getY();
-      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
         return true; 
       } // end of if
       
     } // end of for
     return false;
+  }
+  
+  public boolean checkIsTowerOutWindowUp(double x, double y){
+    if (y < 50) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowDown(double x, double y){
+    if (y > 650) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowRight(double x, double y){
+    if (x > 1150) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowLeft(double x, double y){
+    if (x < 50) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerInWindow(double x, double y){
+    if (checkIsTowerOutWindowUp(x,y)==false && checkIsTowerOutWindowDown(x,y)==false && checkIsTowerOutWindowRight(x,y)==false && checkIsTowerOutWindowLeft(x,y)==false) {
+      return true;
+    } else {
+      return false;  
+    } // end of if-else
+      
   }
   // Ende Methoden
 } // end of class rendertest1

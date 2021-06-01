@@ -40,24 +40,27 @@ public class cleanEngine extends Application {
   private ImageView ivbum = new ImageView();
   
   private map_point mp1 = new map_point(550.0, 0.0);
-  private map_point mp2 = new map_point(550.0, 250.0);
-  private map_point mp3 = new map_point(400.0, 300.0);
-  private map_point mp4 = new map_point(450.0, 550.0);
-  private map_point mp5 = new map_point(100.0, 550.0);
-  private map_point mp6 = new map_point(300.0, 200.0);
+  private map_point mp2 = new map_point(550.0, 230.0);
+  private map_point mp3 = new map_point(450.0, 300.0);
+  private map_point mp4 = new map_point(430.0, 500.0);
+  private map_point mp5 = new map_point(140.0, 550.0);
+  private map_point mp6 = new map_point(300.0, 250.0);
   private map_point mp7 = new map_point(400.0, 200.0);
-  private map_point mp8 = new map_point(400.0, 300.0);
-  private map_point mp9 = new map_point(550.0, 250.0);
-  private map_point mp10 = new map_point(700.0, 300.0);
-  private map_point mp11 = new map_point(700.0, 550.0);
-  private map_point mp12 = new map_point(1000.0, 550.0);
-  private map_point mp13 = new map_point(700.0, 200.0);
-  private map_point mp14 = new map_point(650.0, 250.0);
-  private map_point mp15 = new map_point(550.0, 250.0);
-  private map_point mp16 = new map_point(550.0, 600.0);
+  private map_point mp8 = new map_point(440.0, 220.0);
+  private map_point mp9 = new map_point(400.0, 320.0);
+  private map_point mp10 = new map_point(550.0, 220.0);
+  private map_point mp11 = new map_point(670.0, 300.0);
+  private map_point mp12 = new map_point(730.0, 550.0);
+  private map_point mp13 = new map_point(1000.0, 550.0);
+  private map_point mp14 = new map_point(740.0, 200.0);
+  private map_point mp15 = new map_point(700.0, 200.0);
+  private map_point mp16 = new map_point(700.0, 320.0);
+  private map_point mp17 = new map_point(560.0, 220.0);
+  private map_point mp18 = new map_point(550.0, 600.0);
+  private map_point mp19 = new map_point(400.0, 530.0);
   
   private map_point[] path = {
-  mp1, mp2, mp3, mp4, mp5 ,mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16
+  mp1, mp2, mp3, mp4, mp19, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18, 
     };
   
   private ArrayList<Runde> rounds = new ArrayList<Runde>();
@@ -161,32 +164,32 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 15.0, 1, 1, 5);
+          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 7.0, 1, 1, 5);
           enemies.add(redEnemy);  
           root.getChildren().add(redEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 20.0, 3, 2, 10);
+          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 9.0, 3, 2, 10);
           enemies.add(cyanEnemy);  
           root.getChildren().add(cyanEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 30.0, 5, 5, 20);
+          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 12.0, 5, 5, 20);
           enemies.add(yellowEnemy);  
           root.getChildren().add(yellowEnemy.getIV());
         }
         else if (enemyIdToSpawn == 4) {
-          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 69.0, 5, 5, 30);
+          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 20.0, 5, 5, 30);
           enemies.add(greenEnemy);  
           root.getChildren().add(greenEnemy.getIV());
         }
         else if (enemyIdToSpawn == 5) {
-          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 550.0, 1.0, 10.0, 150, 100, 1000);
+          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 550.0, 1.0, 5.0, 150, 100, 1000);
           enemies.add(pinkEnemy);  
           root.getChildren().add(pinkEnemy.getIV());
         }
         else if (enemyIdToSpawn == 6) {
-          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 30.0, 200, 50, 100);
+          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 12.0, 200, 50, 100);
           enemies.add(purpleEnemy);  
           root.getChildren().add(purpleEnemy.getIV());
         }
@@ -207,7 +210,7 @@ public class cleanEngine extends Application {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
           
-          if (current_enemy.getTarget() == 16) {
+          if (current_enemy.getTarget() == 20) {
             // DAS HIER IST KOMPLETT SHIT, ABER WENN ICH ES ANDERS MACHE
             // DANN CRASHT DAS PROGRAMM!!!
             ivbum.setX(500.0);

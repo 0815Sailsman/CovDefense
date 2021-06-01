@@ -1,6 +1,6 @@
 object cleanEngine: TFXGuiForm
-  Left = 601
-  Top = 101
+  Left = 184
+  Top = 86
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 761
@@ -16,7 +16,6 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -62,7 +61,7 @@ object cleanEngine: TFXGuiForm
     TextFill = 3355443
     GraphicTextGap = 4
     MnemonicParsing = False
-    Text = ''
+    Text = 'Initialisiere'
     TextAlignment = _TA_LEFT
     WrapText = False
     action = 'button1_Action'
@@ -98,10 +97,46 @@ object cleanEngine: TFXGuiForm
     TextFill = 3355443
     GraphicTextGap = 4
     MnemonicParsing = False
-    Text = ''
+    Text = 'play'
     TextAlignment = _TA_LEFT
     WrapText = False
     action = 'button2_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object button3: TFXButton
+    Tag = 105
+    Left = 196
+    Top = 725
+    Width = 75
+    Height = 25
+    Hint = 'button3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 196
+    LayoutY = 725
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'TURMI'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button3_Action'
     CancelButton = False
     DefaultButton = False
   end

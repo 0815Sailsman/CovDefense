@@ -158,7 +158,7 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
+          Enemy redEnemey = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 25.0, 1, 1, 1);
           testEnemy.getIV().setFitHeight(70);
           testEnemy.getIV().setFitWidth(120);
           enemies.add(testEnemy);  
@@ -178,6 +178,38 @@ public class cleanEngine extends Application {
           enemies.add(slowEnemy); 
           root.getChildren().add(slowEnemy.getIV());
         }
+        else if (enemyIdToSpawn == 4) {
+          Enemy testEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 25.0, 1, 1, 1);
+          testEnemy.getIV().setFitHeight(70);
+          testEnemy.getIV().setFitWidth(120);
+          enemies.add(testEnemy);  
+          root.getChildren().add(testEnemy.getIV());
+        }
+        else if (enemyIdToSpawn == 5) {
+          Enemy fastEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 35.0, 1, 1, 1);
+          fastEnemy.getIV().setFitHeight(70);
+          fastEnemy.getIV().setFitWidth(120);
+          enemies.add(fastEnemy);  
+          root.getChildren().add(fastEnemy.getIV());
+        }
+        else if (enemyIdToSpawn == 6) {
+          Enemy slowEnemy = new Enemy(new Image("hum.jpg"), 550.0, 1.0, 15.0, 1, 1, 1);
+          slowEnemy.getIV().setFitHeight(70);
+          slowEnemy.getIV().setFitWidth(120);
+          enemies.add(slowEnemy); 
+          root.getChildren().add(slowEnemy.getIV());
+        }
+        
+        /*
+        Eigentliche Konstellation der EnemyIds sind
+        Hier geordnet nach ID und gleichzeitig mit steigender Stärke
+        1 -> Rot
+        2 -> Cyan
+        3 -> Gelb
+        4 -> Grün
+        5 -> Pink
+        6 -> Lila
+        */
         
         // Here are all enemies being moved
         for (int i = 0; i < enemies.size(); i++) {

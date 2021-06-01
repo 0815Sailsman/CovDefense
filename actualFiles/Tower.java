@@ -11,6 +11,10 @@ class Tower extends Basis {
     this.attackRange = attackRange;
     this.attackDamage = attackDamage;
     this.attackSpeed = attackSpeed;
+    this.getIV().setFitHeight(100);
+    this.getIV().setFitWidth(100);
+    this.setX(this.getX()-50);
+    this.setY(this.getY()-50);
   }
   
   public double getAttackRange() {

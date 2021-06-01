@@ -70,6 +70,8 @@ public class cleanEngine extends Application {
   
   int tick;
   private Button button3 = new Button();
+  
+  private boolean running = false;
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -221,6 +223,7 @@ public class cleanEngine extends Application {
               loop.stop();
               System.out.println("Round over!");
               roundCount++;
+              running = false;
             }
           } 
         } // end of for
@@ -238,7 +241,10 @@ public class cleanEngine extends Application {
   } // end of button1_Action
 
   public void button2_Action(Event evt) {
-    move_img();
+    if (running == false) {
+      running = true; 
+      move_img();
+    }
   } // end of button2_Action
 
 

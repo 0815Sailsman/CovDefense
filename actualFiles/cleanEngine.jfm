@@ -1,6 +1,6 @@
 object cleanEngine: TFXGuiForm
-  Left = 575
-  Top = 124
+  Left = 142
+  Top = 46
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 761
@@ -16,7 +16,6 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace

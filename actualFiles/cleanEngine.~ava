@@ -19,6 +19,7 @@ import javafx.animation.Timeline;
 import javafx.animation.*;
 import javafx.util.Duration;
 import java.util.Scanner;
+import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -65,8 +66,10 @@ public class cleanEngine extends Application {
   private Timeline loop;
   
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+  private ArrayList<Tower> towers = new ArrayList<Tower>();
   
   int tick;
+  private Button button3 = new Button();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
@@ -80,6 +83,7 @@ public class cleanEngine extends Application {
     button1.setLayoutY(728);
     button1.setPrefHeight(25);
     button1.setPrefWidth(75);
+    button1.setText("Initialisiere");
     root.getChildren().add(button1);
     button2.setLayoutX(104);
     button2.setLayoutY(725);
@@ -88,8 +92,18 @@ public class cleanEngine extends Application {
     button2.setOnAction(
       (event) -> {button2_Action(event);} 
     );
+    button2.setText("play");
     root.getChildren().add(button2);
     
+    button3.setLayoutX(196);
+    button3.setLayoutY(725);
+    button3.setPrefHeight(25);
+    button3.setPrefWidth(75);
+    button3.setOnAction(
+      (event) -> {button3_Action(event);} 
+    );
+    button3.setText("TURMI");
+    root.getChildren().add(button3);
     // Ende Komponenten
     //add_img();
     
@@ -205,6 +219,50 @@ public class cleanEngine extends Application {
   } // end of button2_Action
 
 
+  public void button3_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(checkIsTowerOnPath(x,y));
+        System.out.println(checkIsTowerOnTower(x,y));
+        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 1.0, 1.0, 1.0); 
+          towers.add(temptower); 
+          root.getChildren().add(temptower.getIV());
+        } // end of if
+        root.setOnMouseClicked(null);
+      }
+    });
+    
+  } // end of button3_Action
+  
+  public boolean checkIsTowerOnPath(double x, double y){
+    for (int i = 0;i < path.length; i++) {
+      double tmpX = path[i].getX();
+      double tmpY = path[i].getY();
+      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+        return true; 
+      } // end of if
+      
+    } // end of for
+    return false;
+  }
+  
+  public boolean checkIsTowerOnTower(double x, double y){
+    for (int i = 0;i < towers.size(); i++) {
+      double tmpX = towers.get(i).getX();
+      double tmpY = towers.get(i).getY();
+      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+        return true; 
+      } // end of if
+      
+    } // end of for
+    return false;
+  }
   // Ende Methoden
 } // end of class rendertest1
 

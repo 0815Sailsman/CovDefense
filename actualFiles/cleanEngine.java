@@ -60,9 +60,8 @@ public class cleanEngine extends Application {
   private map_point mp19 = new map_point(400.0, 530.0);
   
   private map_point[] path = {
-  mp1, mp2, mp3, mp4, mp19, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18, 
+  mp1, mp2, mp3, mp4, mp19, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18 
     };
-  
   private ArrayList<Runde> rounds = new ArrayList<Runde>();
   private int roundCount = 0;
   
@@ -212,7 +211,7 @@ public class cleanEngine extends Application {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
           
-          if (current_enemy.getTarget() == 20) {
+          if (current_enemy.getTarget() == path.length) {
             // DAS HIER IST KOMPLETT SHIT, ABER WENN ICH ES ANDERS MACHE
             // DANN CRASHT DAS PROGRAMM!!!
             ivbum.setX(500.0);

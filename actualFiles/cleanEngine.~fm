@@ -1,9 +1,9 @@
 object cleanEngine: TFXGuiForm
-  Left = 142
-  Top = 46
+  Left = 254
+  Top = 70
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
-  ClientHeight = 761
+  ClientHeight = 756
   ClientWidth = 1184
   Color = clBtnFace
   ParentFont = True
@@ -16,6 +16,7 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -137,6 +138,42 @@ object cleanEngine: TFXGuiForm
     TextAlignment = _TA_LEFT
     WrapText = False
     action = 'button3_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object button4: TFXButton
+    Tag = 105
+    Left = 684
+    Top = 379
+    Width = 75
+    Height = 25
+    Hint = 'button4'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 684
+    LayoutY = 379
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button4_Action'
     CancelButton = False
     DefaultButton = False
   end

@@ -40,26 +40,28 @@ public class cleanEngine extends Application {
   private ImageView ivbum = new ImageView();
   
   private map_point mp1 = new map_point(550.0, 0.0);
-  private map_point mp2 = new map_point(550.0, 250.0);
-  private map_point mp3 = new map_point(400.0, 300.0);
-  private map_point mp4 = new map_point(450.0, 550.0);
-  private map_point mp5 = new map_point(100.0, 550.0);
-  private map_point mp6 = new map_point(300.0, 200.0);
+  private map_point mp2 = new map_point(550.0, 230.0);
+  private map_point mp3 = new map_point(450.0, 300.0);
+  private map_point mp4 = new map_point(430.0, 500.0);
+  private map_point mp5 = new map_point(140.0, 550.0);
+  private map_point mp6 = new map_point(300.0, 250.0);
   private map_point mp7 = new map_point(400.0, 200.0);
-  private map_point mp8 = new map_point(400.0, 300.0);
-  private map_point mp9 = new map_point(550.0, 250.0);
-  private map_point mp10 = new map_point(700.0, 300.0);
-  private map_point mp11 = new map_point(700.0, 550.0);
-  private map_point mp12 = new map_point(1000.0, 550.0);
-  private map_point mp13 = new map_point(700.0, 200.0);
-  private map_point mp14 = new map_point(650.0, 250.0);
-  private map_point mp15 = new map_point(550.0, 250.0);
-  private map_point mp16 = new map_point(550.0, 600.0);
+  private map_point mp8 = new map_point(440.0, 220.0);
+  private map_point mp9 = new map_point(400.0, 320.0);
+  private map_point mp10 = new map_point(550.0, 220.0);
+  private map_point mp11 = new map_point(670.0, 300.0);
+  private map_point mp12 = new map_point(730.0, 550.0);
+  private map_point mp13 = new map_point(1000.0, 550.0);
+  private map_point mp14 = new map_point(740.0, 200.0);
+  private map_point mp15 = new map_point(700.0, 200.0);
+  private map_point mp16 = new map_point(700.0, 320.0);
+  private map_point mp17 = new map_point(560.0, 220.0);
+  private map_point mp18 = new map_point(550.0, 600.0);
+  private map_point mp19 = new map_point(400.0, 530.0);
   
   private map_point[] path = {
-  mp1, mp2, mp3, mp4, mp5 ,mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16
+  mp1, mp2, mp3, mp4, mp19, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18 
     };
-  
   private ArrayList<Runde> rounds = new ArrayList<Runde>();
   private int roundCount = 0;
   
@@ -70,11 +72,13 @@ public class cleanEngine extends Application {
   
   int tick;
   private Button button3 = new Button();
+  
+  private boolean running = false;
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 762);
+    Scene scene = new Scene(root, 1200, 800);
     // Anfang Komponenten
     button1.setOnAction(
       (event) -> {button1_Action(event);} 
@@ -161,22 +165,22 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 10.0, 1, 1, 5);
+          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 550.0, 1.0, 7.0, 1, 1, 5);
           enemies.add(redEnemy);  
           root.getChildren().add(redEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 12.0, 3, 2, 10);
+          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 550.0, 1.0, 9.0, 3, 2, 10);
           enemies.add(cyanEnemy);  
           root.getChildren().add(cyanEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 15.0, 5, 5, 20);
+          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 550.0, 1.0, 12.0, 5, 5, 20);
           enemies.add(yellowEnemy);  
           root.getChildren().add(yellowEnemy.getIV());
         }
         else if (enemyIdToSpawn == 4) {
-          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 25.0, 5, 5, 30);
+          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 550.0, 1.0, 20.0, 5, 5, 30);
           enemies.add(greenEnemy);  
           root.getChildren().add(greenEnemy.getIV());
         }
@@ -186,7 +190,7 @@ public class cleanEngine extends Application {
           root.getChildren().add(pinkEnemy.getIV());
         }
         else if (enemyIdToSpawn == 6) {
-          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 15.0, 200, 50, 100);
+          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 550.0, 1.0, 12.0, 200, 50, 100);
           enemies.add(purpleEnemy);  
           root.getChildren().add(purpleEnemy.getIV());
         }
@@ -207,7 +211,7 @@ public class cleanEngine extends Application {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
           
-          if (current_enemy.getTarget() == 16) {
+          if (current_enemy.getTarget() == path.length) {
             // DAS HIER IST KOMPLETT SHIT, ABER WENN ICH ES ANDERS MACHE
             // DANN CRASHT DAS PROGRAMM!!!
             ivbum.setX(500.0);
@@ -221,6 +225,7 @@ public class cleanEngine extends Application {
               loop.stop();
               System.out.println("Round over!");
               roundCount++;
+              running = false;
             }
           } 
         } // end of for
@@ -238,7 +243,10 @@ public class cleanEngine extends Application {
   } // end of button1_Action
 
   public void button2_Action(Event evt) {
-    move_img();
+    if (running == false) {
+      running = true; 
+      move_img();
+    }
   } // end of button2_Action
 
 
@@ -253,10 +261,27 @@ public class cleanEngine extends Application {
         System.out.println(checkIsTowerOnPath(x,y));
         System.out.println(checkIsTowerOnTower(x,y));
         if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
           Tower temptower = new Tower(new Image("Spahn.png"), x, y, 1.0, 1.0, 1.0); 
-          towers.add(temptower); 
-          root.getChildren().add(temptower.getIV());
-        } // end of if
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
         root.setOnMouseClicked(null);
       }
     });
@@ -267,7 +292,7 @@ public class cleanEngine extends Application {
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
         return true; 
       } // end of if
       
@@ -279,13 +304,56 @@ public class cleanEngine extends Application {
     for (int i = 0;i < towers.size(); i++) {
       double tmpX = towers.get(i).getX();
       double tmpY = towers.get(i).getY();
-      if ((x > (tmpX-10)&&x < (tmpX+10))&&(y > (tmpY-10)&&y < (tmpY+10))) {
+      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
         return true; 
       } // end of if
       
     } // end of for
     return false;
   }
+  
+  public boolean checkIsTowerOutWindowUp(double x, double y){
+    if (y < 50) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowDown(double x, double y){
+    if (y > 650) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowRight(double x, double y){
+    if (x > 1150) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerOutWindowLeft(double x, double y){
+    if (x < 50) {
+      return true;
+    } else {
+      return false;  
+    } 
+  }
+  
+  public boolean checkIsTowerInWindow(double x, double y){
+    if (checkIsTowerOutWindowUp(x,y)==false && checkIsTowerOutWindowDown(x,y)==false && checkIsTowerOutWindowRight(x,y)==false && checkIsTowerOutWindowLeft(x,y)==false) {
+      return true;
+    } else {
+      return false;  
+    } // end of if-else
+      
+  }
+  
+  
   // Ende Methoden
 } // end of class rendertest1
 

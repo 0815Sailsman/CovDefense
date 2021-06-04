@@ -12,7 +12,7 @@ class Enemy extends Basis{
   public Enemy(Image sprite, double x, double y, double speed, int hp, int damage, int moneyValue) {
     super(sprite, x, y);
     this.getIV().setFitHeight(50);
-    this.getIV().setFitWidth(70);
+    this.getIV().setFitWidth(85);
     this.speed = speed;
     this.hp = hp;
     this.damage = damage;

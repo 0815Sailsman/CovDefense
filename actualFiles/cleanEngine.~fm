@@ -1,6 +1,6 @@
 object cleanEngine: TFXGuiForm
-  Left = 142
-  Top = 46
+  Left = 89
+  Top = 589
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 761
@@ -139,5 +139,38 @@ object cleanEngine: TFXGuiForm
     action = 'button3_Action'
     CancelButton = False
     DefaultButton = False
+  end
+  object hpLabel: TFXLabel
+    Tag = 101
+    Left = 1040
+    Top = 10
+    Width = 118
+    Height = 28
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clWhite
+    LayoutX = 1040
+    LayoutY = 10
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 28
+    PrefWidth = 118
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'HP : 100'
+    TextAlignment = _TA_LEFT
+    WrapText = False
   end
 end

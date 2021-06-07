@@ -39,29 +39,42 @@ public class cleanEngine extends Application {
   private ImageView ivbg = new ImageView();
   private ImageView ivbum = new ImageView();
   
-  private map_point mp1 = new map_point(550.0, 0.0);
-  private map_point mp2 = new map_point(550.0, 230.0);
-  private map_point mp3 = new map_point(450.0, 300.0);
+  private map_point mp1 = new map_point(555.0, 0.0);
+  private map_point mp2 = new map_point(555.0, 230.0);
+  private map_point mp3 = new map_point(440.0, 300.0);
   private map_point mp4 = new map_point(430.0, 500.0);
-  private map_point mp5 = new map_point(140.0, 550.0);
-  private map_point mp6 = new map_point(300.0, 250.0);
-  private map_point mp7 = new map_point(400.0, 200.0);
+  private map_point mp5 = new map_point(160.0, 550.0);
+  private map_point mp6 = new map_point(310.0, 250.0);
+  private map_point mp7 = new map_point(400.0, 210.0);
   private map_point mp8 = new map_point(440.0, 220.0);
-  private map_point mp9 = new map_point(400.0, 320.0);
-  private map_point mp10 = new map_point(550.0, 220.0);
+  private map_point mp9 = new map_point(400.0, 300.0);
+  private map_point mp10 = new map_point(555.0, 220.0);
   private map_point mp11 = new map_point(670.0, 300.0);
-  private map_point mp12 = new map_point(730.0, 550.0);
-  private map_point mp13 = new map_point(1000.0, 550.0);
-  private map_point mp14 = new map_point(740.0, 200.0);
-  private map_point mp15 = new map_point(700.0, 200.0);
-  private map_point mp16 = new map_point(700.0, 320.0);
+  private map_point mp12 = new map_point(730.0, 530.0);
+  private map_point mp13 = new map_point(980.0, 550.0);
+  private map_point mp14 = new map_point(740.0, 220.0);
+  private map_point mp15 = new map_point(700.0, 220.0);
+  private map_point mp16 = new map_point(710.0, 290.0);
   private map_point mp17 = new map_point(560.0, 220.0);
   private map_point mp18 = new map_point(550.0, 600.0);
   private map_point mp19 = new map_point(400.0, 530.0);
+  private map_point mp20 = new map_point(310.0, 550.0);
+  private map_point mp21 = new map_point(140.0, 530.0);
+  private map_point mp22 = new map_point(420.0, 310.0);
+  private map_point mp23 = new map_point(440.0, 230.0);
+  private map_point mp24 = new map_point(680.0, 400.0);
+  private map_point mp25 = new map_point(690.0, 470.0);
+  private map_point mp26 = new map_point(740.0, 550.0);
+  private map_point mp27 = new map_point(1000.0, 520.0);
+  private map_point mp29 = new map_point(890.0, 390.0);
+  private map_point mp30 = new map_point(800.0, 260.0);
+  private map_point mp31 = new map_point(680.0, 300.0);
   
   private map_point[] path = {
-  mp1, mp2, mp3, mp4, mp19, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18 
+  mp1, mp2, mp3, mp4, mp19, mp20, mp5, mp21, mp6, mp7, mp8, mp23, mp9, mp22, mp10, mp11, mp24, mp25, mp12, mp26, 
+  mp13, mp27, mp29, mp30, mp14, mp15, mp16, mp31, mp17, mp18 
     };
+  
   private ArrayList<Runde> rounds = new ArrayList<Runde>();
   private int roundCount = 0;
   

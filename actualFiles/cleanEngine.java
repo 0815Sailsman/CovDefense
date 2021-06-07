@@ -20,12 +20,6 @@ import javafx.animation.*;
 import javafx.util.Duration;
 import java.util.Scanner;
 import javafx.scene.input.MouseEvent;
-import javafx.geometry.*;
-import javafx.scene.text.*;
-import javafx.scene.text.Font;
-import javafx.scene.paint.Color;
-import javafx.geometry.Insets;
-import javafx.scene.layout.*;
 
 
 /**
@@ -80,14 +74,11 @@ public class cleanEngine extends Application {
   private Button button3 = new Button();
   
   private boolean running = false;
-  private boolean bumVisible = false;
-  private int hp = 100;
-  private Label hpLabel = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 762);
+    Scene scene = new Scene(root, 1200, 800);
     // Anfang Komponenten
     button1.setOnAction(
       (event) -> {button1_Action(event);} 
@@ -117,15 +108,6 @@ public class cleanEngine extends Application {
     );
     button3.setText("TURMI");
     root.getChildren().add(button3);
-    hpLabel.setLayoutX(1040);
-    hpLabel.setLayoutY(10);
-    hpLabel.setPrefHeight(28);
-    hpLabel.setPrefWidth(118);
-    hpLabel.setText("HP : 100");
-    hpLabel.setAlignment(Pos.CENTER);
-    hpLabel.setFont(Font.font("Dialog", 20));
-    hpLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-    root.getChildren().add(hpLabel);
     // Ende Komponenten
     //add_img();
     
@@ -150,21 +132,6 @@ public class cleanEngine extends Application {
     testRunde5.loadRoundFromFile("Runde5.txt");
     rounds.add(testRunde5);
    
-    Image bg = new Image("bg.png");
-    ivbg.setImage(bg);
-    ivbg.setFitHeight(700);
-    ivbg.setFitWidth(1200);
-    root.getChildren().add(ivbg); 
-    
-    Image num = new Image("bum.png");
-    ivbum.setImage(num);
-    ivbum.setX(5000.0);
-    ivbum.setY(5500.0);
-    ivbum.setFitHeight(100);
-    ivbum.setFitWidth(200);
-    root.getChildren().add(ivbum);
-    
-    root.getChildren().get(root.getChildren().indexOf(hpLabel)).toFront();
   }
   // Anfang Methoden
   
@@ -174,7 +141,20 @@ public class cleanEngine extends Application {
   
   public void init_img() {
    
-  return;
+    Image bg = new Image("bg.png");
+    ivbg.setImage(bg);
+    ivbg.setFitHeight(700);
+    ivbg.setFitWidth(1200);
+    root.getChildren().add(ivbg); 
+    
+    Image num = new Image("bum.png");
+    ivbum.setImage(num);
+    ivbum.setX(5500.0);
+    ivbum.setY(6000.0);
+    ivbum.setFitHeight(100);
+    ivbum.setFitWidth(200);
+    root.getChildren().add(ivbum);
+
   }
   
   public void move_img() {
@@ -226,34 +206,32 @@ public class cleanEngine extends Application {
         6 -> Lila
         */
         
+        //for (int i = 0;i < towers.size(); i++) {
+         // if (towers.get(i).checkIsEnemyInRange() != null) {
+           // towers.get(i).checkIsEnemyInRange();
+          //} else 
+        //} // end of for
+        
         // Here are all enemies being moved
         for (int i = 0; i < enemies.size(); i++) {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
           
-          // Gegner errecht Ziel
           if (current_enemy.getTarget() == path.length) {
-            // Schaden verrechnen
-            hp = hp - enemies.get(i).getDamage();
-            System.out.println("HP: " + hp);
-            hpLabel.setText("HP: " + String.valueOf(hp));
-            
-            // Explsion zegen
+            // DAS HIER IST KOMPLETT SHIT, ABER WENN ICH ES ANDERS MACHE
+            // DANN CRASHT DAS PROGRAMM!!!
             ivbum.setX(500.0);
             ivbum.setY(550.0);
-            
-            // Gegner löschen
-            root.getChildren().remove(enemies.get(i).getIV());
+            current_enemy.setX(5500.0);
+            current_enemy.setY(6000.0);
             enemies.remove(enemies.get(i));
             
-            // Alle Gegner der Runde weg?
+            // Der Check hier muss später auch die noch nicht gespawnten Gegner betrachten
             if (enemies.size() == 0 && rounds.get(roundCount).getRoundLength() < tick) {
               loop.stop();
               System.out.println("Round over!");
               roundCount++;
               running = false;
-              ivbum.setX(5000.0);
-              ivbum.setY(5500.0);
             }
           } 
         } // end of for

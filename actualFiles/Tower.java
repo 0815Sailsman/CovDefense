@@ -1,6 +1,4 @@
 import javafx.scene.image.Image;
-import java.util.ArrayList;
-import java.lang.Math;
 
 class Tower extends Basis {
   
@@ -43,18 +41,4 @@ class Tower extends Basis {
     this.attackSpeed = newAttackSpeed;
   }
   
-  public Enemy checkIsEnemyInRange(ArrayList<Enemy> enemies){
-    for (int i = 0;i < enemies.size(); i++) {
-      double tmpX = enemies.get(i).getX();
-      double tmpY = enemies.get(i).getY();
-      // Compare radius of circle with
-      // distance of its center from
-      // given point
-      if (Math.pow((tmpX - this.getX()), 2) + Math.pow((tmpY - this.getY()), 2) <= Math.pow(getAttackRange(), 2)){
-        return enemies.get(i);
-      }
-      
-    }
-    return null;
-  }
   }

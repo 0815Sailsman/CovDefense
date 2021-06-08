@@ -304,7 +304,7 @@ public class cleanEngine extends Application {
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
+      if ((x > (tmpX-25)&&x < (tmpX+25))&&(y > (tmpY-25)&&y < (tmpY+25))) {
         return true; 
       } // end of if
       
@@ -364,6 +364,8 @@ public class cleanEngine extends Application {
     } // end of if-else
       
   }
+  
+
   // Ende Methoden
 } // end of class rendertest1
 

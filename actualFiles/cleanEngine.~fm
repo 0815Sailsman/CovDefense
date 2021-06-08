@@ -1,6 +1,6 @@
 object cleanEngine: TFXGuiForm
-  Left = 254
-  Top = 70
+  Left = 202
+  Top = 21
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 756
@@ -16,7 +16,6 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -141,27 +140,27 @@ object cleanEngine: TFXGuiForm
     CancelButton = False
     DefaultButton = False
   end
-  object button4: TFXButton
-    Tag = 105
-    Left = 684
-    Top = 379
-    Width = 75
-    Height = 25
-    Hint = 'button4'
+  object label1: TFXLabel
+    Tag = 101
+    Left = 1036
+    Top = 13
+    Width = 126
+    Height = 28
+    Hint = 'label1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -22
     Font.Name = 'Dialog'
     Font.Style = []
     Foreground = clBlack
-    Background = clBtnFace
-    LayoutX = 684
-    LayoutY = 379
+    Background = clWhite
+    LayoutX = 1036
+    LayoutY = 13
     Disable = False
     Cache = False
     dragOver = ''
-    PrefHeight = 25
-    PrefWidth = 75
+    PrefHeight = 28
+    PrefWidth = 126
     SnapToPixel = False
     Alignment = CENTER
     ContentDisplay = _CD_LEFT
@@ -170,11 +169,8 @@ object cleanEngine: TFXGuiForm
     TextFill = 3355443
     GraphicTextGap = 4
     MnemonicParsing = False
-    Text = ''
+    Text = 'HP: 100'
     TextAlignment = _TA_LEFT
     WrapText = False
-    action = 'button4_Action'
-    CancelButton = False
-    DefaultButton = False
   end
 end

@@ -20,6 +20,12 @@ import javafx.animation.*;
 import javafx.util.Duration;
 import java.util.Scanner;
 import javafx.scene.input.MouseEvent;
+import javafx.geometry.*;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
 
 
 /**
@@ -33,7 +39,6 @@ import javafx.scene.input.MouseEvent;
 public class cleanEngine extends Application {
   // Anfang Attribute
   Pane root = new Pane();
-  private Button button1 = new Button();
   private Button button2 = new Button();
   private ImageView iv1 = new ImageView();
   private ImageView ivbg = new ImageView();
@@ -83,24 +88,24 @@ public class cleanEngine extends Application {
   private ArrayList<Tower> towers = new ArrayList<Tower>();
   
   int tick;
+  private int hp = 100;
   private Button button3 = new Button();
   
   private boolean running = false;
+  private boolean bumming = false;
+  private Label label1 = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
     Scene scene = new Scene(root, 1184, 757);
     // Anfang Komponenten
-    button1.setOnAction(
-      (event) -> {button1_Action(event);} 
-    );
-    button1.setLayoutX(8);
-    button1.setLayoutY(728);
-    button1.setPrefHeight(25);
-    button1.setPrefWidth(75);
-    button1.setText("Initialisiere");
-    root.getChildren().add(button1);
+    Image bg = new Image("bg.png");
+    ivbg.setImage(bg);
+    ivbg.setFitHeight(700);
+    ivbg.setFitWidth(1200);
+    root.getChildren().add(ivbg); 
+    
     button2.setLayoutX(104);
     button2.setLayoutY(725);
     button2.setPrefHeight(25);
@@ -120,6 +125,15 @@ public class cleanEngine extends Application {
     );
     button3.setText("TURMI");
     root.getChildren().add(button3);
+    label1.setLayoutX(1036);
+    label1.setLayoutY(13);
+    label1.setPrefHeight(28);
+    label1.setPrefWidth(126);
+    label1.setText("HP: 100");
+    label1.setAlignment(Pos.CENTER);
+    label1.setFont(Font.font("Dialog", 22));
+    label1.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.getChildren().add(label1);
     // Ende Komponenten
     //add_img();
     
@@ -150,24 +164,6 @@ public class cleanEngine extends Application {
   public static void main(String[] args) {
     launch(args);
   } // end of main
-  
-  public void init_img() {
-   
-    Image bg = new Image("bg.png");
-    ivbg.setImage(bg);
-    ivbg.setFitHeight(700);
-    ivbg.setFitWidth(1200);
-    root.getChildren().add(ivbg); 
-    
-    Image num = new Image("bum.png");
-    ivbum.setImage(num);
-    ivbum.setX(5500.0);
-    ivbum.setY(6000.0);
-    ivbum.setFitHeight(100);
-    ivbum.setFitWidth(200);
-    root.getChildren().add(ivbum);
-
-  }
   
   public void move_img() {
     tick = 0;   
@@ -223,13 +219,21 @@ public class cleanEngine extends Application {
           Enemy current_enemy = enemies.get(i);
           current_enemy.move(path);
           
+          // Gegner erreicht Ende
           if (current_enemy.getTarget() == path.length) {
-            // DAS HIER IST KOMPLETT SHIT, ABER WENN ICH ES ANDERS MACHE
-            // DANN CRASHT DAS PROGRAMM!!!
-            ivbum.setX(500.0);
-            ivbum.setY(550.0);
-            current_enemy.setX(5500.0);
-            current_enemy.setY(6000.0);
+            if (bumming == false) {
+              Image bum = new Image("bum.png");
+              ivbum.setImage(bum);
+              ivbum.setX(500.0);
+              ivbum.setY(550.0);
+              ivbum.setFitHeight(100);
+              ivbum.setFitWidth(200);
+              root.getChildren().add(ivbum);
+              bumming = true;
+            }
+            hp = hp - current_enemy.getDamage();
+            label1.setText("HP: " + String.valueOf(hp));
+            root.getChildren().remove(root.getChildren().indexOf(current_enemy.getIV()));
             enemies.remove(enemies.get(i));
             
             // Der Check hier muss später auch die noch nicht gespawnten Gegner betrachten
@@ -238,6 +242,8 @@ public class cleanEngine extends Application {
               System.out.println("Round over!");
               roundCount++;
               running = false;
+              bumming = false;
+              root.getChildren().remove(root.getChildren().indexOf(ivbum));
             }
           } 
         } // end of for
@@ -250,9 +256,6 @@ public class cleanEngine extends Application {
     loop.play();
   }
   
-  public void button1_Action(Event evt) {
-    init_img();
-  } // end of button1_Action
 
   public void button2_Action(Event evt) {
     if (running == false) {

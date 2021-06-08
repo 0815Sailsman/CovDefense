@@ -86,6 +86,7 @@ public class cleanEngine extends Application {
   
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Tower> towers = new ArrayList<Tower>();
+  private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
   
   int tick;
   private int hp = 100;
@@ -170,6 +171,36 @@ public class cleanEngine extends Application {
     loop = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {  
         @Override
         public void handle(final ActionEvent t) {
+        // Tick towers if they find enemies and spawn projectiles when needed
+        for (int i = 0; i < towers.size(); i++) {
+          Tower current_tower = towers.get(i);
+          Enemy target = current_tower.checkIsEnemyInRange(enemies);
+          if (target != null && current_tower.canAttack()) {
+            System.out.println("Attacking");
+            // Spawn projectile flying towards enemy
+            Projectile projectile = new Projectile(new Image("hum.jpg"), current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
+            projectile.calcSteps();
+            root.getChildren().add(projectile.getIV());
+            projectiles.add(projectile);
+            current_tower.setCooldown(current_tower.getAttackSpeed());
+          }
+          current_tower.tickCooldown();
+        }
+        
+        // Tick projectiles to move, check collision and potentially
+        for (int i = 0; i < projectiles.size(); i++) {
+          Projectile current_projectile = projectiles.get(i);
+          current_projectile.move();
+          
+          // Check for collision
+          
+          // Check for despawn
+          if (current_projectile.hasPassedTarget()) {
+            root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
+            projectiles.remove(current_projectile);
+          }
+        } 
+        
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
@@ -292,7 +323,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 1.0, 1.0, 1.0); 
+          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 100.0, 1, 5, 5.0); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           

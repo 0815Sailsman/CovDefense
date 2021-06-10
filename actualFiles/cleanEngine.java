@@ -176,7 +176,6 @@ public class cleanEngine extends Application {
           Tower current_tower = towers.get(i);
           Enemy target = current_tower.checkIsEnemyInRange(enemies);
           if (target != null && current_tower.canAttack()) {
-            System.out.println("Attacking");
             // Spawn projectile flying towards enemy
             Projectile projectile = new Projectile(new Image("hum.jpg"), current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
             projectile.calcSteps();
@@ -193,6 +192,14 @@ public class cleanEngine extends Application {
           current_projectile.move();
           
           // Check for collision
+          Enemy temp = current_projectile.checkIsEnemyOnProjectile(enemies);
+          if (temp != null) {
+            temp.setHp(temp.getHp() - current_projectile.getDamage());
+            if (temp.getHp() <= 0) {
+              root.getChildren().remove(root.getChildren().indexOf(temp.getIV()));
+              enemies.remove(temp);
+            }
+          }
           
           // Check for despawn
           if (current_projectile.hasPassedTarget()) {
@@ -230,6 +237,9 @@ public class cleanEngine extends Application {
         }
         else if (enemyIdToSpawn == 6) {
           Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 100);
+          // centering vom großen anpassen, sonst den hal klein lassn
+          purpleEnemy.getIV().setFitHeight(100);
+          purpleEnemy.getIV().setFitWidth(170);
           enemies.add(purpleEnemy);  
           root.getChildren().add(purpleEnemy.getIV());
         }
@@ -266,19 +276,20 @@ public class cleanEngine extends Application {
             label1.setText("HP: " + String.valueOf(hp));
             root.getChildren().remove(root.getChildren().indexOf(current_enemy.getIV()));
             enemies.remove(enemies.get(i));
-            
-            // Der Check hier muss später auch die noch nicht gespawnten Gegner betrachten
-            if (enemies.size() == 0 && rounds.get(roundCount).getRoundLength() < tick) {
-              loop.stop();
-              System.out.println("Round over!");
-              roundCount++;
-              running = false;
-              bumming = false;
-              root.getChildren().remove(root.getChildren().indexOf(ivbum));
-            }
-          } 
+          }
         } // end of for
     
+        if (enemies.size() == 0 && rounds.get(roundCount).getRoundLength() < tick) {
+          loop.stop();
+          System.out.println("Round over!");
+          roundCount++;
+          running = false;
+          if (bumming) {
+            bumming = false;
+            root.getChildren().remove(root.getChildren().indexOf(ivbum));
+          }
+        } 
+        
         tick++;
         }
     }));
@@ -323,7 +334,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 100.0, 1, 5, 5.0); 
+          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 200.0, 5, 1, 15.0); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           

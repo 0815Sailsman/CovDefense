@@ -85,7 +85,7 @@ class Tower extends Basis {
         distY = this.getY() - tmpY;
       }   
       
-      if (Math.pow((distX), 2) + Math.pow((distY), 2) <= Math.pow(getAttackRange(), 2)){
+      if (Math.pow((distX), 2) + Math.pow((distY), 2) <= Math.pow(this.getAttackRange(), 2)){
         return enemies.get(i);
       }
       

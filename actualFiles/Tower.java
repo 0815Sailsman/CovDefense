@@ -9,7 +9,7 @@ class Tower extends Basis {
   private double projectileSpeed;
   private int cooldown;
   
-  public Tower(Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed) {
+  public Tower(Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId) {
     super(sprite, x, y);
     this.attackRange = attackRange;
     this.attackDamage = attackDamage;
@@ -20,6 +20,7 @@ class Tower extends Basis {
     this.getIV().setFitWidth(100);
     this.setX(this.getX()-50);
     this.setY(this.getY()-50);
+    this.setTypeId(typeId);
   }
   
   public double getAttackRange() {

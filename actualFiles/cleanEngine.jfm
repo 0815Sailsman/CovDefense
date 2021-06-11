@@ -1,6 +1,6 @@
 object cleanEngine: TFXGuiForm
-  Left = 202
-  Top = 21
+  Left = 90
+  Top = 43
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
   ClientHeight = 756
@@ -32,9 +32,9 @@ object cleanEngine: TFXGuiForm
   MinWidth = 0
   PixelsPerInch = 96
   TextHeight = 13
-  object button2: TFXButton
+  object button_play: TFXButton
     Tag = 105
-    Left = 104
+    Left = 16
     Top = 725
     Width = 75
     Height = 25
@@ -46,7 +46,7 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 104
+    LayoutX = 16
     LayoutY = 725
     Disable = False
     Cache = False
@@ -64,11 +64,11 @@ object cleanEngine: TFXGuiForm
     Text = 'play'
     TextAlignment = _TA_LEFT
     WrapText = False
-    action = 'button2_Action'
+    action = 'button_play_Action'
     CancelButton = False
     DefaultButton = False
   end
-  object button3: TFXButton
+  object button_Spahn: TFXButton
     Tag = 105
     Left = 196
     Top = 725
@@ -97,10 +97,10 @@ object cleanEngine: TFXGuiForm
     TextFill = 3355443
     GraphicTextGap = 4
     MnemonicParsing = False
-    Text = 'TURMI'
+    Text = ''
     TextAlignment = _TA_LEFT
     WrapText = False
-    action = 'button3_Action'
+    action = 'button_Spahn_Action'
     CancelButton = False
     DefaultButton = False
   end
@@ -136,5 +136,149 @@ object cleanEngine: TFXGuiForm
     Text = 'HP: 100'
     TextAlignment = _TA_LEFT
     WrapText = False
+  end
+  object button_Drosten: TFXButton
+    Tag = 105
+    Left = 287
+    Top = 726
+    Width = 75
+    Height = 25
+    Hint = 'button1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 287
+    LayoutY = 726
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button_Drosten_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object button_Merkel: TFXButton
+    Tag = 105
+    Left = 376
+    Top = 728
+    Width = 75
+    Height = 25
+    Hint = 'button2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 376
+    LayoutY = 728
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button_Merkel_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object button_Rezo: TFXButton
+    Tag = 105
+    Left = 466
+    Top = 725
+    Width = 75
+    Height = 25
+    Hint = 'button3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 466
+    LayoutY = 725
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button_Rezo_Action'
+    CancelButton = False
+    DefaultButton = False
+  end
+  object button_Lauterbach: TFXButton
+    Tag = 105
+    Left = 565
+    Top = 722
+    Width = 75
+    Height = 25
+    Hint = 'button4'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 565
+    LayoutY = 722
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 25
+    PrefWidth = 75
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
+    TextAlignment = _TA_LEFT
+    WrapText = False
+    action = 'button_Lauterbach_Action'
+    CancelButton = False
+    DefaultButton = False
   end
 end

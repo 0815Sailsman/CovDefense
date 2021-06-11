@@ -41,7 +41,7 @@ class Basis{
   }
   
   public void setTypeId(int newTypeId) {
-    this.typeId = typeId;
+    this.typeId = newTypeId;
   }
   
   public void setX(double newX) {

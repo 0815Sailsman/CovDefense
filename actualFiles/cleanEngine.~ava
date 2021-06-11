@@ -39,7 +39,7 @@ import javafx.scene.layout.*;
 public class cleanEngine extends Application {
   // Anfang Attribute
   Pane root = new Pane();
-  private Button button2 = new Button();
+  private Button button_play = new Button();
   private ImageView iv1 = new ImageView();
   private ImageView ivbg = new ImageView();
   private ImageView ivbum = new ImageView();
@@ -90,42 +90,46 @@ public class cleanEngine extends Application {
   
   int tick;
   private int hp = 100;
-  private Button button3 = new Button();
+  private Button button_Spahn = new Button();
   
   private boolean running = false;
   private boolean bumming = false;
   private Label label1 = new Label();
+  private Button button_Drosten = new Button();
+  private Button button_Merkel = new Button();
+  private Button button_Rezo = new Button();
+  private Button button_Lauterbach = new Button();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 757);
+    Scene scene = new Scene(root, 1200, 800);
     // Anfang Komponenten
-    Image bg = new Image("bg.png");
+    Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
     ivbg.setFitHeight(700);
     ivbg.setFitWidth(1200);
     root.getChildren().add(ivbg); 
     
-    button2.setLayoutX(104);
-    button2.setLayoutY(725);
-    button2.setPrefHeight(25);
-    button2.setPrefWidth(75);
-    button2.setOnAction(
-      (event) -> {button2_Action(event);} 
+    button_play.setLayoutX(16);
+    button_play.setLayoutY(725);
+    button_play.setPrefHeight(25);
+    button_play.setPrefWidth(75);
+    button_play.setOnAction(
+      (event) -> {button_play_Action(event);} 
     );
-    button2.setText("play");
-    root.getChildren().add(button2);
+    button_play.setText("play");
+    root.getChildren().add(button_play);
     
-    button3.setLayoutX(196);
-    button3.setLayoutY(725);
-    button3.setPrefHeight(25);
-    button3.setPrefWidth(75);
-    button3.setOnAction(
-      (event) -> {button3_Action(event);} 
+    button_Spahn.setLayoutX(196);
+    button_Spahn.setLayoutY(725);
+    button_Spahn.setPrefHeight(25);
+    button_Spahn.setPrefWidth(75);
+    button_Spahn.setOnAction(
+      (event) -> {button_Spahn_Action(event);} 
     );
-    button3.setText("TURMI");
-    root.getChildren().add(button3);
+    button_Spahn.setText("");
+    root.getChildren().add(button_Spahn);
     label1.setLayoutX(1036);
     label1.setLayoutY(13);
     label1.setPrefHeight(28);
@@ -135,6 +139,38 @@ public class cleanEngine extends Application {
     label1.setFont(Font.font("Dialog", 22));
     label1.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.getChildren().add(label1);
+    button_Drosten.setLayoutX(287);
+    button_Drosten.setLayoutY(726);
+    button_Drosten.setPrefHeight(25);
+    button_Drosten.setPrefWidth(75);
+    button_Drosten.setOnAction(
+      (event) -> {button_Drosten_Action(event);} 
+    );
+    root.getChildren().add(button_Drosten);
+    button_Merkel.setLayoutX(376);
+    button_Merkel.setLayoutY(728);
+    button_Merkel.setPrefHeight(25);
+    button_Merkel.setPrefWidth(75);
+    button_Merkel.setOnAction(
+      (event) -> {button_Merkel_Action(event);} 
+    );
+    root.getChildren().add(button_Merkel);
+    button_Rezo.setLayoutX(466);
+    button_Rezo.setLayoutY(725);
+    button_Rezo.setPrefHeight(25);
+    button_Rezo.setPrefWidth(75);
+    button_Rezo.setOnAction(
+      (event) -> {button_Rezo_Action(event);} 
+    );
+    root.getChildren().add(button_Rezo);
+    button_Lauterbach.setLayoutX(565);
+    button_Lauterbach.setLayoutY(722);
+    button_Lauterbach.setPrefHeight(25);
+    button_Lauterbach.setPrefWidth(75);
+    button_Lauterbach.setOnAction(
+      (event) -> {button_Lauterbach_Action(event);} 
+    );
+    root.getChildren().add(button_Lauterbach);
     // Ende Komponenten
     //add_img();
     
@@ -159,6 +195,35 @@ public class cleanEngine extends Application {
     testRunde5.loadRoundFromFile("Runde5.txt");
     rounds.add(testRunde5);
    
+    Image img_SpahnButton = new Image("assets/Spahn.png");
+    ImageView SpahnButtonView = new ImageView(img_SpahnButton);
+    SpahnButtonView.setFitHeight(50);
+    SpahnButtonView.setFitWidth(50);
+    button_Spahn.setGraphic(SpahnButtonView);
+    
+    Image img_DrostenButton = new Image("assets/Drosten.png");
+    ImageView DrostenButtonView = new ImageView(img_DrostenButton);
+    DrostenButtonView.setFitHeight(50);
+    DrostenButtonView.setFitWidth(50);
+    button_Drosten.setGraphic(DrostenButtonView);
+    
+    Image img_MerkelButton = new Image("assets/Merkel.png");
+    ImageView MerkelButtonView = new ImageView(img_MerkelButton);
+    MerkelButtonView.setFitHeight(50);
+    MerkelButtonView.setFitWidth(50);
+    button_Merkel.setGraphic(MerkelButtonView);
+    
+    Image img_RezoButton = new Image("assets/Rezo.png");
+    ImageView RezoButtonView = new ImageView(img_RezoButton);
+    RezoButtonView.setFitHeight(50);
+    RezoButtonView.setFitWidth(50);
+    button_Rezo.setGraphic(RezoButtonView);
+    
+    Image img_LauterbachButton = new Image("assets/Lauterbach.png");
+    ImageView LauterbachButtonView = new ImageView(img_LauterbachButton);
+    LauterbachButtonView.setFitHeight(50);
+    LauterbachButtonView.setFitWidth(50);
+    button_Lauterbach.setGraphic(LauterbachButtonView);
   }
   // Anfang Methoden
   
@@ -177,7 +242,7 @@ public class cleanEngine extends Application {
           Enemy target = current_tower.checkIsEnemyInRange(enemies);
           if (target != null && current_tower.canAttack()) {
             // Spawn projectile flying towards enemy
-            Projectile projectile = new Projectile(new Image("hum.jpg"), current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
+            Projectile projectile = new Projectile(new Image("assets/hum.jpg"), current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
@@ -189,22 +254,25 @@ public class cleanEngine extends Application {
         // Tick projectiles to move, check collision and potentially
         for (int i = 0; i < projectiles.size(); i++) {
           Projectile current_projectile = projectiles.get(i);
-          current_projectile.move();
-          
-          // Check for collision
-          Enemy temp = current_projectile.checkIsEnemyOnProjectile(enemies);
-          if (temp != null) {
-            temp.setHp(temp.getHp() - current_projectile.getDamage());
-            if (temp.getHp() <= 0) {
-              root.getChildren().remove(root.getChildren().indexOf(temp.getIV()));
-              enemies.remove(temp);
+          if (current_projectile != null) {
+            
+            current_projectile.move();
+            
+            // Check for collision
+            Enemy temp = current_projectile.checkIsEnemyOnProjectile(enemies);
+            if (temp != null) {
+              temp.setHp(temp.getHp() - current_projectile.getDamage());
+              if (temp.getHp() <= 0) {
+                root.getChildren().remove(root.getChildren().indexOf(temp.getIV()));
+                enemies.remove(temp);
+              }
             }
-          }
-          
-          // Check for despawn
-          if (current_projectile.hasPassedTarget()) {
-            root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
-            projectiles.remove(current_projectile);
+            
+            // Check for despawn
+            if (current_projectile.hasPassedTarget()) {
+              root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
+              projectiles.remove(current_projectile);
+            }
           }
         } 
         
@@ -237,6 +305,7 @@ public class cleanEngine extends Application {
         }
         else if (enemyIdToSpawn == 6) {
           Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 100);
+          // centering vom großen anpassen, sonst den hal klein lassn
           purpleEnemy.getIV().setFitHeight(100);
           purpleEnemy.getIV().setFitWidth(170);
           enemies.add(purpleEnemy);  
@@ -262,7 +331,7 @@ public class cleanEngine extends Application {
           // Gegner erreicht Ende
           if (current_enemy.getTarget() == path.length) {
             if (bumming == false) {
-              Image bum = new Image("bum.png");
+              Image bum = new Image("assets/bum.png");
               ivbum.setImage(bum);
               ivbum.setX(500.0);
               ivbum.setY(550.0);
@@ -278,6 +347,7 @@ public class cleanEngine extends Application {
           }
         } // end of for
     
+        // Keine Gegner mehr auf dem Feld und keine mehr zu spawnen
         if (enemies.size() == 0 && rounds.get(roundCount).getRoundLength() < tick) {
           loop.stop();
           System.out.println("Round over!");
@@ -287,6 +357,16 @@ public class cleanEngine extends Application {
             bumming = false;
             root.getChildren().remove(root.getChildren().indexOf(ivbum));
           }
+          for (int i=0; i<projectiles.size(); i++) {
+            Projectile current_projectile = projectiles.get(i);
+            root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
+          } // end of for
+          for (int i = 0; i < projectiles.size(); i++) {
+            Projectile current_projectile = projectiles.get(i);
+            projectiles.remove(current_projectile);
+          }
+          System.out.println("" + projectiles.size());
+          projectiles = new ArrayList<Projectile>();
         } 
         
         tick++;
@@ -298,15 +378,15 @@ public class cleanEngine extends Application {
   }
   
 
-  public void button2_Action(Event evt) {
+  public void button_play_Action(Event evt) {
     if (running == false) {
       running = true; 
       move_img();
     }
-  } // end of button2_Action
+  } // end of button_play_Action
 
 
-  public void button3_Action(Event evt) {
+  public void button_Spahn_Action(Event evt) {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
@@ -333,7 +413,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("Spahn.png"), x, y, 100.0, 1, 5, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           
@@ -342,7 +422,7 @@ public class cleanEngine extends Application {
       }
     });
     
-  } // end of button3_Action
+  } // end of button_Spahn_Action
   
   public boolean checkIsTowerOnPath(double x, double y){
     for (int i = 0;i < path.length; i++) {
@@ -409,6 +489,158 @@ public class cleanEngine extends Application {
       
   }
   
+
+  public void button_Drosten_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(checkIsTowerOnPath(x,y));
+        System.out.println(checkIsTowerOnTower(x,y));
+        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
+          Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0); 
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
+        root.setOnMouseClicked(null);
+      }
+    });
+    
+  } // end of button_Drosten_Action
+
+  public void button_Merkel_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(checkIsTowerOnPath(x,y));
+        System.out.println(checkIsTowerOnTower(x,y));
+        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
+          Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0); 
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
+        root.setOnMouseClicked(null);
+      }
+    });
+    
+  } // end of button_Merkel_Action
+
+  public void button_Rezo_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(checkIsTowerOnPath(x,y));
+        System.out.println(checkIsTowerOnTower(x,y));
+        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
+          Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 5, 1, 15.0); 
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
+        root.setOnMouseClicked(null);
+      }
+    });
+    
+  } // end of button_Rezo_Action
+
+  public void button_Lauterbach_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(checkIsTowerOnPath(x,y));
+        System.out.println(checkIsTowerOnTower(x,y));
+        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+          if (y > 700){
+            root.setOnMouseClicked(null);
+            return;
+          }
+          if (x < 50) {
+            x = 50;
+          }
+          if (x > 1150) {
+            x = 1150;
+          } 
+          if (y < 50) {
+            y = 50;
+          } 
+          if (y > 650) {
+            y = 650;
+          }
+          Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0); 
+            towers.add(temptower); 
+            root.getChildren().add(temptower.getIV());
+          
+        }
+        root.setOnMouseClicked(null);
+      }
+    });
+    
+  } // end of button_Lauterbach_Action
 
   // Ende Methoden
 } // end of class rendertest1

@@ -22,7 +22,7 @@ class Projectile extends Basis {
     this.speed = speed;
     this.targetX = targetX;
     this.targetY = targetY;
-    this.deviation = 50;
+    this.deviation = 35;
   }
   
   public double getSpeed() {
@@ -68,28 +68,30 @@ class Projectile extends Basis {
   }
   
   public void move() {
+    this.setX(this.getX() - stepX);
     if (this.targetX - this.getX() >= 0) {
-      this.setX(this.getX() + Math.abs(stepX));
-      if (this.getX() + this.deviation >= targetX) {
+      //this.setX(this.getX() + Math.abs(stepX));
+      if (this.getX() + this.deviation <= targetX) {
         this.hasPassedX = true;
       }
     }
     else {
-      this.setX(this.getX() - Math.abs(stepX));
-      if (this.getX() - this.deviation <= targetX) {
+      //this.setX(this.getX() - Math.abs(stepX));
+      if (this.getX() - this.deviation >= targetX) {
         this.hasPassedX = true;
       }
     }
     
+    this.setY(this.getY() - stepY);
     if (this.targetY - this.getY() >= 0) {
-      this.setY(this.getY() + Math.abs(stepY));
-      if (this.getY() + this.deviation >= targetY) {
+      //this.setY(this.getY() + Math.abs(stepY));
+      if (this.getY() + this.deviation <= targetY) {
         this.hasPassedY = true;
       }
     }
     else {
-      this.setY(this.getY() - Math.abs(stepY));
-      if (this.getY() - this.deviation <= targetY) {
+      //this.setY(this.getY() - Math.abs(stepY));
+      if (this.getY() - this.deviation >= targetY) {
         this.hasPassedY = true;
       }
     }        

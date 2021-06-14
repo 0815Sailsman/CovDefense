@@ -34,7 +34,7 @@ class Runde {
     } 
   }
   
-  public void loadRoundFromFile(String filename) {
+  public boolean loadRoundFromFile(String filename) {
     try {
       File Runde = new File(filename);
       Scanner sc = new Scanner(Runde);
@@ -50,10 +50,9 @@ class Runde {
       }  
       
       sc.close();
-      
+      return true;
     } catch(FileNotFoundException e) {
-        System.out.println("Datei nicht da!");
-        e.printStackTrace();        
+        return false;       
     }
   }
 }

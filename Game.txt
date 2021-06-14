@@ -1,0 +1,47 @@
+Rot    10
+Cyan   50
+Gelb  100
+Grün  250
+Pink  500
+Lila 1000
+
+
+100 + (Runde*25)
+
+
+Grundgesetz           100
+Desinfektionsmittel   500
+Maske                1000
+Spritze              2500
+Lockdown             5000
+
+
+Runde 1 (100):
+Rot -> 10x
+
+Runde 2 (350):
+Rot -> 10x, Cyan -> 5x
+
+Runde 3 (600):
+Rot -> 10x, Cyan -> 10x
+
+Runde 4 (780):
+Rot -> 8x, Cyan -> 10x, Gelb ->  2x
+
+Runde 5 (1050):
+Rot -> 5x, Cyan -> 10x, Gelb -> 5x
+
+Runde 6 (2000):
+Cyan -> 10x, Gelb -> 15x
+
+Runde 7 (1300):
+Gelb -> 8x, Grün -> 2x
+
+Runde 8 (3050):
+Gelb -> 8x, Grün -> 5x Pink -> 2x
+
+Runde 9 (4250):
+Gelb -> 5x, Grün -> 5x, Pink -> 5x 
+
+Runde 10 (5550):
+Rot ->  5x, Cyan -> 5x, Gelb -> 5x, Grün -> 5x, Pink -> 5x, Lila -> 1x

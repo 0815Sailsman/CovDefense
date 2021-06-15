@@ -13,9 +13,13 @@ class Projectile extends Basis {
   private boolean hasPassedX;
   private boolean hasPassedY;
   private int deviation;
+  private double originX;
+  private double originY;
   
   public Projectile (Image sprite, double x, double y, double speed, int damage, double targetX, double targetY) {
     super(sprite, x, y);
+    this.originX = x;
+    this.originY = y;
     this.getIV().setFitHeight(50);
     this.getIV().setFitWidth(50);
     this.damage = damage;
@@ -58,8 +62,8 @@ class Projectile extends Basis {
   }
   
   public void calcSteps() {
-    double totalx = this.targetX - this.getX();
-    double totaly = this.targetY - this.getY();                                         
+    double totalx = Math.abs(this.targetX - this.getX());
+    double totaly = Math.abs(this.targetY - this.getY());                                         
     
     double deg_alpha = Math.atan(totalx / totaly);
     
@@ -68,29 +72,27 @@ class Projectile extends Basis {
   }
   
   public void move() {
-    this.setX(this.getX() - this.stepX);
-    if (this.targetX - this.getX() >= 0) {
-      //this.setX(this.getX() + Math.abs(stepX));
+    if (this.targetX - this.originX >= 0) {
+      this.setX(this.getX() + this.stepX);
       if (this.getX() - this.deviation >= targetX) {
         this.hasPassedX = true;
       }
     }
     else {
-      //this.setX(this.getX() - Math.abs(stepX));
+      this.setX(this.getX() - this.stepX);
       if (this.getX() + this.deviation <= targetX) {
         this.hasPassedX = true;
       }
     }
     
-    this.setY(this.getY() - this.stepY);
-    if (this.targetY - this.getY() >= 0) {
-      //this.setY(this.getY() + Math.abs(stepY));
+    if (this.targetY - this.originY >= 0) {
+      this.setY(this.getY() + this.stepY);
       if (this.getY() - this.deviation >= targetY) {
         this.hasPassedY = true;
       }
     }
     else {
-      //this.setY(this.getY() - Math.abs(stepY));
+      this.setY(this.getY() - this.stepY);
       if (this.getY() + this.deviation <= targetY) {
         this.hasPassedY = true;
       }
@@ -134,4 +136,8 @@ class Projectile extends Basis {
     }
     return null;
   }
+  
+  public String toString() { 
+      return "Projektil vom Typ " + this.getTypeId() + " an den Koordinaten " + this.getX() + " und " + this.getY() + " gespawnt.";
+  } 
 }                         

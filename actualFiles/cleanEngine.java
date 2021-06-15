@@ -274,9 +274,6 @@ public class cleanEngine extends Application {
         for (int i = 0; i < towers.size(); i++) {
           Tower current_tower = towers.get(i);
           Enemy target = current_tower.checkIsEnemyInRange(enemies);
-          if (target != null) {
-            ;//System.out.println("" + target.getX() + "   " + target.getY());
-          }
           if (target != null && current_tower.canAttack()) {
             // Spawn projectile flying towards enemy
             /*Typ1 ist Spritze für Spahn
@@ -285,7 +282,6 @@ public class cleanEngine extends Application {
               Typ4
               Typ5
             */
-            System.out.println("a");
             Image projectileImage = new Image("assets/hum.jpg"); 
             if (current_tower.getTypeId()==1) {
               projectileImage = new Image("Projektile/Spritze.png"); 
@@ -298,15 +294,12 @@ public class cleanEngine extends Application {
             } else if (current_tower.getTypeId()==5) {
               projectileImage = new Image("Projektile/Maske.png");  
             } 
-            else {
-              System.out.println("AAAAAAAAAAAA");
-            } // end of if-else
             Projectile projectile = new Projectile(projectileImage, current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
             System.out.println(projectile);
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
-            System.out.println("Size: " + projectiles.size());
+            System.out.println("Projectile Count: " + projectiles.size());
             current_tower.setCooldown(current_tower.getAttackSpeed());
           }
           current_tower.tickCooldown();
@@ -335,7 +328,6 @@ public class cleanEngine extends Application {
             if (current_projectile.hasPassedTarget()) {
               root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
               projectiles.remove(current_projectile);
-              System.out.println("crab rave");
             }
           }
         } 
@@ -370,9 +362,6 @@ public class cleanEngine extends Application {
         }
         else if (enemyIdToSpawn == 6) {
           Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 1000);
-          // centering vom großen anpassen, sonst den hal klein lassn
-          purpleEnemy.getIV().setFitHeight(100);
-          purpleEnemy.getIV().setFitWidth(170);
           enemies.add(purpleEnemy);  
           root.getChildren().add(purpleEnemy.getIV());
         }
@@ -459,12 +448,26 @@ public class cleanEngine extends Application {
   public void load_rounds() {
     int fileNr = 1;
     boolean worked = true;
+    /*
     do {
+      System.out.println("Loading round " + String.valueOf(fileNr));
       Runde tempRunde = new Runde(10);
       worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
       rounds.add(tempRunde);
-      fileNr++;         
+      System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      fileNr++;        
     } while (worked);
+    */
+    Runde tempRunde = new Runde(10);
+    worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
+    while (worked) {
+      System.out.println("Loading round " + String.valueOf(fileNr));
+      rounds.add(tempRunde);
+      System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      fileNr++;
+      tempRunde = new Runde(10);
+      worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt"); 
+    }
     System.out.println("Alle vorhandenen Runden geladen.");
   }
 

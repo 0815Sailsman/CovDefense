@@ -331,32 +331,33 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 555.0, 1.0, 7.0, 1, 1, 5);
+          // Image sprite, double x, double y, double speed, int hp, int damage, int moneyValue
+          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 555.0, 1.0, 7.0, 1, 1, 10);
           enemies.add(redEnemy);  
           root.getChildren().add(redEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 555.0, 1.0, 9.0, 3, 2, 10);
+          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 555.0, 1.0, 9.0, 3, 2, 50);
           enemies.add(cyanEnemy);  
           root.getChildren().add(cyanEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 555.0, 1.0, 12.0, 5, 5, 20);
+          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 555.0, 1.0, 12.0, 5, 5, 100);
           enemies.add(yellowEnemy);  
           root.getChildren().add(yellowEnemy.getIV());
         }
         else if (enemyIdToSpawn == 4) {
-          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 555.0, 1.0, 20.0, 5, 5, 30);
+          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 555.0, 1.0, 20.0, 5, 5, 250);
           enemies.add(greenEnemy);  
           root.getChildren().add(greenEnemy.getIV());
         }
         else if (enemyIdToSpawn == 5) {
-          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 555.0, 1.0, 5.0, 150, 100, 1000);
+          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 555.0, 1.0, 5.0, 150, 100, 500);
           enemies.add(pinkEnemy);  
           root.getChildren().add(pinkEnemy.getIV());
         }
         else if (enemyIdToSpawn == 6) {
-          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 100);
+          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 1000);
           // centering vom großen anpassen, sonst den hal klein lassn
           purpleEnemy.getIV().setFitHeight(100);
           purpleEnemy.getIV().setFitWidth(170);
@@ -683,7 +684,8 @@ public class cleanEngine extends Application {
           if (money >= 100) {
             money = money - 100;
             labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 5, 1, 15.0, 4); 
+            //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 300.0, 1, 10, 15.0, 4); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           }

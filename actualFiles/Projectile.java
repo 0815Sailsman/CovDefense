@@ -22,7 +22,7 @@ class Projectile extends Basis {
     this.speed = speed;
     this.targetX = targetX;
     this.targetY = targetY;
-    this.deviation = 35;
+    this.deviation = 15;
   }
   
   public double getSpeed() {

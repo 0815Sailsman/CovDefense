@@ -101,11 +101,16 @@ public class cleanEngine extends Application {
   private Button button_Rezo = new Button();
   private Button button_Lauterbach = new Button();
   private Label labelMoney = new Label();
+  private Label label1 = new Label();
+  private Label label2 = new Label();
+  private Label label4 = new Label();
+  private Label label6 = new Label();
+  private Label label7 = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1200, 800);
+    Scene scene = new Scene(root, 1184, 785);
     // Anfang Komponenten
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
@@ -123,7 +128,7 @@ public class cleanEngine extends Application {
     button_play.setText("play");
     root.getChildren().add(button_play);
     
-    button_Spahn.setLayoutX(196);
+    button_Spahn.setLayoutX(465);
     button_Spahn.setLayoutY(725);
     button_Spahn.setPrefHeight(25);
     button_Spahn.setPrefWidth(75);
@@ -141,23 +146,23 @@ public class cleanEngine extends Application {
     labelHP.setFont(Font.font("Dialog", 22));
     labelHP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.getChildren().add(labelHP);
-    button_Drosten.setLayoutX(287);
-    button_Drosten.setLayoutY(726);
+    button_Drosten.setLayoutX(295);
+    button_Drosten.setLayoutY(725);
     button_Drosten.setPrefHeight(25);
     button_Drosten.setPrefWidth(75);
     button_Drosten.setOnAction(
       (event) -> {button_Drosten_Action(event);} 
     );
     root.getChildren().add(button_Drosten);
-    button_Merkel.setLayoutX(376);
-    button_Merkel.setLayoutY(728);
+    button_Merkel.setLayoutX(550);
+    button_Merkel.setLayoutY(725);
     button_Merkel.setPrefHeight(25);
     button_Merkel.setPrefWidth(75);
     button_Merkel.setOnAction(
       (event) -> {button_Merkel_Action(event);} 
     );
     root.getChildren().add(button_Merkel);
-    button_Rezo.setLayoutX(466);
+    button_Rezo.setLayoutX(210);
     button_Rezo.setLayoutY(725);
     button_Rezo.setPrefHeight(25);
     button_Rezo.setPrefWidth(75);
@@ -165,8 +170,8 @@ public class cleanEngine extends Application {
       (event) -> {button_Rezo_Action(event);} 
     );
     root.getChildren().add(button_Rezo);
-    button_Lauterbach.setLayoutX(565);
-    button_Lauterbach.setLayoutY(722);
+    button_Lauterbach.setLayoutX(380);
+    button_Lauterbach.setLayoutY(725);
     button_Lauterbach.setPrefHeight(25);
     button_Lauterbach.setPrefWidth(75);
     button_Lauterbach.setOnAction(
@@ -182,6 +187,36 @@ public class cleanEngine extends Application {
     labelMoney.setAlignment(Pos.CENTER);
     labelMoney.setFont(Font.font("Dialog", 22));
     root.getChildren().add(labelMoney);
+    label1.setLayoutX(230);
+    label1.setLayoutY(705);
+    label1.setPrefHeight(20);
+    label1.setPrefWidth(78);
+    label1.setText("100$");
+    root.getChildren().add(label1);
+    label2.setLayoutX(315);
+    label2.setLayoutY(705);
+    label2.setPrefHeight(20);
+    label2.setPrefWidth(78);
+    label2.setText("500$");
+    root.getChildren().add(label2);
+    label4.setLayoutX(400);
+    label4.setLayoutY(705);
+    label4.setPrefHeight(20);
+    label4.setPrefWidth(78);
+    label4.setText("1500$");
+    root.getChildren().add(label4);
+    label6.setLayoutX(485);
+    label6.setLayoutY(705);
+    label6.setPrefHeight(20);
+    label6.setPrefWidth(78);
+    label6.setText("2500$");
+    root.getChildren().add(label6);
+    label7.setLayoutX(570);
+    label7.setLayoutY(705);
+    label7.setPrefHeight(20);
+    label7.setPrefWidth(78);
+    label7.setText("5000$");
+    root.getChildren().add(label7);
     // Ende Komponenten
     //add_img();
     

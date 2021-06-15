@@ -1,9 +1,9 @@
 object cleanEngine: TFXGuiForm
-  Left = -1471
-  Top = 121
+  Left = 264
+  Top = 32
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
-  ClientHeight = 756
+  ClientHeight = 784
   ClientWidth = 1184
   Color = clBtnFace
   ParentFont = True
@@ -16,7 +16,6 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
-  Modified = False
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -71,7 +70,7 @@ object cleanEngine: TFXGuiForm
   end
   object button_Spahn: TFXButton
     Tag = 105
-    Left = 196
+    Left = 468
     Top = 725
     Width = 75
     Height = 25
@@ -83,7 +82,7 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 196
+    LayoutX = 468
     LayoutY = 725
     Disable = False
     Cache = False
@@ -140,7 +139,7 @@ object cleanEngine: TFXGuiForm
   end
   object button_Drosten: TFXButton
     Tag = 105
-    Left = 287
+    Left = 295
     Top = 726
     Width = 75
     Height = 25
@@ -152,7 +151,7 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 287
+    LayoutX = 295
     LayoutY = 726
     Disable = False
     Cache = False
@@ -176,8 +175,8 @@ object cleanEngine: TFXGuiForm
   end
   object button_Merkel: TFXButton
     Tag = 105
-    Left = 376
-    Top = 728
+    Left = 560
+    Top = 720
     Width = 75
     Height = 25
     Hint = 'button2'
@@ -188,8 +187,8 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 376
-    LayoutY = 728
+    LayoutX = 560
+    LayoutY = 720
     Disable = False
     Cache = False
     dragOver = ''
@@ -212,7 +211,7 @@ object cleanEngine: TFXGuiForm
   end
   object button_Rezo: TFXButton
     Tag = 105
-    Left = 466
+    Left = 210
     Top = 725
     Width = 75
     Height = 25
@@ -224,7 +223,7 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 466
+    LayoutX = 210
     LayoutY = 725
     Disable = False
     Cache = False
@@ -248,7 +247,7 @@ object cleanEngine: TFXGuiForm
   end
   object button_Lauterbach: TFXButton
     Tag = 105
-    Left = 565
+    Left = 381
     Top = 722
     Width = 75
     Height = 25
@@ -260,7 +259,7 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clBtnFace
-    LayoutX = 565
+    LayoutX = 381
     LayoutY = 722
     Disable = False
     Cache = False
@@ -312,6 +311,171 @@ object cleanEngine: TFXGuiForm
     GraphicTextGap = 4
     MnemonicParsing = False
     Text = 'Money: 100$'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label1: TFXLabel
+    Tag = 101
+    Left = 209
+    Top = 698
+    Width = 78
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 209
+    LayoutY = 698
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 78
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'text'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label2: TFXLabel
+    Tag = 101
+    Left = 297
+    Top = 698
+    Width = 78
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 297
+    LayoutY = 698
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 78
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'text'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label4: TFXLabel
+    Tag = 101
+    Left = 377
+    Top = 698
+    Width = 78
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 377
+    LayoutY = 698
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 78
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'text'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label6: TFXLabel
+    Tag = 101
+    Left = 465
+    Top = 698
+    Width = 78
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 465
+    LayoutY = 698
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 78
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'text'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label7: TFXLabel
+    Tag = 101
+    Left = 553
+    Top = 698
+    Width = 78
+    Height = 20
+    Hint = 'label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 553
+    LayoutY = 698
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 78
+    SnapToPixel = False
+    Alignment = CENTER_LEFT
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'text'
     TextAlignment = _TA_LEFT
     WrapText = False
   end

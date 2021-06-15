@@ -1,5 +1,5 @@
 object cleanEngine: TFXGuiForm
-  Left = -1471
+  Left = 0
   Top = 121
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'

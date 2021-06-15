@@ -86,7 +86,9 @@ class Tower extends Basis {
         distY = this.getY() - tmpY;
       }   
       
-      if (Math.pow((distX), 2) + Math.pow((distY), 2) <= Math.pow(this.getAttackRange(), 2)){
+      double hypothenuse = Math.sqrt(Math.pow((distX), 2) + Math.pow((distY), 2));
+      //System.out.println("" + String.valueOf(hypothenuse));
+      if (hypothenuse <= this.getAttackRange()){
         return enemies.get(i);
       }
       

@@ -101,11 +101,16 @@ public class cleanEngine extends Application {
   private Button button_Rezo = new Button();
   private Button button_Lauterbach = new Button();
   private Label labelMoney = new Label();
+  private Label label1 = new Label();
+  private Label label2 = new Label();
+  private Label label4 = new Label();
+  private Label label6 = new Label();
+  private Label label7 = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1200, 800);
+    Scene scene = new Scene(root, 1184, 785);
     // Anfang Komponenten
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
@@ -123,7 +128,7 @@ public class cleanEngine extends Application {
     button_play.setText("play");
     root.getChildren().add(button_play);
     
-    button_Spahn.setLayoutX(196);
+    button_Spahn.setLayoutX(465);
     button_Spahn.setLayoutY(725);
     button_Spahn.setPrefHeight(25);
     button_Spahn.setPrefWidth(75);
@@ -141,23 +146,23 @@ public class cleanEngine extends Application {
     labelHP.setFont(Font.font("Dialog", 22));
     labelHP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.getChildren().add(labelHP);
-    button_Drosten.setLayoutX(287);
-    button_Drosten.setLayoutY(726);
+    button_Drosten.setLayoutX(295);
+    button_Drosten.setLayoutY(725);
     button_Drosten.setPrefHeight(25);
     button_Drosten.setPrefWidth(75);
     button_Drosten.setOnAction(
       (event) -> {button_Drosten_Action(event);} 
     );
     root.getChildren().add(button_Drosten);
-    button_Merkel.setLayoutX(376);
-    button_Merkel.setLayoutY(728);
+    button_Merkel.setLayoutX(550);
+    button_Merkel.setLayoutY(725);
     button_Merkel.setPrefHeight(25);
     button_Merkel.setPrefWidth(75);
     button_Merkel.setOnAction(
       (event) -> {button_Merkel_Action(event);} 
     );
     root.getChildren().add(button_Merkel);
-    button_Rezo.setLayoutX(466);
+    button_Rezo.setLayoutX(210);
     button_Rezo.setLayoutY(725);
     button_Rezo.setPrefHeight(25);
     button_Rezo.setPrefWidth(75);
@@ -165,8 +170,8 @@ public class cleanEngine extends Application {
       (event) -> {button_Rezo_Action(event);} 
     );
     root.getChildren().add(button_Rezo);
-    button_Lauterbach.setLayoutX(565);
-    button_Lauterbach.setLayoutY(722);
+    button_Lauterbach.setLayoutX(380);
+    button_Lauterbach.setLayoutY(725);
     button_Lauterbach.setPrefHeight(25);
     button_Lauterbach.setPrefWidth(75);
     button_Lauterbach.setOnAction(
@@ -182,6 +187,36 @@ public class cleanEngine extends Application {
     labelMoney.setAlignment(Pos.CENTER);
     labelMoney.setFont(Font.font("Dialog", 22));
     root.getChildren().add(labelMoney);
+    label1.setLayoutX(230);
+    label1.setLayoutY(705);
+    label1.setPrefHeight(20);
+    label1.setPrefWidth(78);
+    label1.setText("100$");
+    root.getChildren().add(label1);
+    label2.setLayoutX(315);
+    label2.setLayoutY(705);
+    label2.setPrefHeight(20);
+    label2.setPrefWidth(78);
+    label2.setText("500$");
+    root.getChildren().add(label2);
+    label4.setLayoutX(400);
+    label4.setLayoutY(705);
+    label4.setPrefHeight(20);
+    label4.setPrefWidth(78);
+    label4.setText("1500$");
+    root.getChildren().add(label4);
+    label6.setLayoutX(485);
+    label6.setLayoutY(705);
+    label6.setPrefHeight(20);
+    label6.setPrefWidth(78);
+    label6.setText("2500$");
+    root.getChildren().add(label6);
+    label7.setLayoutX(570);
+    label7.setLayoutY(705);
+    label7.setPrefHeight(20);
+    label7.setPrefWidth(78);
+    label7.setText("5000$");
+    root.getChildren().add(label7);
     // Ende Komponenten
     //add_img();
     
@@ -230,13 +265,18 @@ public class cleanEngine extends Application {
   
   public void move_img() {
     tick = 0;   
-    loop = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {  
+    loop = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {  
         @Override
         public void handle(final ActionEvent t) {
+        long start = System.currentTimeMillis();
+        //System.out.println("Start " + System.currentTimeMillis());
         // Tick towers if they find enemies and spawn projectiles when needed
         for (int i = 0; i < towers.size(); i++) {
           Tower current_tower = towers.get(i);
           Enemy target = current_tower.checkIsEnemyInRange(enemies);
+          if (target != null) {
+            ;//System.out.println("" + target.getX() + "   " + target.getY());
+          }
           if (target != null && current_tower.canAttack()) {
             // Spawn projectile flying towards enemy
             /*Typ1 ist Spritze für Spahn
@@ -245,6 +285,7 @@ public class cleanEngine extends Application {
               Typ4
               Typ5
             */
+            System.out.println("a");
             Image projectileImage = new Image("assets/hum.jpg"); 
             if (current_tower.getTypeId()==1) {
               projectileImage = new Image("Projektile/Spritze.png"); 
@@ -257,10 +298,15 @@ public class cleanEngine extends Application {
             } else if (current_tower.getTypeId()==5) {
               projectileImage = new Image("Projektile/Maske.png");  
             } 
+            else {
+              System.out.println("AAAAAAAAAAAA");
+            } // end of if-else
             Projectile projectile = new Projectile(projectileImage, current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
+            System.out.println(projectile);
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
+            System.out.println("Size: " + projectiles.size());
             current_tower.setCooldown(current_tower.getAttackSpeed());
           }
           current_tower.tickCooldown();
@@ -289,6 +335,7 @@ public class cleanEngine extends Application {
             if (current_projectile.hasPassedTarget()) {
               root.getChildren().remove(root.getChildren().indexOf(current_projectile.getIV()));
               projectiles.remove(current_projectile);
+              System.out.println("crab rave");
             }
           }
         } 
@@ -296,32 +343,33 @@ public class cleanEngine extends Application {
         // Here are the new enemies being spawned
         int enemyIdToSpawn = rounds.get(roundCount).getEnemyOnFrame(tick);
         if (enemyIdToSpawn == 1) {
-          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 555.0, 1.0, 7.0, 1, 1, 5);
+          // Image sprite, double x, double y, double speed, int hp, int damage, int moneyValue
+          Enemy redEnemy = new Enemy(new Image("assets//red.png"), 555.0, 1.0, 7.0, 1, 1, 10);
           enemies.add(redEnemy);  
           root.getChildren().add(redEnemy.getIV());
         }
         else if (enemyIdToSpawn == 2) {
-          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 555.0, 1.0, 9.0, 3, 2, 10);
+          Enemy cyanEnemy = new Enemy(new Image("assets//cyan.png"), 555.0, 1.0, 9.0, 3, 2, 50);
           enemies.add(cyanEnemy);  
           root.getChildren().add(cyanEnemy.getIV());
         }
         else if (enemyIdToSpawn == 3) {
-          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 555.0, 1.0, 12.0, 5, 5, 20);
+          Enemy yellowEnemy = new Enemy(new Image("assets//yellow.png"), 555.0, 1.0, 12.0, 5, 5, 100);
           enemies.add(yellowEnemy);  
           root.getChildren().add(yellowEnemy.getIV());
         }
         else if (enemyIdToSpawn == 4) {
-          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 555.0, 1.0, 20.0, 5, 5, 30);
+          Enemy greenEnemy = new Enemy(new Image("assets//green.png"), 555.0, 1.0, 20.0, 5, 5, 250);
           enemies.add(greenEnemy);  
           root.getChildren().add(greenEnemy.getIV());
         }
         else if (enemyIdToSpawn == 5) {
-          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 555.0, 1.0, 5.0, 150, 100, 1000);
+          Enemy pinkEnemy = new Enemy(new Image("assets//pink.png"), 555.0, 1.0, 5.0, 150, 100, 500);
           enemies.add(pinkEnemy);  
           root.getChildren().add(pinkEnemy.getIV());
         }
         else if (enemyIdToSpawn == 6) {
-          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 100);
+          Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 1000);
           // centering vom großen anpassen, sonst den hal klein lassn
           purpleEnemy.getIV().setFitHeight(100);
           purpleEnemy.getIV().setFitWidth(170);
@@ -397,6 +445,10 @@ public class cleanEngine extends Application {
         } 
         
         tick++;
+        long result = System.currentTimeMillis() - start;
+        if (result >= 30) {
+          System.out.println("Zu lang: " + String.valueOf(result));
+        }
         }
     }));
   
@@ -648,7 +700,8 @@ public class cleanEngine extends Application {
           if (money >= 100) {
             money = money - 100;
             labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 5, 1, 15.0, 4); 
+            //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 10, 15.0, 4); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           }

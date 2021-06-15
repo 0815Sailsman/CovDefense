@@ -1,9 +1,9 @@
 object cleanEngine: TFXGuiForm
-  Left = 264
-  Top = 32
+  Left = 470
+  Top = 76
   BorderIcons = [biSystemMenu]
   Caption = 'cleanEngine'
-  ClientHeight = 784
+  ClientHeight = 794
   ClientWidth = 1184
   Color = clBtnFace
   ParentFont = True
@@ -16,6 +16,7 @@ object cleanEngine: TFXGuiForm
   OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   FrameType = 8
+  Modified = True
   Resizable = True
   Undecorated = False
   Background = clBtnFace
@@ -106,10 +107,10 @@ object cleanEngine: TFXGuiForm
   end
   object labelHP: TFXLabel
     Tag = 101
-    Left = 1036
-    Top = 13
-    Width = 126
-    Height = 28
+    Left = 1050
+    Top = 10
+    Width = 100
+    Height = 30
     Hint = 'label1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -118,13 +119,13 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 1036
-    LayoutY = 13
+    LayoutX = 1050
+    LayoutY = 10
     Disable = False
     Cache = False
     dragOver = ''
-    PrefHeight = 28
-    PrefWidth = 126
+    PrefHeight = 30
+    PrefWidth = 100
     SnapToPixel = False
     Alignment = CENTER
     ContentDisplay = _CD_LEFT
@@ -283,10 +284,10 @@ object cleanEngine: TFXGuiForm
   end
   object labelMoney: TFXLabel
     Tag = 101
-    Left = 1033
-    Top = 57
+    Left = 1030
+    Top = 50
     Width = 140
-    Height = 28
+    Height = 30
     Hint = 'label2'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -295,12 +296,12 @@ object cleanEngine: TFXGuiForm
     Font.Style = []
     Foreground = clBlack
     Background = clWhite
-    LayoutX = 1033
-    LayoutY = 57
+    LayoutX = 1030
+    LayoutY = 50
     Disable = False
     Cache = False
     dragOver = ''
-    PrefHeight = 28
+    PrefHeight = 30
     PrefWidth = 140
     SnapToPixel = False
     Alignment = CENTER
@@ -476,6 +477,72 @@ object cleanEngine: TFXGuiForm
     GraphicTextGap = 4
     MnemonicParsing = False
     Text = 'text'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object lRunde0: TFXLabel
+    Tag = 101
+    Left = 1045
+    Top = 90
+    Width = 110
+    Height = 30
+    Hint = 'label3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -22
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clWhite
+    LayoutX = 1045
+    LayoutY = 90
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 30
+    PrefWidth = 110
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = 'Runde: 0'
+    TextAlignment = _TA_LEFT
+    WrapText = False
+  end
+  object label3: TFXLabel
+    Tag = 101
+    Left = 900
+    Top = 725
+    Width = 174
+    Height = 20
+    Hint = 'label3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = clBlack
+    Background = clBtnFace
+    LayoutX = 900
+    LayoutY = 725
+    Disable = False
+    Cache = False
+    dragOver = ''
+    PrefHeight = 20
+    PrefWidth = 174
+    SnapToPixel = False
+    Alignment = CENTER
+    ContentDisplay = _CD_LEFT
+    EllipsisString = '...'
+    Underline = False
+    TextFill = 3355443
+    GraphicTextGap = 4
+    MnemonicParsing = False
+    Text = ''
     TextAlignment = _TA_LEFT
     WrapText = False
   end

@@ -106,11 +106,13 @@ public class cleanEngine extends Application {
   private Label label4 = new Label();
   private Label label6 = new Label();
   private Label label7 = new Label();
+  private Label lRunde0 = new Label();
+  private Label label3 = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 785);
+    Scene scene = new Scene(root, 1184, 795);
     // Anfang Komponenten
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
@@ -137,10 +139,10 @@ public class cleanEngine extends Application {
     );
     button_Spahn.setText("");
     root.getChildren().add(button_Spahn);
-    labelHP.setLayoutX(1036);
-    labelHP.setLayoutY(13);
-    labelHP.setPrefHeight(28);
-    labelHP.setPrefWidth(126);
+    labelHP.setLayoutX(1050);
+    labelHP.setLayoutY(10);
+    labelHP.setPrefHeight(30);
+    labelHP.setPrefWidth(100);
     labelHP.setText("HP: 100");
     labelHP.setAlignment(Pos.CENTER);
     labelHP.setFont(Font.font("Dialog", 22));
@@ -178,9 +180,9 @@ public class cleanEngine extends Application {
       (event) -> {button_Lauterbach_Action(event);} 
     );
     root.getChildren().add(button_Lauterbach);
-    labelMoney.setLayoutX(1033);
-    labelMoney.setLayoutY(57);
-    labelMoney.setPrefHeight(28);
+    labelMoney.setLayoutX(1030);
+    labelMoney.setLayoutY(50);
+    labelMoney.setPrefHeight(30);
     labelMoney.setPrefWidth(140);
     labelMoney.setText("Money: 100$");
     labelMoney.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -217,6 +219,22 @@ public class cleanEngine extends Application {
     label7.setPrefWidth(78);
     label7.setText("5000$");
     root.getChildren().add(label7);
+    lRunde0.setLayoutX(1045);
+    lRunde0.setLayoutY(90);
+    lRunde0.setPrefHeight(30);
+    lRunde0.setPrefWidth(110);
+    lRunde0.setText("Runde: 0");
+    lRunde0.setAlignment(Pos.CENTER);
+    lRunde0.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    lRunde0.setFont(Font.font("Dialog", 22));
+    root.getChildren().add(lRunde0);
+    label3.setLayoutX(900);
+    label3.setLayoutY(725);
+    label3.setPrefHeight(20);
+    label3.setPrefWidth(174);
+    label3.setText("");
+    label3.setAlignment(Pos.CENTER);
+    root.getChildren().add(label3);
     // Ende Komponenten
     //add_img();
     
@@ -265,9 +283,11 @@ public class cleanEngine extends Application {
   
   public void move_img() {
     tick = 0;   
-    loop = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {  
+    loop = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {  
         @Override
         public void handle(final ActionEvent t) {
+        long start = System.currentTimeMillis();
+        //System.out.println("Start " + System.currentTimeMillis());
         // Tick towers if they find enemies and spawn projectiles when needed
         for (int i = 0; i < towers.size(); i++) {
           Tower current_tower = towers.get(i);
@@ -293,9 +313,11 @@ public class cleanEngine extends Application {
               projectileImage = new Image("Projektile/Maske.png");  
             } 
             Projectile projectile = new Projectile(projectileImage, current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
+            System.out.println(projectile);
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
+            System.out.println("Projectile Count: " + projectiles.size());
             current_tower.setCooldown(current_tower.getAttackSpeed());
           }
           current_tower.tickCooldown();
@@ -358,9 +380,6 @@ public class cleanEngine extends Application {
         }
         else if (enemyIdToSpawn == 6) {
           Enemy purpleEnemy = new Enemy(new Image("assets//purple.png"), 555.0, 1.0, 12.0, 200, 50, 1000);
-          // centering vom großen anpassen, sonst den hal klein lassn
-          purpleEnemy.getIV().setFitHeight(100);
-          purpleEnemy.getIV().setFitWidth(170);
           enemies.add(purpleEnemy);  
           root.getChildren().add(purpleEnemy.getIV());
         }
@@ -433,6 +452,10 @@ public class cleanEngine extends Application {
         } 
         
         tick++;
+        long result = System.currentTimeMillis() - start;
+        if (result >= 30) {
+          System.out.println("Zu lang: " + String.valueOf(result));
+        }
         }
     }));
   
@@ -443,17 +466,33 @@ public class cleanEngine extends Application {
   public void load_rounds() {
     int fileNr = 1;
     boolean worked = true;
+    /*
     do {
+      System.out.println("Loading round " + String.valueOf(fileNr));
       Runde tempRunde = new Runde(10);
       worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
       rounds.add(tempRunde);
-      fileNr++;         
+      System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      fileNr++;        
     } while (worked);
+    */
+    Runde tempRunde = new Runde(10);
+    worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
+    while (worked) {
+      System.out.println("Loading round " + String.valueOf(fileNr));
+      rounds.add(tempRunde);
+      System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      fileNr++;
+      tempRunde = new Runde(10);
+      worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt"); 
+    }
     System.out.println("Alle vorhandenen Runden geladen.");
-  }
+  }                                     
 
   public void button_play_Action(Event evt) {
     if (running == false && roundCount < rounds.size()) {
+      int actualRound = roundCount + 1;
+      lRunde0.setText("Runde: " + actualRound);
       running = true; 
       move_img();
     }
@@ -490,14 +529,17 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0, 1);
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -601,13 +643,16 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0, 2); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -644,13 +689,16 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0, 3); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -685,17 +733,20 @@ public class cleanEngine extends Application {
             money = money - 100;
             labelMoney.setText("Money: " + money);
             //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 300.0, 1, 10, 15.0, 4); 
+            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 10, 15.0, 4); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           } // end of if-else
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -732,14 +783,17 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0, 5); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           } // end of if-else
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }

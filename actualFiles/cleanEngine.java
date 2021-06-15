@@ -106,11 +106,13 @@ public class cleanEngine extends Application {
   private Label label4 = new Label();
   private Label label6 = new Label();
   private Label label7 = new Label();
+  private Label lRunde0 = new Label();
+  private Label label3 = new Label();
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
     
-    Scene scene = new Scene(root, 1184, 785);
+    Scene scene = new Scene(root, 1184, 795);
     // Anfang Komponenten
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
@@ -137,10 +139,10 @@ public class cleanEngine extends Application {
     );
     button_Spahn.setText("");
     root.getChildren().add(button_Spahn);
-    labelHP.setLayoutX(1036);
-    labelHP.setLayoutY(13);
-    labelHP.setPrefHeight(28);
-    labelHP.setPrefWidth(126);
+    labelHP.setLayoutX(1050);
+    labelHP.setLayoutY(10);
+    labelHP.setPrefHeight(30);
+    labelHP.setPrefWidth(100);
     labelHP.setText("HP: 100");
     labelHP.setAlignment(Pos.CENTER);
     labelHP.setFont(Font.font("Dialog", 22));
@@ -178,9 +180,9 @@ public class cleanEngine extends Application {
       (event) -> {button_Lauterbach_Action(event);} 
     );
     root.getChildren().add(button_Lauterbach);
-    labelMoney.setLayoutX(1033);
-    labelMoney.setLayoutY(57);
-    labelMoney.setPrefHeight(28);
+    labelMoney.setLayoutX(1030);
+    labelMoney.setLayoutY(50);
+    labelMoney.setPrefHeight(30);
     labelMoney.setPrefWidth(140);
     labelMoney.setText("Money: 100$");
     labelMoney.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -217,6 +219,22 @@ public class cleanEngine extends Application {
     label7.setPrefWidth(78);
     label7.setText("5000$");
     root.getChildren().add(label7);
+    lRunde0.setLayoutX(1045);
+    lRunde0.setLayoutY(90);
+    lRunde0.setPrefHeight(30);
+    lRunde0.setPrefWidth(110);
+    lRunde0.setText("Runde: 0");
+    lRunde0.setAlignment(Pos.CENTER);
+    lRunde0.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    lRunde0.setFont(Font.font("Dialog", 22));
+    root.getChildren().add(lRunde0);
+    label3.setLayoutX(836);
+    label3.setLayoutY(725);
+    label3.setPrefHeight(20);
+    label3.setPrefWidth(238);
+    label3.setText("");
+    label3.setAlignment(Pos.CENTER);
+    root.getChildren().add(label3);
     // Ende Komponenten
     //add_img();
     
@@ -469,10 +487,12 @@ public class cleanEngine extends Application {
       worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt"); 
     }
     System.out.println("Alle vorhandenen Runden geladen.");
-  }
+  }                                     
 
   public void button_play_Action(Event evt) {
     if (running == false && roundCount < rounds.size()) {
+      int actualRound = roundCount + 1;
+      lRunde0.setText("Runde: " + actualRound);
       running = true; 
       move_img();
     }
@@ -509,14 +529,17 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0, 1);
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -620,13 +643,16 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0, 2); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -663,13 +689,16 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0, 3); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           }
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -707,14 +736,17 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 10, 15.0, 4); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           } // end of if-else
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }
@@ -751,14 +783,17 @@ public class cleanEngine extends Application {
             Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0, 5); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
+            label3.setText("Turm wurde platziert!");
           }
           else {
             System.out.println("Dir fehlt Kohle diggi");
+            label3.setText("Dir fehlt Kohle diggi!");
           } // end of if-else
           
         }
         else {
           System.out.println("Platzieren des Turms fehlgeschlagen!");
+          label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
       }

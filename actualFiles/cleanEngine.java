@@ -417,9 +417,15 @@ public class cleanEngine extends Application {
               Image defeat = new Image("assets/defeat.png");
               ImageView defeatView = new ImageView();
               defeatView.setImage(defeat);
-              defeatView.setX(250);
+              defeatView.setX(-50);
               root.getChildren().add(defeatView);
               loop.stop();
+              button_play.setDisable(true);
+              button_Spahn.setDisable(true);
+              button_Drosten.setDisable(true);
+              button_Merkel.setDisable(true);
+              button_Rezo.setDisable(true);
+              button_Lauterbach.setDisable(true);
             }
           }
         } // end of for
@@ -454,6 +460,14 @@ public class cleanEngine extends Application {
           }
           projectiles = new ArrayList<Projectile>();
           
+          if (roundCount == 10) {
+              Image victory = new Image("assets/victory.png");
+              ImageView victoryView = new ImageView();
+              victoryView.setImage(victory);
+              victoryView.setX(-50);
+              root.getChildren().add(victoryView);
+              loop.stop();
+          }
         } 
         
         tick++;
@@ -530,7 +544,7 @@ public class cleanEngine extends Application {
           if (money >= 2500) {
             money = money - 2500;
             labelMoney.setText("Money: " + String.valueOf(money));
-            Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0, 1);
+            Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 3, 15.0, 1);
             // Schieﬂt sehr schnell, aber wenig Schaden
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());

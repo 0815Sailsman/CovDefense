@@ -283,10 +283,9 @@ public class cleanEngine extends Application {
   
   public void move_img() {
     tick = 0;   
-    loop = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {  
+    loop = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {  
         @Override
         public void handle(final ActionEvent t) {
-        long start = System.currentTimeMillis();
         //System.out.println("Start " + System.currentTimeMillis());
         // Tick towers if they find enemies and spawn projectiles when needed
         for (int i = 0; i < towers.size(); i++) {
@@ -313,11 +312,9 @@ public class cleanEngine extends Application {
               projectileImage = new Image("Projektile/Maske.png");  
             } 
             Projectile projectile = new Projectile(projectileImage, current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
-            System.out.println(projectile);
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
-            System.out.println("Projectile Count: " + projectiles.size());
             current_tower.setCooldown(current_tower.getAttackSpeed());
           }
           current_tower.tickCooldown();
@@ -416,6 +413,14 @@ public class cleanEngine extends Application {
             labelHP.setText("HP: " + String.valueOf(hp));
             root.getChildren().remove(root.getChildren().indexOf(current_enemy.getIV()));
             enemies.remove(enemies.get(i));
+            if (hp <= 0) {
+              Image defeat = new Image("assets/defeat.png");
+              ImageView defeatView = new ImageView();
+              defeatView.setImage(defeat);
+              defeatView.setX(250);
+              root.getChildren().add(defeatView);
+              loop.stop();
+            }
           }
         } // end of for
     
@@ -452,10 +457,6 @@ public class cleanEngine extends Application {
         } 
         
         tick++;
-        long result = System.currentTimeMillis() - start;
-        if (result >= 30) {
-          System.out.println("Zu lang: " + String.valueOf(result));
-        }
         }
     }));
   
@@ -476,15 +477,18 @@ public class cleanEngine extends Application {
       fileNr++;        
     } while (worked);
     */
-    Runde tempRunde = new Runde(10);
-    worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
     while (worked) {
-      System.out.println("Loading round " + String.valueOf(fileNr));
-      rounds.add(tempRunde);
-      System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      System.out.println("Loading " + "Runden/Runde" + String.valueOf(fileNr) + ".txt");
+      Runde tempRunde = new Runde(10);
+      worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt");
+      if (worked) {
+        rounds.add(tempRunde);
+        System.out.println("Round " + String.valueOf(fileNr) + " loaded successfully");
+      }
+      else {
+        System.out.println("Final round");
+      }
       fileNr++;
-      tempRunde = new Runde(10);
-      worked = tempRunde.loadRoundFromFile("Runden/Runde" + String.valueOf(fileNr) + ".txt"); 
     }
     System.out.println("Alle vorhandenen Runden geladen.");
   }                                     
@@ -527,6 +531,7 @@ public class cleanEngine extends Application {
             money = money - 2500;
             labelMoney.setText("Money: " + String.valueOf(money));
             Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0, 1);
+            // Schießt sehr schnell, aber wenig Schaden
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
             label3.setText("Turm wurde platziert!");
@@ -640,18 +645,20 @@ public class cleanEngine extends Application {
           if (money >= 500) {
             money = money - 500;
             labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0, 2); 
+            //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+            Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 2, 20, 25.0, 2);
+            // So semi gut, besonders ist hier die ProjectileSpeed 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
             label3.setText("Turm wurde platziert!");
           }
           else {
-            System.out.println("Dir fehlt Kohle diggi");
+            //System.out.println("Dir fehlt Kohle diggi");
             label3.setText("Dir fehlt Kohle diggi!");
           }
         }
         else {
-          System.out.println("Platzieren des Turms fehlgeschlagen!");
+          //System.out.println("Platzieren des Turms fehlgeschlagen!");
           label3.setText("Platzieren des Turms fehlgeschlagen!");
         }
         root.setOnMouseClicked(null);
@@ -686,7 +693,8 @@ public class cleanEngine extends Application {
           if (money >= 5000) {
             money = money - 5000;
             labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0, 3); 
+            Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 400.0, 10, 1, 40, 3);
+            // OP, schießt ziemlich häufig und es klatscht auch richtig 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
             label3.setText("Turm wurde platziert!");
@@ -733,7 +741,8 @@ public class cleanEngine extends Application {
             money = money - 100;
             labelMoney.setText("Money: " + money);
             //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 10, 15.0, 4); 
+            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 25, 15.0, 4);
+            // Basic Anfangs Turm 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
             label3.setText("Turm wurde platziert!");
@@ -777,10 +786,11 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          if (money >= 1000) {
-            money = money - 1000;
+          if (money >= 1500) {
+            money = money - 1500;
             labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0, 5); 
+            Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 10, 40, 10, 5);
+            // Wenig Schüsse, viel Schaden 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
             label3.setText("Turm wurde platziert!");

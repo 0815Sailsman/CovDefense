@@ -515,56 +515,6 @@ public class cleanEngine extends Application {
       move_img();
     }
   } // end of button_play_Action
-
-
-  public void button_Spahn_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
-          // Kosten der T¸rme werden hier einzeln angepasst
-          if (money >= 2500) {
-            money = money - 2500;
-            labelMoney.setText("Money: " + String.valueOf(money));
-            Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 3, 15.0, 1);
-            // Schieﬂt sehr schnell, aber wenig Schaden
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-            label3.setText("Turm wurde platziert!");
-          }
-          else {
-            System.out.println("Dir fehlt Kohle diggi");
-            label3.setText("Dir fehlt Kohle diggi!");
-          }
-          
-        }
-        else {
-          System.out.println("Platzieren des Turms fehlgeschlagen!");
-          label3.setText("Platzieren des Turms fehlgeschlagen!");
-        }
-        root.setOnMouseClicked(null);
-      }
-    });
-    
-  } // end of button_Spahn_Action
   
   public boolean checkIsTowerOnPath(double x, double y){
     for (int i = 0;i < path.length; i++) {
@@ -630,52 +580,27 @@ public class cleanEngine extends Application {
     } // end of if-else
       
   }
+
+  public void button_Spahn_Action(Event evt) {
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+        placeTower(event, 2500, new Image("assets/Spahn.png"), 200.0, 5, 3, 15.0, 1);
+        // Schieﬂt sehr schnell, aber wenig Schaden
+      }
+    });
+    
+  } // end of button_Spahn_Action
   
 
   public void button_Drosten_Action(Event evt) {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-
-        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
-          if (money >= 500) {
-            money = money - 500;
-            labelMoney.setText("Money: " + money);
-            //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-            Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 2, 20, 25.0, 2);
-            // So semi gut, besonders ist hier die ProjectileSpeed 
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-            label3.setText("Turm wurde platziert!");
-          }
-          else {
-            //System.out.println("Dir fehlt Kohle diggi");
-            label3.setText("Dir fehlt Kohle diggi!");
-          }
-        }
-        else {
-          //System.out.println("Platzieren des Turms fehlgeschlagen!");
-          label3.setText("Platzieren des Turms fehlgeschlagen!");
-        }
-        root.setOnMouseClicked(null);
+        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+        placeTower(event, 500, new Image("assets/Drosten.png"), 200.0, 2, 20, 25.0, 2);
+        // So semi gut, besonders ist hier die ProjectileSpeed 
       }
     });
     
@@ -684,45 +609,10 @@ public class cleanEngine extends Application {
   public void button_Merkel_Action(Event evt) {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
-      public void handle(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
-          if (money >= 5000) {
-            money = money - 5000;
-            labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 400.0, 10, 1, 40, 3);
-            // OP, schieﬂt ziemlich h‰ufig und es klatscht auch richtig 
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-            label3.setText("Turm wurde platziert!");
-          }
-          else {
-            System.out.println("Dir fehlt Kohle diggi");
-            label3.setText("Dir fehlt Kohle diggi!");
-          }
-        }
-        else {
-          System.out.println("Platzieren des Turms fehlgeschlagen!");
-          label3.setText("Platzieren des Turms fehlgeschlagen!");
-        }
-        root.setOnMouseClicked(null);
+      public void handle(MouseEvent event) {        
+        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+        placeTower(event, 5000, new Image("assets/Merkel.png"), 400.0, 10, 1, 40, 3);
+        // OP, schieﬂt ziemlich h‰ufig und es klatscht auch richtig 
       }
     });
     
@@ -732,46 +622,9 @@ public class cleanEngine extends Application {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
-          if (money >= 100) {
-            money = money - 100;
-            labelMoney.setText("Money: " + money);
-            //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-            Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 1, 25, 15.0, 4);
-            // Basic Anfangs Turm 
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-            label3.setText("Turm wurde platziert!");
-          }
-          else {
-            System.out.println("Dir fehlt Kohle diggi");
-            label3.setText("Dir fehlt Kohle diggi!");
-          } // end of if-else
-          
-        }
-        else {
-          System.out.println("Platzieren des Turms fehlgeschlagen!");
-          label3.setText("Platzieren des Turms fehlgeschlagen!");
-        }
-        root.setOnMouseClicked(null);
+        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+        placeTower(event, 100, new Image("assets/Rezo.png"), 200.0, 1, 25, 15.0, 4);
+        // Basic Anfangs Turm     
       }
     });
     
@@ -781,49 +634,54 @@ public class cleanEngine extends Application {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-          if (y > 700){
-            root.setOnMouseClicked(null);
-            return;
-          }
-          if (x < 50) {
-            x = 50;
-          }
-          if (x > 1150) {
-            x = 1150;
-          } 
-          if (y < 50) {
-            y = 50;
-          } 
-          if (y > 650) {
-            y = 650;
-          }
-          if (money >= 1500) {
-            money = money - 1500;
-            labelMoney.setText("Money: " + money);
-            Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 10, 40, 10, 5);
-            // Wenig Sch¸sse, viel Schaden 
-            towers.add(temptower); 
-            root.getChildren().add(temptower.getIV());
-            label3.setText("Turm wurde platziert!");
-          }
-          else {
-            System.out.println("Dir fehlt Kohle diggi");
-            label3.setText("Dir fehlt Kohle diggi!");
-          } // end of if-else
-          
-        }
-        else {
-          System.out.println("Platzieren des Turms fehlgeschlagen!");
-          label3.setText("Platzieren des Turms fehlgeschlagen!");
-        }
-        root.setOnMouseClicked(null);
+        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
+        placeTower(event, 1500, new Image("assets/Lauterbach.png"), 200.0, 10, 40, 10, 5);
+        // Wenig Sch¸sse, viel Schaden 
       }
     });
     
   } // end of button_Lauterbach_Action
+  
+  public void placeTower(MouseEvent event, int cost, Image sprite, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId) {
+    double x = event.getSceneX();
+    double y = event.getSceneY();
+    if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
+      if (y > 700){
+        root.setOnMouseClicked(null);
+        return;
+      }
+      if (x < 50) {
+        x = 50;
+      }
+      if (x > 1150) {
+        x = 1150;
+      } 
+      if (y < 50) {
+        y = 50;
+      } 
+      if (y > 650) {
+        y = 650;
+      }
+      if (money >= cost) {
+        money = money - cost;
+        labelMoney.setText("Money: " + money);
+        Tower temptower = new Tower(sprite, x, y, attackRange, attackDamage, attackSpeed, projectileSpeed, typeId);
+        towers.add(temptower); 
+        root.getChildren().add(temptower.getIV());
+        label3.setText("Turm wurde platziert!");
+      }
+      else {
+        System.out.println("Dir fehlt Kohle diggi");
+        label3.setText("Dir fehlt Kohle diggi!");
+      } // end of if-else
+      
+    }
+    else {
+      System.out.println("Platzieren des Turms fehlgeschlagen!");
+      label3.setText("Platzieren des Turms fehlgeschlagen!");
+    }
+    root.setOnMouseClicked(null);
+  }
 
   // Ende Methoden
 } // end of class rendertest1

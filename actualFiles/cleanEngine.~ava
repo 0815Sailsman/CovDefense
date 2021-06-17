@@ -12,7 +12,7 @@ import javafx.event.*;
 import javafx.animation.PauseTransition;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.lang.Math;
+import java.lang.Math;    
 import javafx.scene.layout.BackgroundImage;
 import java.util.ArrayList;
 import javafx.animation.Timeline;
@@ -242,7 +242,25 @@ public class cleanEngine extends Application {
           Enemy target = current_tower.checkIsEnemyInRange(enemies);
           if (target != null && current_tower.canAttack()) {
             // Spawn projectile flying towards enemy
-            Projectile projectile = new Projectile(new Image("assets/hum.jpg"), current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
+            /*Typ1 ist Spritze für Spahn
+              Typ2 ist Desifektionsmittel für Drosten
+              Typ3
+              Typ4
+              Typ5
+            */
+            Image projectileImage = new Image("assets/hum.jpg"); 
+            if (current_tower.getTypeId()==1) {
+              projectileImage = new Image("Projektile/Spritze.png"); 
+            } else if (current_tower.getTypeId()==2) {
+              projectileImage = new Image("Projektile/Desinfektionsmittel.png");   
+            } else if (current_tower.getTypeId()==3) {
+              projectileImage = new Image("Projektile/Lockdown.png");  
+            } else if (current_tower.getTypeId()==4) {
+              projectileImage = new Image("Projektile/GG.png");  
+            } else if (current_tower.getTypeId()==5) {
+              projectileImage = new Image("Projektile/Maske.png");  
+            } 
+            Projectile projectile = new Projectile(projectileImage, current_tower.getX(), current_tower.getY(), current_tower.getProjectileSpeed(), current_tower.getAttackDamage(), target.getX(), target.getY());
             projectile.calcSteps();
             root.getChildren().add(projectile.getIV());
             projectiles.add(projectile);
@@ -413,7 +431,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Spahn.png"), x, y, 200.0, 5, 1, 15.0, 1);
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           
@@ -517,7 +535,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Drosten.png"), x, y, 200.0, 5, 1, 15.0, 2); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           
@@ -555,7 +573,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Merkel.png"), x, y, 200.0, 5, 1, 15.0, 3); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           
@@ -593,7 +611,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 5, 1, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Rezo.png"), x, y, 200.0, 5, 1, 15.0, 4); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           
@@ -631,7 +649,7 @@ public class cleanEngine extends Application {
           if (y > 650) {
             y = 650;
           }
-          Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0); 
+          Tower temptower = new Tower(new Image("assets/Lauterbach.png"), x, y, 200.0, 5, 1, 15.0, 5); 
             towers.add(temptower); 
             root.getChildren().add(temptower.getIV());
           

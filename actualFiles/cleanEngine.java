@@ -60,7 +60,7 @@ public class cleanEngine extends Application {
   private map_point mp14 = new map_point(740.0, 220.0);
   private map_point mp15 = new map_point(700.0, 220.0);
   private map_point mp16 = new map_point(710.0, 290.0);
-  private map_point mp17 = new map_point(560.0, 220.0);
+  private map_point mp17 = new map_point(550.0, 220.0);
   private map_point mp18 = new map_point(550.0, 600.0);
   private map_point mp19 = new map_point(400.0, 530.0);
   private map_point mp20 = new map_point(310.0, 550.0);
@@ -71,13 +71,48 @@ public class cleanEngine extends Application {
   private map_point mp25 = new map_point(690.0, 470.0);
   private map_point mp26 = new map_point(740.0, 550.0);
   private map_point mp27 = new map_point(1000.0, 520.0);
+  private map_point mp28 = new map_point(980.0, 480.0);
   private map_point mp29 = new map_point(890.0, 390.0);
   private map_point mp30 = new map_point(800.0, 260.0);
   private map_point mp31 = new map_point(680.0, 300.0);
+  private map_point mp32 = new map_point(555.0, 50.0);
+  private map_point mp33 = new map_point(555.0, 100.0);
+  private map_point mp34 = new map_point(555.0, 150.0);
+  private map_point mp35 = new map_point(555.0, 200.0);
+  private map_point mp36 = new map_point(500.0, 260.0);
+  private map_point mp37 = new map_point(460.0, 290.0);
+  private map_point mp38 = new map_point(440.0, 350.0);
+  private map_point mp39 = new map_point(440.0, 400.0);
+  private map_point mp40 = new map_point(440.0, 450.0);
+  private map_point mp41 = new map_point(260.0, 550.0);
+  private map_point mp42 = new map_point(210.0, 550.0);
+  private map_point mp43 = new map_point(170.0, 480.0);
+  private map_point mp44 = new map_point(200.0, 430.0);
+  private map_point mp45 = new map_point(230.0, 380.0);
+  private map_point mp46 = new map_point(260.0, 330.0);
+  private map_point mp47 = new map_point(290.0, 280.0);
+  private map_point mp48 = new map_point(790.0, 550.0);
+  private map_point mp49 = new map_point(840.0, 550.0);
+  private map_point mp50 = new map_point(890.0, 550.0);
+  private map_point mp51 = new map_point(940.0, 550.0);
+  private map_point mp52 = new map_point(930.0, 430.0);
+  private map_point mp53 = new map_point(860.0, 340.0); 
+  private map_point mp54 = new map_point(830.0, 290.0);
+  private map_point mp55 = new map_point(550.0, 270.0);
+  private map_point mp56 = new map_point(550.0, 320.0);
+  private map_point mp57 = new map_point(550.0, 370.0);
+  private map_point mp58 = new map_point(550.0, 420.0);
+  private map_point mp59 = new map_point(550.0, 470.0);
+  private map_point mp60 = new map_point(550.0, 520.0);
+  private map_point mp61 = new map_point(550.0, 570.0);
+  private map_point mp62 = new map_point(600.0, 250.0);
+  private map_point mp63 = new map_point(650.0, 280.0);
+  
   
   private map_point[] path = {
-  mp1, mp2, mp3, mp4, mp19, mp20, mp5, mp21, mp6, mp7, mp8, mp23, mp9, mp22, mp10, mp11, mp24, mp25, mp12, mp26, 
-  mp13, mp27, mp29, mp30, mp14, mp15, mp16, mp31, mp17, mp18 
+  mp1, mp32, mp33, mp34, mp35, mp2, mp36, mp37, mp3, mp38, mp39, mp40, mp4, mp19, mp20, mp41, mp42, mp5, mp21, mp43, mp44, mp45, mp46, mp47, mp6, 
+  mp7, mp8, mp23, mp9, mp22, mp10, mp11, mp24, mp25, mp12, mp26, mp48, mp49, mp50, mp51, mp13, mp27, mp28, mp52, mp29, mp53, mp54, mp30, mp14, 
+  mp15, mp16, mp31, mp63, mp62, mp17, mp55, mp56, mp57, mp58, mp59, mp60, mp61, mp18 
     };
   private ArrayList<Runde> rounds = new ArrayList<Runde>();
   private int roundCount = 0;
@@ -570,7 +605,7 @@ public class cleanEngine extends Application {
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-25)&&x < (tmpX+25))&&(y > (tmpY-25)&&y < (tmpY+25))) {
+      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
         return true; 
       } // end of if
       

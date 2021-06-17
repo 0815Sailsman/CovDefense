@@ -552,10 +552,11 @@ public class cleanEngine extends Application {
   } // end of button_play_Action
   
   public boolean checkIsTowerOnPath(double x, double y){
+    int radius = 40;
     for (int i = 0;i < path.length; i++) {
       double tmpX = path[i].getX();
       double tmpY = path[i].getY();
-      if ((x > (tmpX-50)&&x < (tmpX+50))&&(y > (tmpY-50)&&y < (tmpY+50))) {
+      if ((x > (tmpX-radius)&&x < (tmpX+radius))&&(y > (tmpY-radius)&&y < (tmpY+radius))) {
         return true; 
       } // end of if
       

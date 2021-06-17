@@ -12,7 +12,7 @@ import javafx.event.*;
 import javafx.animation.PauseTransition;
 import java.util.Timer;
 import java.util.TimerTask;
-import public java.lang.Math;    
+import java.lang.Math;    
 import javafx.scene.layout.BackgroundImage;
 import java.util.ArrayList;
 import javafx.animation.Timeline;

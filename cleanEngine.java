@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import java.util.ArrayList;
 
 import javafx.scene.*;
 import javafx.scene.image.Image;
@@ -10,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.scene.paint.Color;
+import javafx.scene.effect.*;
 
 import javafx.stage.Stage;
 import java.io.File;
@@ -112,6 +116,9 @@ public class cleanEngine extends Application {
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Tower> towers = new ArrayList<Tower>();
   private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+  
+  // Dynamic Array for saving the indicator-circles when placing towers
+  private ArrayList<Circle> circles = new ArrayList<Circle>();
   
   int tick;
   private int hp = 100;
@@ -264,7 +271,12 @@ public class cleanEngine extends Application {
     //add_img();
     
     primaryStage.setOnCloseRequest(e -> System.exit(0));
-    primaryStage.setTitle("cleanEngine");
+    primaryStage.setTitle("CovDefense");
+    
+    // Prepare and set icon-image
+    Image icon = new Image("assets/icon.png");
+    primaryStage.getIcons().add(icon);
+    
     primaryStage.setScene(scene);
     primaryStage.show();
     
@@ -610,6 +622,8 @@ public class cleanEngine extends Application {
   public void button_Spahn_Action(Event evt) {
     Image sprite = new Image("assets/Spahn.png");
     mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
+    createOverlay();
  
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
@@ -627,6 +641,8 @@ public class cleanEngine extends Application {
     Image sprite = new Image("assets/Drosten.png");
     mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
     
+    createOverlay();
+    
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
@@ -642,6 +658,8 @@ public class cleanEngine extends Application {
     Image sprite = new Image("assets/Merkel.png");
     mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
     
+    createOverlay();
+    
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {        
@@ -656,6 +674,8 @@ public class cleanEngine extends Application {
   public void button_Rezo_Action(Event evt) {
     Image sprite = new Image("assets/Rezo.png");
     mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
+    createOverlay();
         
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
@@ -671,6 +691,8 @@ public class cleanEngine extends Application {
   public void button_Lauterbach_Action(Event evt) {
     Image sprite = new Image("assets/Lauterbach.png");
     mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
+    createOverlay();
     
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
@@ -689,8 +711,8 @@ public class cleanEngine extends Application {
     if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
       if (y > 700){
         root.setOnMouseClicked(null);
-        // Reset Cursor Image
         mainScene.setCursor(Cursor.DEFAULT);
+        removeOverlay();
         return;
       }
       if (x < 50) {
@@ -725,8 +747,34 @@ public class cleanEngine extends Application {
     }
     root.setOnMouseClicked(null);
     mainScene.setCursor(Cursor.DEFAULT);
+    removeOverlay();
   }
-
+  
+  public void createOverlay() {
+    // Loop over ever map_point and tower and place red circles with ~50% opacity there
+    // map_points
+    for (int i = 0; i < path.length; i++) {
+      Circle temp = new Circle(50.0, Color.rgb(255, 0, 0, 1.0));
+      temp.setCenterX(path[i].getX());
+      temp.setCenterY(path[i].getY());
+      circles.add(temp);
+    } // end of for
+    
+    // Same for every tower already placed
+    ;
+  
+    // Now loop over ever element in circles and add to root pane
+    for (int i = 0; i < circles.size(); i++) {
+      root.getChildren().add(circles.get(i));
+    }
+  }
+  
+  public void removeOverlay() {
+    for (int i = 0; i < circles.size(); i++) {
+      root.getChildren().remove(root.getChildren().indexOf(circles.get(i)));
+    }
+  }
+  
   // Ende Methoden
 } // end of class rendertest1
 

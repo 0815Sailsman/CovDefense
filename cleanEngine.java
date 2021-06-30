@@ -1,44 +1,34 @@
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageView.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import javafx.scene.paint.Color;
+
+import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import javafx.event.*;
 import javafx.animation.PauseTransition;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.lang.Math;    
-import javafx.scene.layout.BackgroundImage;
-import java.util.ArrayList;
-import javafx.animation.Timeline;
 import javafx.animation.*;
 import javafx.util.Duration;
 import java.util.Scanner;
-import javafx.scene.input.MouseEvent;
+import java.util.ArrayList;
 import javafx.geometry.*;
-import javafx.scene.text.*;
-import javafx.scene.text.Font;
-import javafx.scene.paint.Color;
-import javafx.geometry.Insets;
-import javafx.scene.layout.*;
 
 
-/**
- *
- * Beschreibung
- *
- * @version 1.0 vom 18.05.2021
- * @author 
- */
 
 public class cleanEngine extends Application {
   // Anfang Attribute
   Pane root = new Pane();
+  Scene mainScene;
   private Button button_play = new Button();
   private ImageView iv1 = new ImageView();
   private ImageView ivbg = new ImageView();
@@ -146,8 +136,8 @@ public class cleanEngine extends Application {
   // Ende Attribute
   
   public void start(Stage primaryStage) { 
-    
     Scene scene = new Scene(root, 1184, 795);
+    mainScene = scene;
     // Anfang Komponenten
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
@@ -602,7 +592,7 @@ public class cleanEngine extends Application {
   
   public boolean checkIsTowerOutWindowLeft(double x, double y){
     if (x < 50) {
-      return true;
+      return true;           
     } else {
       return false;  
     } 
@@ -618,11 +608,14 @@ public class cleanEngine extends Application {
   }
 
   public void button_Spahn_Action(Event evt) {
+    Image sprite = new Image("assets/Spahn.png");
+    mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+ 
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
         //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        placeTower(event, 2500, new Image("assets/Spahn.png"), 200.0, 5, 3, 15.0, 1);
+        placeTower(event, 2500, sprite, 200.0, 5, 3, 15.0, 1);
         // Schieﬂt sehr schnell, aber wenig Schaden
       }
     });
@@ -631,11 +624,14 @@ public class cleanEngine extends Application {
   
 
   public void button_Drosten_Action(Event evt) {
+    Image sprite = new Image("assets/Drosten.png");
+    mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
         //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        placeTower(event, 500, new Image("assets/Drosten.png"), 200.0, 2, 20, 25.0, 2);
+        placeTower(event, 500, sprite, 200.0, 2, 20, 25.0, 2);
         // So semi gut, besonders ist hier die ProjectileSpeed 
       }
     });
@@ -643,11 +639,14 @@ public class cleanEngine extends Application {
   } // end of button_Drosten_Action
 
   public void button_Merkel_Action(Event evt) {
+    Image sprite = new Image("assets/Merkel.png");
+    mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {        
         //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        placeTower(event, 5000, new Image("assets/Merkel.png"), 400.0, 10, 1, 40, 3);
+        placeTower(event, 5000, sprite, 400.0, 10, 1, 40, 3);
         // OP, schieﬂt ziemlich h‰ufig und es klatscht auch richtig 
       }
     });
@@ -655,11 +654,14 @@ public class cleanEngine extends Application {
   } // end of button_Merkel_Action
 
   public void button_Rezo_Action(Event evt) {
+    Image sprite = new Image("assets/Rezo.png");
+    mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+        
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
         //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        placeTower(event, 100, new Image("assets/Rezo.png"), 200.0, 1, 25, 15.0, 4);
+        placeTower(event, 100, sprite, 200.0, 1, 25, 15.0, 4);
         // Basic Anfangs Turm     
       }
     });
@@ -667,11 +669,14 @@ public class cleanEngine extends Application {
   } // end of button_Rezo_Action
 
   public void button_Lauterbach_Action(Event evt) {
+    Image sprite = new Image("assets/Lauterbach.png");
+    mainScene.setCursor(new ImageCursor(sprite, sprite.getWidth(), sprite.getHeight()));
+    
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
         //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        placeTower(event, 1500, new Image("assets/Lauterbach.png"), 200.0, 10, 40, 10, 5);
+        placeTower(event, 1500, sprite, 200.0, 10, 40, 10, 5);
         // Wenig Sch¸sse, viel Schaden 
       }
     });
@@ -684,6 +689,8 @@ public class cleanEngine extends Application {
     if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
       if (y > 700){
         root.setOnMouseClicked(null);
+        // Reset Cursor Image
+        mainScene.setCursor(Cursor.DEFAULT);
         return;
       }
       if (x < 50) {
@@ -717,6 +724,7 @@ public class cleanEngine extends Application {
       label3.setText("Platzieren des Turms fehlgeschlagen!");
     }
     root.setOnMouseClicked(null);
+    mainScene.setCursor(Cursor.DEFAULT);
   }
 
   // Ende Methoden

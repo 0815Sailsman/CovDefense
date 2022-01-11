@@ -1,0 +1,7 @@
+cost:5000
+sprite_path:assets/Merkel.png
+attack_range:400.0
+attack_damage:10
+attack_speed:1
+projectile_speed:40.0
+type_id:3

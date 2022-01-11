@@ -1,0 +1,7 @@
+sprite_path:assets/yellow.png
+start_x:555.0
+start_y:1.0
+speed:12.0
+hp:5
+damage:5
+money_value:100

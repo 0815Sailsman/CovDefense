@@ -15,18 +15,20 @@ class Projectile extends Basis {
   private int deviation;
   private double originX;
   private double originY;
-  
-  public Projectile (Image sprite, double x, double y, double speed, int damage, double targetX, double targetY) {
-    super(sprite, x, y);
-    this.originX = x;
-    this.originY = y;
+
+  public Projectile (Image sprite, Tower src_tower, Enemy target) {
+    super(sprite, src_tower.getX(), src_tower.getY());
+    this.originX = src_tower.getX();
+    this.originY = src_tower.getY();
     this.getIV().setFitHeight(50);
     this.getIV().setFitWidth(50);
-    this.damage = damage;
-    this.speed = speed;
-    this.targetX = targetX;
-    this.targetY = targetY;
+    this.damage = src_tower.getAttackDamage();
+    this.speed = src_tower.getProjectileSpeed();
+    this.targetX = target.getX();
+    this.targetY = target.getY();
     this.deviation = 15;
+    
+    this.calc_steps();
   }
   
   public double getSpeed() {
@@ -61,7 +63,7 @@ class Projectile extends Basis {
     this.targetY = newTargetY;
   }
   
-  public void calcSteps() {
+  public void calc_steps() {
     double totalx = Math.abs(this.targetX - this.getX());
     double totaly = Math.abs(this.targetY - this.getY());                                         
     

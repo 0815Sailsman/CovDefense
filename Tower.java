@@ -1,5 +1,9 @@
 import javafx.scene.image.Image;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 class Tower extends Basis {
   
@@ -9,18 +13,60 @@ class Tower extends Basis {
   private double projectileSpeed;
   private int cooldown;
   
-  public Tower(Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId) {
-    super(sprite, x, y);
-    this.attackRange = attackRange;
-    this.attackDamage = attackDamage;
-    this.attackSpeed = attackSpeed;
-    this.projectileSpeed = projectileSpeed;
+  public static final int TOWER_REZO = 0;
+  public static final int TOWER_DROSTEN = 1;
+  public static final int TOWER_LAUTERBACH = 2;
+  public static final int TOWER_SPAHN = 3;
+  public static final int TOWER_MERKEL = 4;
+  
+  
+  public Tower(double x, double y, Tower_parameters params) {
+    super(new Image(params.sprite_path), x, y);
+    this.attackRange = params.attack_range;
+    this.attackDamage = params.attack_damage;
+    this.attackSpeed = params.attack_speed;
+    this.projectileSpeed = params.projectile_speed;
     this.cooldown = 0;
     this.getIV().setFitHeight(100);
     this.getIV().setFitWidth(100);
     this.setX(this.getX()-50);
     this.setY(this.getY()-50);
-    this.setTypeId(typeId);
+    this.setTypeId(params.type_id);
+  }
+
+  public static Tower_parameters load_tower_parameters(String tower_src_file_path) {
+    Tower_parameters params = new Tower_parameters();
+    try {
+      File tower_src_file = new File(tower_src_file_path);
+      Scanner sc = new Scanner(tower_src_file);
+  
+      while (sc.hasNextLine()) { 
+        String text = sc.nextLine();
+        String[] split = text.split(":");
+        params.add(split[1].strip());
+      }  
+      sc.close();      
+    } catch(FileNotFoundException e) {
+        System.out.println("Error, tower-file missing");   
+    }
+    return params;
+  }
+  
+  public static String id_to_path(int id) {
+    switch (id) {
+      case 0: 
+        return "towers/Rezo.txt";
+      case 1: 
+        return "towers/Drosten.txt";
+      case 2: 
+        return "towers/Lauterbach.txt";
+      case 3: 
+        return "towers/Spahn.txt";
+      case 4: 
+        return "towers/Merkel.txt";        
+      default: 
+        return null;
+    }
   }
   
   public double getAttackRange() {

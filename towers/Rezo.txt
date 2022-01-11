@@ -1,0 +1,7 @@
+cost:100
+sprite_path:assets/Rezo.png
+attack_range:200.0
+attack_damage:1
+attack_speed:25
+projectile_speed:15.0
+type_id:4

@@ -1,0 +1,7 @@
+sprite_path:assets/pink.png
+start_x:555.0
+start_y:1.0
+speed:5.0
+hp:150
+damage:100
+money_value:500

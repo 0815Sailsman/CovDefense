@@ -1,0 +1,7 @@
+sprite_path:assets/red.png
+start_x:555.0
+start_y:1.0
+speed:7.0
+hp:1
+damage:1
+money_value:10

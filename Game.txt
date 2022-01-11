@@ -6,6 +6,17 @@ Pink  500
 Lila 1000
 
 
+    /*
+    Eigentliche Konstellation der EnemyIds sind
+    Hier geordnet nach ID und gleichzeitig mit steigender Stärke
+    1 -> Rot
+    2 -> Cyan
+    3 -> Gelb
+    4 -> Grün
+    5 -> Pink
+    6 -> Lila
+    */
+
 100 + (Runde*25)
 
 

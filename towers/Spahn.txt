@@ -1,0 +1,7 @@
+cost:2500
+sprite_path:assets/Spahn.png
+attack_range:200.0
+attack_damage:5
+attack_speed:3
+projectile_speed:15.0
+type_id:1

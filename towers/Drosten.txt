@@ -1,0 +1,7 @@
+cost:500
+sprite_path:assets/Drosten.png
+attack_range:200.0
+attack_damage:2
+attack_speed:20
+projectile_speed:25.0
+type_id:2

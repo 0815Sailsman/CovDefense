@@ -1,0 +1,7 @@
+sprite_path:assets/cyan.png
+start_x:555.0
+start_y:1.0
+speed:9.0
+hp:3
+damage:2
+money_value:50

@@ -1,0 +1,7 @@
+cost:1500
+sprite_path:assets/Lauterbach.png
+attack_range:200.0
+attack_damage:10
+attack_speed:40
+projectile_speed:10.0
+type_id:5

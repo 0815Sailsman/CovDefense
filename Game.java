@@ -41,7 +41,7 @@ public class Game {
       while (sc.hasNextLine()) { 
         String text = sc.nextLine();
         String[] split = text.split(",");
-        path.add(new map_point(Float.parseFloat(split[0]), Float.parseFloat(split[1])));
+        path.add(new map_point(split));
       }  
       sc.close();
     } catch(FileNotFoundException e) {
@@ -73,8 +73,8 @@ public class Game {
     // Tick towers if they find enemies and spawn projectiles when needed
     for (int i = 0; i < this.towers.size(); i++) {
       Tower current_tower = this.towers.get(i);
-      Enemy target = current_tower.checkIsEnemyInRange(enemies);
-      if (target != null && current_tower.canAttack()) {
+      Enemy target = current_tower.get_enemies_in_range(enemies);
+      if (target != null && current_tower.can_attack()) {
         // Spawn projectile flying towards enemy
         /*Typ1 ist Spritze für Spahn
           Typ2 ist Desifektionsmittel für Drosten
@@ -107,9 +107,9 @@ public class Game {
         Projectile projectile = new Projectile(projectile_image, current_tower, target);
         results.add(projectile.getIV());
         this.projectiles.add(projectile);
-        current_tower.setCooldown(current_tower.getAttackSpeed());
+        current_tower.set_cooldown(current_tower.get_attack_speed());
       }
-      current_tower.tickCooldown();
+      current_tower.tick_cooldown();
     }
     return results;
   }
@@ -194,9 +194,7 @@ public class Game {
   public ArrayList<ImageView> check_for_round_end(int tick) {
     ArrayList<ImageView> results = new ArrayList<ImageView>();
     // Round over
-    if (this.enemies.size() == 0 && this.rounds.get(round_count).getRoundLength() < tick) {      
-      System.out.println("Round " + String.valueOf(round_count) + " over!");
-      
+    if (this.enemies.isEmpty() && this.rounds.get(round_count).length() < tick) {            
       // Add round reward
       this.money = this.money + 100 + 25 * this.round_count;
       this.round_count++;
@@ -221,25 +219,14 @@ public class Game {
   }
 
   public Tower place_tower_logic(MouseEvent event, Tower_parameters params) {
-    double x = event.getSceneX();
-    double y = event.getSceneY();
+    double x = this.normalize_x(event.getSceneX());
+    double y = this.normalize_y(event.getSceneY());
     
-    if (!coords_on_path(x,y) && !coords_on_tower(x,y)) {
-      if (y > 700){
+    if (y == -1){
         return null;
-      }
-      if (x < 50) {
-        x = 50;
-      }
-      if (x > 1150) {
-        x = 1150;
-      } 
-      if (y < 50) {
-        y = 50;
-      } 
-      if (y > 650) {
-        y = 650;
-      }
+    }
+    
+    if (!coords_on_path(x,y) && !coords_on_tower(x,y)) { 
       if (this.money >= params.cost) {
         this.money = this.money - params.cost;
         Tower temptower = new Tower(x, y, params);
@@ -249,6 +236,14 @@ public class Game {
     }
     return null;
   }  
+  
+  private double normalize_x(double old_x) {
+    return old_x < 50 ? 50 : (old_x > 1150 ? 1150 : old_x);
+  }
+  
+  private double normalize_y(double old_y) {
+    return old_y < 50 ? 50 : (old_y > 700 ? -1 : (old_y > 650 ? 650 : old_y));
+  }
   
   public boolean coords_on_path(double x, double y){
     int radius = 40;

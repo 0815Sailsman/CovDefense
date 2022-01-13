@@ -14,13 +14,13 @@ class Tower_spawner {
   private Label label;
   private int position;
   private Pane root;
-  private cleanEngine engine;
+  private Main main;
   
   // There are 5 Buttons, position specifies which of these buttons this id
-  public Tower_spawner(int tower_id, int position, Pane root, cleanEngine engine) {
+  public Tower_spawner(int tower_id, int position, Pane root, Main main) {
     this.root = root;
     this.position = position;
-    this.engine = engine;
+    this.main = main;
     this.params = Tower.load_tower_parameters(Tower.id_to_path(tower_id));
     this.button = this.construct_button();
     this.label = this.construct_label();
@@ -33,7 +33,7 @@ class Tower_spawner {
     button.setPrefHeight(25);
     button.setPrefWidth(75);
     button.setOnAction(
-      (event) -> {button_Action(event, this.params, this.engine);} 
+      (event) -> {button_Action(event, this.params, this.main);} 
     );
     Image img = new Image(this.params.sprite_path);
     ImageView view = new ImageView(img);
@@ -55,7 +55,7 @@ class Tower_spawner {
   }
 
 
-  public void button_Action(Event evt, Tower_parameters params, cleanEngine main) {
+  public void button_Action(Event evt, Tower_parameters params, Main main) {
     this.root.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {

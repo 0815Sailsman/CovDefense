@@ -7,25 +7,25 @@ import java.util.Scanner;
 
 class Tower extends Basis {
   
-  private double attackRange;
-  private int attackDamage;
-  private int attackSpeed;
-  private double projectileSpeed;
+  private double attack_range;
+  private int attack_damage;
+  private int attack_speed;
+  private double projectile_speed;
   private int cooldown;
   
-  public static final int TOWER_REZO = 0;
-  public static final int TOWER_DROSTEN = 1;
-  public static final int TOWER_LAUTERBACH = 2;
-  public static final int TOWER_SPAHN = 3;
-  public static final int TOWER_MERKEL = 4;
+  public static final int REZO = 0;
+  public static final int DROSTEN = 1;
+  public static final int LAUTERBACH = 2;
+  public static final int SPAHN = 3;
+  public static final int MERKEL = 4;
   
   
   public Tower(double x, double y, Tower_parameters params) {
     super(new Image(params.sprite_path), x, y);
-    this.attackRange = params.attack_range;
-    this.attackDamage = params.attack_damage;
-    this.attackSpeed = params.attack_speed;
-    this.projectileSpeed = params.projectile_speed;
+    this.attack_range = params.attack_range;
+    this.attack_damage = params.attack_damage;
+    this.attack_speed = params.attack_speed;
+    this.projectile_speed = params.projectile_speed;
     this.cooldown = 0;
     this.getIV().setFitHeight(100);
     this.getIV().setFitWidth(100);
@@ -69,47 +69,47 @@ class Tower extends Basis {
     }
   }
   
-  public double getAttackRange() {
-    return this.attackRange;
+  public double get_attack_range() {
+    return this.attack_range;
   }
   
-  public int getAttackDamage() {
-    return this.attackDamage;
+  public int get_attack_damage() {
+    return this.attack_damage;
   }
   
-  public int getAttackSpeed() {
-    return this.attackSpeed;
+  public int get_attack_speed() {
+    return this.attack_speed;
   }
   
-  public void setAttackRange(double newAttackRange) {
-    this.attackRange = newAttackRange;
+  public void set_attack_range(double new_attack_range) {
+    this.attack_range = new_attack_range;
   }
   
-  public void setAttackDamage(int newAttackDamage) {
-    this.attackDamage = newAttackDamage;
+  public void set_attack_damage(int new_attack_damage) {
+    this.attack_damage = new_attack_damage;
   }
   
-  public double getProjectileSpeed() {
-    return this.projectileSpeed;
+  public double get_projectile_speed() {
+    return this.projectile_speed;
   }
   
-  public void setProjectileSpeed(double newProjectileSpeed) {
-    this.projectileSpeed = newProjectileSpeed;
+  public void set_projectile_speed(double new_projectile_speed) {
+    this.projectile_speed = new_projectile_speed;
   }
   
-  public void setAttackSpeed(int newAttackSpeed) {
-    this.attackSpeed = newAttackSpeed;
+  public void set_attack_speed(int new_attack_speed) {
+    this.attack_speed = new_attack_speed;
   }
   
-  public int getCooldown() {
+  public int get_cooldown() {
     return this.cooldown;
   }
   
-  public void setCooldown(int newCooldown) {
-    this.cooldown = newCooldown;
+  public void set_cooldown(int new_cooldown) {
+    this.cooldown = new_cooldown;
   }
   
-  public Enemy checkIsEnemyInRange(ArrayList<Enemy> enemies){
+  public Enemy get_enemies_in_range(ArrayList<Enemy> enemies){
     for (int i = 0;i < enemies.size(); i++) {
       double tmpX = enemies.get(i).getX();
       double tmpY = enemies.get(i).getY();
@@ -134,7 +134,7 @@ class Tower extends Basis {
       
       double hypothenuse = Math.sqrt(Math.pow((distX), 2) + Math.pow((distY), 2));
       //System.out.println("" + String.valueOf(hypothenuse));
-      if (hypothenuse <= this.getAttackRange()){
+      if (hypothenuse <= this.attack_range){
         return enemies.get(i);
       }
       
@@ -142,14 +142,14 @@ class Tower extends Basis {
     return null;
   }
   
-  public boolean canAttack() {
+  public boolean can_attack() {
     if (this.cooldown == 0) {
       return true;
     }
     return false;
   }
   
-  public void tickCooldown() {
+  public void tick_cooldown() {
     if (this.cooldown > 0) {
       this.cooldown--;
     }

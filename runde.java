@@ -24,7 +24,7 @@ class Runde {
     }
   }
   
-  public int getRoundLength() {
+  public int length() {
     return this.timeline.length;
   }
   

@@ -22,8 +22,8 @@ class Projectile extends Basis {
     this.originY = src_tower.getY();
     this.getIV().setFitHeight(50);
     this.getIV().setFitWidth(50);
-    this.damage = src_tower.getAttackDamage();
-    this.speed = src_tower.getProjectileSpeed();
+    this.damage = src_tower.get_attack_damage();
+    this.speed = src_tower.get_projectile_speed();
     this.targetX = target.getX();
     this.targetY = target.getY();
     this.deviation = 15;

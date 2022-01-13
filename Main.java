@@ -26,7 +26,7 @@ import javafx.scene.layout.*;
 import javafx.geometry.*;
 
 
-public class cleanEngine extends Application {
+public class Main extends Application {
   Pane root = new Pane();
   
   public Game game_engine = new Game();
@@ -41,17 +41,17 @@ public class cleanEngine extends Application {
   
   private boolean running = false;
   private boolean bumming = false;
-  private Label labelHP = new Label();
+  private Label label_HP = new Label();
 
-  private Tower_spawner rezo_spawner = new Tower_spawner(Tower.TOWER_REZO, 0, root, this);
-  private Tower_spawner drosten_spawner = new Tower_spawner(Tower.TOWER_DROSTEN, 1, root, this);
-  private Tower_spawner lauterbach_spawner = new Tower_spawner(Tower.TOWER_LAUTERBACH, 2, root, this);
-  private Tower_spawner spahn_spawner = new Tower_spawner(Tower.TOWER_SPAHN, 3, root, this);
-  private Tower_spawner merkel_spawner = new Tower_spawner(Tower.TOWER_MERKEL, 4, root, this);
+  private Tower_spawner rezo_spawner = new Tower_spawner(Tower.REZO, 0, root, this);
+  private Tower_spawner drosten_spawner = new Tower_spawner(Tower.DROSTEN, 1, root, this);
+  private Tower_spawner lauterbach_spawner = new Tower_spawner(Tower.LAUTERBACH, 2, root, this);
+  private Tower_spawner spahn_spawner = new Tower_spawner(Tower.SPAHN, 3, root, this);
+  private Tower_spawner merkel_spawner = new Tower_spawner(Tower.MERKEL, 4, root, this);
   
-  private Label labelMoney = new Label();
-  private Label lRunde0 = new Label();
-  private Label labelStatusOuput = new Label();
+  private Label label_money = new Label();
+  private Label label_Runde = new Label();
+  private Label label_status_out = new Label();
   
   public void start(Stage primaryStage) { 
     
@@ -73,40 +73,40 @@ public class cleanEngine extends Application {
     button_play.setText("play");
     root.getChildren().add(button_play);
     
-    labelHP.setLayoutX(1050);
-    labelHP.setLayoutY(10);
-    labelHP.setPrefHeight(30);
-    labelHP.setPrefWidth(100);
-    labelHP.setText("HP: 100");
-    labelHP.setAlignment(Pos.CENTER);
-    labelHP.setFont(Font.font("Dialog", 22));
-    labelHP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-    root.getChildren().add(labelHP);
-    labelMoney.setLayoutX(1030);
-    labelMoney.setLayoutY(50);
-    labelMoney.setPrefHeight(30);
-    labelMoney.setPrefWidth(140);
-    labelMoney.setText("Money: 100$");
-    labelMoney.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-    labelMoney.setAlignment(Pos.CENTER);
-    labelMoney.setFont(Font.font("Dialog", 22));
-    root.getChildren().add(labelMoney);
-    lRunde0.setLayoutX(1045);
-    lRunde0.setLayoutY(90);
-    lRunde0.setPrefHeight(30);
-    lRunde0.setPrefWidth(110);
-    lRunde0.setText("Runde: 0");
-    lRunde0.setAlignment(Pos.CENTER);
-    lRunde0.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-    lRunde0.setFont(Font.font("Dialog", 22));
-    root.getChildren().add(lRunde0);
-    labelStatusOuput.setLayoutX(836);
-    labelStatusOuput.setLayoutY(725);
-    labelStatusOuput.setPrefHeight(20);
-    labelStatusOuput.setPrefWidth(238);
-    labelStatusOuput.setText("");
-    labelStatusOuput.setAlignment(Pos.CENTER);
-    root.getChildren().add(labelStatusOuput);
+    label_HP.setLayoutX(1050);
+    label_HP.setLayoutY(10);
+    label_HP.setPrefHeight(30);
+    label_HP.setPrefWidth(100);
+    label_HP.setText("HP: 100");
+    label_HP.setAlignment(Pos.CENTER);
+    label_HP.setFont(Font.font("Dialog", 22));
+    label_HP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.getChildren().add(label_HP);
+    label_money.setLayoutX(1030);
+    label_money.setLayoutY(50);
+    label_money.setPrefHeight(30);
+    label_money.setPrefWidth(140);
+    label_money.setText("Money: 100$");
+    label_money.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    label_money.setAlignment(Pos.CENTER);
+    label_money.setFont(Font.font("Dialog", 22));
+    root.getChildren().add(label_money);
+    label_Runde.setLayoutX(1045);
+    label_Runde.setLayoutY(90);
+    label_Runde.setPrefHeight(30);
+    label_Runde.setPrefWidth(110);
+    label_Runde.setText("Runde: 0");
+    label_Runde.setAlignment(Pos.CENTER);
+    label_Runde.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    label_Runde.setFont(Font.font("Dialog", 22));
+    root.getChildren().add(label_Runde);
+    label_status_out.setLayoutX(836);
+    label_status_out.setLayoutY(725);
+    label_status_out.setPrefHeight(20);
+    label_status_out.setPrefWidth(238);
+    label_status_out.setText("");
+    label_status_out.setAlignment(Pos.CENTER);
+    root.getChildren().add(label_status_out);
     
     // Tower Spawner stuff
     root.getChildren().add(rezo_spawner.get_button());
@@ -145,7 +145,7 @@ public class cleanEngine extends Application {
         // Tick projectiles and remove colliding enemies and projectiles
         // aswell as despawning projectiles
         remove_results(game_engine.tick_projectiles());                
-        labelMoney.setText("Money: " + String.valueOf(game_engine.get_money()));
+        label_money.setText("Money: " + String.valueOf(game_engine.get_money()));
         
         // Here are the new enemies being spawned
         draw_results(game_engine.spawn_enemies(tick));
@@ -158,7 +158,7 @@ public class cleanEngine extends Application {
         // on explosion and update hp afterwards
         if (results.size() > 0) {
           turn_on_explosion();
-          labelHP.setText("HP: " + String.valueOf(game_engine.get_hp()));
+          label_HP.setText("HP: " + String.valueOf(game_engine.get_hp()));
         }
         remove_results(results);
     
@@ -167,25 +167,20 @@ public class cleanEngine extends Application {
         // only affects the GUI
         if (game_engine.get_hp() <= 0) {
           Image defeat = new Image("assets/defeat.png");
-          ImageView defeatView = new ImageView();
-          defeatView.setImage(defeat);
-          defeatView.setX(-50);
-          root.getChildren().add(defeatView);
+          ImageView defeat_view = new ImageView();
+          defeat_view.setImage(defeat);
+          defeat_view.setX(-50);
+          root.getChildren().add(defeat_view);
           loop.stop();
-          button_play.setDisable(true);
           
-          rezo_spawner.get_button().setDisable(true);
-          drosten_spawner.get_button().setDisable(true);
-          lauterbach_spawner.get_button().setDisable(true);
-          spahn_spawner.get_button().setDisable(true);
-          merkel_spawner.get_button().setDisable(true);
+          disable_buttons();
         }
         
         results = game_engine.check_for_round_end(tick);
         // If results has something... yada yada yada
         if (results != null) {
           loop.stop();
-          labelMoney.setText("Money: " + String.valueOf(game_engine.get_money()));
+          label_money.setText("Money: " + game_engine.get_money());
           running = false;
           turn_off_explosion();
           remove_results(results);
@@ -195,11 +190,12 @@ public class cleanEngine extends Application {
         // This only has GUI stuff for now aswell, so not moved into game class
         if (game_engine.get_round_count() == game_engine.get_rounds().size()) {
             Image victory = new Image("assets/victory.png");
-            ImageView victoryView = new ImageView();
-            victoryView.setImage(victory);
-            victoryView.setX(-50);
-            root.getChildren().add(victoryView);
+            ImageView victory_view = new ImageView();
+            victory_view.setImage(victory);
+            victory_view.setX(-50);
+            root.getChildren().add(victory_view);
             loop.stop();
+            disable_buttons();
         }
         
         tick++;
@@ -211,71 +207,18 @@ public class cleanEngine extends Application {
   }
                                        
   public void button_play_Action(Event evt) {
-    if (running == false && game_engine.get_round_count() < game_engine.get_rounds().size()) {
-      int actualRound = game_engine.get_round_count() + 1;
-      lRunde0.setText("Runde: " + actualRound);
+    if (!running) {
+      int actual_round = game_engine.get_round_count() + 1;
+      label_Runde.setText("Runde: " + actual_round);
       running = true; 
       game_loop();
-      System.out.println("Round started");
     }
   }
-  
-  // Todo Refactor methods below
-  public boolean checkIsTowerOutWindowUp(double x, double y){
-    if (y < 50) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowDown(double x, double y){
-    if (y > 650) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowRight(double x, double y){
-    if (x > 1150) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerOutWindowLeft(double x, double y){
-    if (x < 50) {
-      return true;
-    } else {
-      return false;  
-    } 
-  }
-  
-  public boolean checkIsTowerInWindow(double x, double y){
-    if (checkIsTowerOutWindowUp(x,y)==false && checkIsTowerOutWindowDown(x,y)==false && checkIsTowerOutWindowRight(x,y)==false && checkIsTowerOutWindowLeft(x,y)==false) {
-      return true;
-    } else {
-      return false;  
-    }
-      
-  }
-  
-  // TODO Rework Tower Placement in general. This is ugly.
-  // Do value loading from file (like with the enemies).
-  // Therefore the logic for this will be moved into game class
-  // Would remove alot of redundant code... :thinking:
-
-  // TOdo this is prob. the one to be moved into game class
-  // And please redo these parameters... :puke:
-  // Todo Projektile auch in eigene Dateien auslagern, Turm kennt Path dafür
-  // int cost, Image sprite, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId  
   
   public void turn_on_explosion() {
     if (this.bumming == false) {
-      Image bum = new Image("assets/bum.png");
-      ivbum.setImage(bum);
+      Image explosion_img = new Image("assets/bum.png");
+      ivbum.setImage(explosion_img);
       ivbum.setX(500.0);
       ivbum.setY(550.0);
       ivbum.setFitHeight(100);
@@ -306,15 +249,26 @@ public class cleanEngine extends Application {
   
   public void place_tower(Tower new_tower) {
     if (new_tower == null) {
-      labelStatusOuput.setText("Turm wurde nicht platziert!");
+      label_status_out.setText("Turm wurde nicht platziert!");
     }
     else {
-      labelMoney.setText("Money: " + game_engine.get_money());
+      label_money.setText("Money: " + game_engine.get_money());
       root.getChildren().add(new_tower.getIV());
-      labelStatusOuput.setText("Turm wurde platziert!");
+      label_status_out.setText("Turm wurde platziert!");
     }
     root.setOnMouseClicked(null);
   }
+  
+  public void disable_buttons() {
+    button_play.setDisable(true);
+    
+    rezo_spawner.get_button().setDisable(true);
+    drosten_spawner.get_button().setDisable(true);
+    lauterbach_spawner.get_button().setDisable(true);
+    spahn_spawner.get_button().setDisable(true);
+    merkel_spawner.get_button().setDisable(true);
+  }
+  
 
 } 
 

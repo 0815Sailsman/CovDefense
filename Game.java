@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageView.*;
+import javafx.scene.input.MouseEvent;
 
 public class Game {
   
@@ -219,7 +220,60 @@ public class Game {
     return results;
   }
 
-
+  public Tower place_tower_logic(MouseEvent event, Tower_parameters params) {
+    double x = event.getSceneX();
+    double y = event.getSceneY();
+    
+    if (!coords_on_path(x,y) && !coords_on_tower(x,y)) {
+      if (y > 700){
+        return null;
+      }
+      if (x < 50) {
+        x = 50;
+      }
+      if (x > 1150) {
+        x = 1150;
+      } 
+      if (y < 50) {
+        y = 50;
+      } 
+      if (y > 650) {
+        y = 650;
+      }
+      if (this.money >= params.cost) {
+        this.money = this.money - params.cost;
+        Tower temptower = new Tower(x, y, params);
+        this.towers.add(temptower);
+        return temptower; 
+      }      
+    }
+    return null;
+  }  
+  
+  public boolean coords_on_path(double x, double y){
+    int radius = 40;
+    for (int i = 0;i < this.get_path().size(); i++) {
+      double tmpX = this.get_path().get(i).getX();
+      double tmpY = this.get_path().get(i).getY();
+      if ((x > (tmpX-radius)&&x < (tmpX+radius))&&(y > (tmpY-radius)&&y < (tmpY+radius))) {
+        return true; 
+      }
+      
+    }
+    return false;
+  }
+  
+  public boolean coords_on_tower(double x, double y){
+    for (int i = 0;i < this.get_towers().size(); i++) {
+      double tmpX = this.get_towers().get(i).getX();
+      double tmpY = this.get_towers().get(i).getY();
+      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
+        return true; 
+      }
+      
+    }
+    return false;
+  }
   
   //**********************************
   // AB HIER NURNOCH GETTER UND SETTER

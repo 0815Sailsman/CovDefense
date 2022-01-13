@@ -29,7 +29,7 @@ import javafx.geometry.*;
 public class cleanEngine extends Application {
   Pane root = new Pane();
   
-  private Game game_engine = new Game();
+  public Game game_engine = new Game();
   
   private Button button_play = new Button();
   private ImageView ivbg = new ImageView();
@@ -42,18 +42,12 @@ public class cleanEngine extends Application {
   private boolean running = false;
   private boolean bumming = false;
   private Label labelHP = new Label();
-  
-  private Button button_Drosten = new Button();
-  private Button button_Merkel = new Button();
-  private Button button_Rezo = new Button();
-  private Button button_Lauterbach = new Button();
-  private Button button_Spahn = new Button();
-  
-  private Label labelCostTower1 = new Label();
-  private Label labelCostTower2 = new Label();
-  private Label labelCostTower3 = new Label();
-  private Label labelCostTower4 = new Label();
-  private Label labelCostTower5 = new Label();
+
+  private Tower_spawner rezo_spawner = new Tower_spawner(Tower.TOWER_REZO, 0, root, this);
+  private Tower_spawner drosten_spawner = new Tower_spawner(Tower.TOWER_DROSTEN, 1, root, this);
+  private Tower_spawner lauterbach_spawner = new Tower_spawner(Tower.TOWER_LAUTERBACH, 2, root, this);
+  private Tower_spawner spahn_spawner = new Tower_spawner(Tower.TOWER_SPAHN, 3, root, this);
+  private Tower_spawner merkel_spawner = new Tower_spawner(Tower.TOWER_MERKEL, 4, root, this);
   
   private Label labelMoney = new Label();
   private Label lRunde0 = new Label();
@@ -79,15 +73,6 @@ public class cleanEngine extends Application {
     button_play.setText("play");
     root.getChildren().add(button_play);
     
-    button_Spahn.setLayoutX(465);
-    button_Spahn.setLayoutY(725);
-    button_Spahn.setPrefHeight(25);
-    button_Spahn.setPrefWidth(75);
-    button_Spahn.setOnAction(
-      (event) -> {button_Spahn_Action(event);} 
-    );
-    button_Spahn.setText("");
-    root.getChildren().add(button_Spahn);
     labelHP.setLayoutX(1050);
     labelHP.setLayoutY(10);
     labelHP.setPrefHeight(30);
@@ -97,38 +82,6 @@ public class cleanEngine extends Application {
     labelHP.setFont(Font.font("Dialog", 22));
     labelHP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.getChildren().add(labelHP);
-    button_Drosten.setLayoutX(295);
-    button_Drosten.setLayoutY(725);
-    button_Drosten.setPrefHeight(25);
-    button_Drosten.setPrefWidth(75);
-    button_Drosten.setOnAction(
-      (event) -> {button_Drosten_Action(event);} 
-    );
-    root.getChildren().add(button_Drosten);
-    button_Merkel.setLayoutX(550);
-    button_Merkel.setLayoutY(725);
-    button_Merkel.setPrefHeight(25);
-    button_Merkel.setPrefWidth(75);
-    button_Merkel.setOnAction(
-      (event) -> {button_Merkel_Action(event);} 
-    );
-    root.getChildren().add(button_Merkel);
-    button_Rezo.setLayoutX(210);
-    button_Rezo.setLayoutY(725);
-    button_Rezo.setPrefHeight(25);
-    button_Rezo.setPrefWidth(75);
-    button_Rezo.setOnAction(
-      (event) -> {button_Rezo_Action(event);} 
-    );
-    root.getChildren().add(button_Rezo);
-    button_Lauterbach.setLayoutX(380);
-    button_Lauterbach.setLayoutY(725);
-    button_Lauterbach.setPrefHeight(25);
-    button_Lauterbach.setPrefWidth(75);
-    button_Lauterbach.setOnAction(
-      (event) -> {button_Lauterbach_Action(event);} 
-    );
-    root.getChildren().add(button_Lauterbach);
     labelMoney.setLayoutX(1030);
     labelMoney.setLayoutY(50);
     labelMoney.setPrefHeight(30);
@@ -138,36 +91,6 @@ public class cleanEngine extends Application {
     labelMoney.setAlignment(Pos.CENTER);
     labelMoney.setFont(Font.font("Dialog", 22));
     root.getChildren().add(labelMoney);
-    labelCostTower1.setLayoutX(230);
-    labelCostTower1.setLayoutY(705);
-    labelCostTower1.setPrefHeight(20);
-    labelCostTower1.setPrefWidth(78);
-    labelCostTower1.setText("100$");
-    root.getChildren().add(labelCostTower1);
-    labelCostTower2.setLayoutX(315);
-    labelCostTower2.setLayoutY(705);
-    labelCostTower2.setPrefHeight(20);
-    labelCostTower2.setPrefWidth(78);
-    labelCostTower2.setText("500$");
-    root.getChildren().add(labelCostTower2);
-    labelCostTower3.setLayoutX(400);
-    labelCostTower3.setLayoutY(705);
-    labelCostTower3.setPrefHeight(20);
-    labelCostTower3.setPrefWidth(78);
-    labelCostTower3.setText("1500$");
-    root.getChildren().add(labelCostTower3);
-    labelCostTower4.setLayoutX(485);
-    labelCostTower4.setLayoutY(705);
-    labelCostTower4.setPrefHeight(20);
-    labelCostTower4.setPrefWidth(78);
-    labelCostTower4.setText("2500$");
-    root.getChildren().add(labelCostTower4);
-    labelCostTower5.setLayoutX(570);
-    labelCostTower5.setLayoutY(705);
-    labelCostTower5.setPrefHeight(20);
-    labelCostTower5.setPrefWidth(78);
-    labelCostTower5.setText("5000$");
-    root.getChildren().add(labelCostTower5);
     lRunde0.setLayoutX(1045);
     lRunde0.setLayoutY(90);
     lRunde0.setPrefHeight(30);
@@ -185,40 +108,26 @@ public class cleanEngine extends Application {
     labelStatusOuput.setAlignment(Pos.CENTER);
     root.getChildren().add(labelStatusOuput);
     
+    // Tower Spawner stuff
+    root.getChildren().add(rezo_spawner.get_button());
+    root.getChildren().add(rezo_spawner.get_label());
+
+    root.getChildren().add(drosten_spawner.get_button());
+    root.getChildren().add(drosten_spawner.get_label());
+    
+    root.getChildren().add(lauterbach_spawner.get_button());
+    root.getChildren().add(lauterbach_spawner.get_label());
+    
+    root.getChildren().add(spahn_spawner.get_button());
+    root.getChildren().add(spahn_spawner.get_label());
+    
+    root.getChildren().add(merkel_spawner.get_button());
+    root.getChildren().add(merkel_spawner.get_label());
+    
     primaryStage.setOnCloseRequest(e -> System.exit(0));
-    primaryStage.setTitle("cleanEngine");
+    primaryStage.setTitle("CovDefense");
     primaryStage.setScene(scene);
     primaryStage.show();
-   
-    Image img_SpahnButton = new Image("assets/Spahn.png");
-    ImageView SpahnButtonView = new ImageView(img_SpahnButton);
-    SpahnButtonView.setFitHeight(50);
-    SpahnButtonView.setFitWidth(50);
-    button_Spahn.setGraphic(SpahnButtonView);
-    
-    Image img_DrostenButton = new Image("assets/Drosten.png");
-    ImageView DrostenButtonView = new ImageView(img_DrostenButton);
-    DrostenButtonView.setFitHeight(50);
-    DrostenButtonView.setFitWidth(50);
-    button_Drosten.setGraphic(DrostenButtonView);
-    
-    Image img_MerkelButton = new Image("assets/Merkel.png");
-    ImageView MerkelButtonView = new ImageView(img_MerkelButton);
-    MerkelButtonView.setFitHeight(50);
-    MerkelButtonView.setFitWidth(50);
-    button_Merkel.setGraphic(MerkelButtonView);
-    
-    Image img_RezoButton = new Image("assets/Rezo.png");
-    ImageView RezoButtonView = new ImageView(img_RezoButton);
-    RezoButtonView.setFitHeight(50);
-    RezoButtonView.setFitWidth(50);
-    button_Rezo.setGraphic(RezoButtonView);
-    
-    Image img_LauterbachButton = new Image("assets/Lauterbach.png");
-    ImageView LauterbachButtonView = new ImageView(img_LauterbachButton);
-    LauterbachButtonView.setFitHeight(50);
-    LauterbachButtonView.setFitWidth(50);
-    button_Lauterbach.setGraphic(LauterbachButtonView);
   }
   
   public static void main(String[] args) {
@@ -264,11 +173,12 @@ public class cleanEngine extends Application {
           root.getChildren().add(defeatView);
           loop.stop();
           button_play.setDisable(true);
-          button_Spahn.setDisable(true);
-          button_Drosten.setDisable(true);
-          button_Merkel.setDisable(true);
-          button_Rezo.setDisable(true);
-          button_Lauterbach.setDisable(true);
+          
+          rezo_spawner.get_button().setDisable(true);
+          drosten_spawner.get_button().setDisable(true);
+          lauterbach_spawner.get_button().setDisable(true);
+          spahn_spawner.get_button().setDisable(true);
+          merkel_spawner.get_button().setDisable(true);
         }
         
         results = game_engine.check_for_round_end(tick);
@@ -308,31 +218,6 @@ public class cleanEngine extends Application {
       game_loop();
       System.out.println("Round started");
     }
-  }
-  
-  public boolean checkIsTowerOnPath(double x, double y){
-    int radius = 40;
-    for (int i = 0;i < game_engine.get_path().size(); i++) {
-      double tmpX = game_engine.get_path().get(i).getX();
-      double tmpY = game_engine.get_path().get(i).getY();
-      if ((x > (tmpX-radius)&&x < (tmpX+radius))&&(y > (tmpY-radius)&&y < (tmpY+radius))) {
-        return true; 
-      }
-      
-    }
-    return false;
-  }
-  
-  public boolean checkIsTowerOnTower(double x, double y){
-    for (int i = 0;i < game_engine.get_towers().size(); i++) {
-      double tmpX = game_engine.get_towers().get(i).getX();
-      double tmpY = game_engine.get_towers().get(i).getY();
-      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
-        return true; 
-      }
-      
-    }
-    return false;
   }
   
   // Todo Refactor methods below
@@ -380,123 +265,12 @@ public class cleanEngine extends Application {
   // TODO Rework Tower Placement in general. This is ugly.
   // Do value loading from file (like with the enemies).
   // Therefore the logic for this will be moved into game class
-  // And the buttons are also ugly. Maybe create a class that contains
-  // the button and the label and handels most of these click actions.
   // Would remove alot of redundant code... :thinking:
-  public void button_Spahn_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        //placeTower(event, 2500, new Image("assets/Spahn.png"), 200.0, 5, 3, 15.0, 1);
-        placeTower(event, Tower.TOWER_SPAHN);
-        // Schieﬂt sehr schnell, aber wenig Schaden
-      }
-    });
-    
-  }
-  
 
-  public void button_Drosten_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        //placeTower(event, 500, new Image("assets/Drosten.png"), 200.0, 2, 20, 25.0, 2);
-        placeTower(event, Tower.TOWER_DROSTEN);
-        // So semi gut, besonders ist hier die ProjectileSpeed 
-      }
-    });
-    
-  } // end of button_Drosten_Action
-
-  public void button_Merkel_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {        
-        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        //placeTower(event, 5000, new Image("assets/Merkel.png"), 400.0, 10, 1, 40, 3);
-        placeTower(event, Tower.TOWER_MERKEL);
-        // OP, schieﬂt ziemlich h‰ufig und es klatscht auch richtig 
-      }
-    });
-    
-  } // end of button_Merkel_Action
-
-  public void button_Rezo_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        //placeTower(event, 100, new Image("assets/Rezo.png"), 200.0, 1, 25, 15.0, 4);
-        placeTower(event, Tower.TOWER_REZO);
-        // Basic Anfangs Turm     
-      }
-    });
-    
-  } // end of button_Rezo_Action
-
-  public void button_Lauterbach_Action(Event evt) {
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        //Image sprite, double x, double y, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-        //placeTower(event, 1500, new Image("assets/Lauterbach.png"), 200.0, 10, 40, 10, 5);
-        placeTower(event, Tower.TOWER_LAUTERBACH);
-        // Wenig Sch¸sse, viel Schaden 
-      }
-    });
-    
-  } // end of button_Lauterbach_Action
-  
   // TOdo this is prob. the one to be moved into game class
   // And please redo these parameters... :puke:
   // Todo Projektile auch in eigene Dateien auslagern, Turm kennt Path daf¸r
-  // int cost, Image sprite, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId
-  public void placeTower(MouseEvent event, int tower_id) {
-    double x = event.getSceneX();
-    double y = event.getSceneY();
-    Tower_parameters params = Tower.load_tower_parameters(Tower.id_to_path(tower_id));
-    
-    if (checkIsTowerOnPath(x,y)==false && checkIsTowerOnTower(x,y)==false) {
-      if (y > 700){
-        root.setOnMouseClicked(null);
-        return;
-      }
-      if (x < 50) {
-        x = 50;
-      }
-      if (x > 1150) {
-        x = 1150;
-      } 
-      if (y < 50) {
-        y = 50;
-      } 
-      if (y > 650) {
-        y = 650;
-      }
-      if (game_engine.get_money() >= params.cost) {
-        game_engine.set_money(game_engine.get_money() - params.cost);
-        labelMoney.setText("Money: " + game_engine.get_money());
-        // sprite, x, y, attackRange, attackDamage, attackSpeed, projectileSpeed, typeId
-        Tower temptower = new Tower(x, y, params);
-        game_engine.get_towers().add(temptower); 
-        root.getChildren().add(temptower.getIV());
-        labelStatusOuput.setText("Turm wurde platziert!");
-      }
-      else {
-        System.out.println("Dir fehlt Kohle diggi");
-        labelStatusOuput.setText("Dir fehlt Kohle diggi!");
-      } // end of if-else
-      
-    }
-    else {
-      System.out.println("Platzieren des Turms fehlgeschlagen!");
-      labelStatusOuput.setText("Platzieren des Turms fehlgeschlagen!");
-    }
-    root.setOnMouseClicked(null);
-  }
-  
+  // int cost, Image sprite, double attackRange, int attackDamage, int attackSpeed, double projectileSpeed, int typeId  
   
   public void turn_on_explosion() {
     if (this.bumming == false) {
@@ -529,5 +303,18 @@ public class cleanEngine extends Application {
       root.getChildren().remove(root.getChildren().indexOf(results.get(i)));
     }
   }
+  
+  public void place_tower(Tower new_tower) {
+    if (new_tower == null) {
+      labelStatusOuput.setText("Turm wurde nicht platziert!");
+    }
+    else {
+      labelMoney.setText("Money: " + game_engine.get_money());
+      root.getChildren().add(new_tower.getIV());
+      labelStatusOuput.setText("Turm wurde platziert!");
+    }
+    root.setOnMouseClicked(null);
+  }
+
 } 
 

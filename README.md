@@ -4,7 +4,7 @@ Corona-themed tower defense game we built using JavaFX and our custom "Game-Engi
 
 ## Omicron-Update (Refactoring) ##
 - [x] Separate GUI and engine
-- [ ] Rework buttons and towers to load their data from files
+- [x] Rework buttons and towers to load their data from files
 - [x] Load towers from file
 
 ## Sigma-Update (Content Update) ##
@@ -12,3 +12,7 @@ Corona-themed tower defense game we built using JavaFX and our custom "Game-Engi
 - [ ] Mor eanimations (towers when shooting, projectile-collision...)
 - [ ] Main menu
 - [ ] Scores
+- [ ] Icons for the program
+- [ ] Highlight where towers can(not) be placed
+- [ ] Balance Changes
+- [ ] Add "Scholz"

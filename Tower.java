@@ -27,10 +27,10 @@ class Tower extends Basis {
     this.attack_speed = params.attack_speed;
     this.projectile_speed = params.projectile_speed;
     this.cooldown = 0;
-    this.getIV().setFitHeight(100);
-    this.getIV().setFitWidth(100);
-    this.setX(this.getX()-50);
-    this.setY(this.getY()-50);
+    this.getIV().setFitHeight(WindowDimensions.HEIGHT / 7.95);
+    this.getIV().setFitWidth(WindowDimensions.WIDTH / 11.84);
+    this.setX(this.getX() - (WindowDimensions.WIDTH / 23.68));
+    this.setY(this.getY() - (WindowDimensions.HEIGHT / 15.9));
     this.setTypeId(params.type_id);
   }
 

@@ -28,17 +28,17 @@ class Tower_spawner {
 
   private Button construct_button() {
     button = new Button();
-    button.setLayoutX(210  + 85 * this.position);
-    button.setLayoutY(725);
-    button.setPrefHeight(25);
-    button.setPrefWidth(75);
+    button.setLayoutX((WindowDimensions.WIDTH / 5.638) + (WindowDimensions.WIDTH / 13.929) * this.position);
+    button.setLayoutY(WindowDimensions.HEIGHT / 1.0966);
+    button.setPrefHeight(WindowDimensions.HEIGHT / 31.8);
+    button.setPrefWidth(WindowDimensions.WIDTH / 15.786);
     button.setOnAction(
       (event) -> {button_Action(event, this.params, this.main);} 
     );
     Image img = new Image(this.params.sprite_path);
     ImageView view = new ImageView(img);
-    view.setFitHeight(50);
-    view.setFitWidth(50);
+    view.setFitHeight((WindowDimensions.HEIGHT / 15.9));
+    view.setFitWidth((WindowDimensions.WIDTH / 23.68));
     button.setGraphic(view);
     return button;
   }
@@ -46,10 +46,10 @@ class Tower_spawner {
   // Poistion specifies which 
   private Label construct_label() {
     label = new Label();
-    label.setLayoutX(230 + this.position * 85);
-    label.setLayoutY(705);
-    label.setPrefHeight(20);
-    label.setPrefWidth(78);
+    label.setLayoutX((WindowDimensions.WIDTH / 5.148) + this.position * (WindowDimensions.WIDTH / 13.929));
+    label.setLayoutY(WindowDimensions.HEIGHT / 1.128);
+    label.setPrefHeight(WindowDimensions.HEIGHT / 39.75);
+    label.setPrefWidth(WindowDimensions.WIDTH / 15.18);
     label.setText(this.params.cost + "$");
     return label;
   }

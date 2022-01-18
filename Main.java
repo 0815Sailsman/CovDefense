@@ -1,7 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
@@ -54,56 +54,58 @@ public class Main extends Application {
   private Label label_status_out = new Label();
   
   public void start(Stage primaryStage) { 
-    
-    Scene scene = new Scene(root, 1184, 795);
+    // Were 1184 and 795
+    Scene scene = new Scene(root, WindowDimensions.WIDTH, WindowDimensions.HEIGHT);
     // Anfang Komponenten
+    System.out.println("" + WindowDimensions.WIDTH);
+    System.out.println("" + WindowDimensions.HEIGHT);       
     Image bg = new Image("assets/bg.png");
     ivbg.setImage(bg);
-    ivbg.setFitHeight(700);
-    ivbg.setFitWidth(1200);
+    ivbg.setFitHeight(WindowDimensions.HEIGHT / 1.1357); // Was 700
+    ivbg.setFitWidth(WindowDimensions.WIDTH); // Was 1200
     root.getChildren().add(ivbg); 
     
-    button_play.setLayoutX(16);
-    button_play.setLayoutY(725);
-    button_play.setPrefHeight(25);
-    button_play.setPrefWidth(75);
+    button_play.setLayoutX(WindowDimensions.WIDTH / 80.0); // Was 16
+    button_play.setLayoutY(WindowDimensions.HEIGHT / 1.0965); // Was 725
+    button_play.setPrefHeight(WindowDimensions.HEIGHT / 31.8);
+    button_play.setPrefWidth(WindowDimensions.WIDTH / 15.786);
     button_play.setOnAction(
       (event) -> {button_play_Action(event);} 
     );
     button_play.setText("play");
     root.getChildren().add(button_play);
     
-    label_HP.setLayoutX(1050);
-    label_HP.setLayoutY(10);
-    label_HP.setPrefHeight(30);
-    label_HP.setPrefWidth(100);
+    label_HP.setLayoutX(WindowDimensions.WIDTH / 1127);
+    label_HP.setLayoutY(WindowDimensions.HEIGHT / 79.5);
+    label_HP.setPrefHeight(WindowDimensions.HEIGHT / 26.5);
+    label_HP.setPrefWidth(WindowDimensions.WIDTH / 11.84);
     label_HP.setText("HP: 100");
     label_HP.setAlignment(Pos.CENTER);
     label_HP.setFont(Font.font("Dialog", 22));
     label_HP.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.getChildren().add(label_HP);
-    label_money.setLayoutX(1030);
-    label_money.setLayoutY(50);
-    label_money.setPrefHeight(30);
-    label_money.setPrefWidth(140);
+    label_money.setLayoutX(WindowDimensions.WIDTH / 1.149);
+    label_money.setLayoutY(WindowDimensions.HEIGHT / 15.9);
+    label_money.setPrefHeight(WindowDimensions.HEIGHT / 30);
+    label_money.setPrefWidth(WindowDimensions.WIDTH / 8.457);
     label_money.setText("Money: 100$");
     label_money.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     label_money.setAlignment(Pos.CENTER);
     label_money.setFont(Font.font("Dialog", 22));
     root.getChildren().add(label_money);
-    label_Runde.setLayoutX(1045);
-    label_Runde.setLayoutY(90);
-    label_Runde.setPrefHeight(30);
-    label_Runde.setPrefWidth(110);
+    label_Runde.setLayoutX(WindowDimensions.WIDTH / 1.133);
+    label_Runde.setLayoutY(WindowDimensions.HEIGHT / 8.83);
+    label_Runde.setPrefHeight(WindowDimensions.HEIGHT / 26.5);
+    label_Runde.setPrefWidth(WindowDimensions.WIDTH / 10.76);
     label_Runde.setText("Runde: 0");
     label_Runde.setAlignment(Pos.CENTER);
     label_Runde.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     label_Runde.setFont(Font.font("Dialog", 22));
     root.getChildren().add(label_Runde);
-    label_status_out.setLayoutX(836);
-    label_status_out.setLayoutY(725);
-    label_status_out.setPrefHeight(20);
-    label_status_out.setPrefWidth(238);
+    label_status_out.setLayoutX(WindowDimensions.WIDTH / 1.416);
+    label_status_out.setLayoutY(WindowDimensions.HEIGHT / 1.0965);
+    label_status_out.setPrefHeight(WindowDimensions.HEIGHT / 39.75);
+    label_status_out.setPrefWidth(WindowDimensions.WIDTH / 4.97);
     label_status_out.setText("");
     label_status_out.setAlignment(Pos.CENTER);
     root.getChildren().add(label_status_out);
@@ -127,6 +129,8 @@ public class Main extends Application {
     primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("CovDefense");
     primaryStage.setScene(scene);
+    //primaryStage.setMaximized(true);
+    primaryStage.setFullScreen(true);
     primaryStage.show();
   }
   
@@ -169,7 +173,7 @@ public class Main extends Application {
           Image defeat = new Image("assets/defeat.png");
           ImageView defeat_view = new ImageView();
           defeat_view.setImage(defeat);
-          defeat_view.setX(-50);
+          defeat_view.setX(WindowDimensions.WIDTH / -23.68);
           root.getChildren().add(defeat_view);
           loop.stop();
           
@@ -192,7 +196,7 @@ public class Main extends Application {
             Image victory = new Image("assets/victory.png");
             ImageView victory_view = new ImageView();
             victory_view.setImage(victory);
-            victory_view.setX(-50);
+            victory_view.setX(WindowDimensions.WIDTH / -23.68);
             root.getChildren().add(victory_view);
             loop.stop();
             disable_buttons();
@@ -219,10 +223,10 @@ public class Main extends Application {
     if (this.bumming == false) {
       Image explosion_img = new Image("assets/bum.png");
       ivbum.setImage(explosion_img);
-      ivbum.setX(500.0);
-      ivbum.setY(550.0);
-      ivbum.setFitHeight(100);
-      ivbum.setFitWidth(200);
+      ivbum.setX(WindowDimensions.WIDTH / 2.368);
+      ivbum.setY(WindowDimensions.HEIGHT / 1.445);
+      ivbum.setFitHeight(WindowDimensions.HEIGHT / 7.95);
+      ivbum.setFitWidth(WindowDimensions.WIDTH / 5.92);
       root.getChildren().add(ivbum);
       bumming = true;
     }

@@ -20,13 +20,13 @@ class Projectile extends Basis {
     super(sprite, src_tower.getX(), src_tower.getY());
     this.originX = src_tower.getX();
     this.originY = src_tower.getY();
-    this.getIV().setFitHeight(50);
-    this.getIV().setFitWidth(50);
+    this.getIV().setFitHeight(WindowDimensions.HEIGHT / 15.9);
+    this.getIV().setFitWidth(WindowDimensions.WIDTH / 23.68);
     this.damage = src_tower.get_attack_damage();
     this.speed = src_tower.get_projectile_speed();
     this.targetX = target.getX();
     this.targetY = target.getY();
-    this.deviation = 15;
+    this.deviation = (int) (WindowDimensions.WIDTH / 78.9);
     
     this.calc_steps();
   }
@@ -131,7 +131,7 @@ class Projectile extends Basis {
         distY = this.getY() - tmpY;
       }   
       
-      if (Math.pow((distX), 2) + Math.pow((distY), 2) <= Math.pow(20, 2)){
+      if (Math.pow((distX), 2) + Math.pow((distY), 2) <= Math.pow(WindowDimensions.WIDTH / 59.2, 2)){
         return enemies.get(i);
       }
       

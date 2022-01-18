@@ -9,7 +9,7 @@ public class map_point {
   }
   
   public map_point(String[] split) {
-    this(Float.parseFloat(split[0]), Float.parseFloat(split[1]));
+    this(WindowDimensions.WIDTH / (1184 / Float.parseFloat(split[0])), WindowDimensions.HEIGHT / (795.0 / Float.parseFloat(split[1])));
   }
 
   

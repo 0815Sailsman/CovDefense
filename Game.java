@@ -238,15 +238,15 @@ public class Game {
   }  
   
   private double normalize_x(double old_x) {
-    return old_x < 50 ? 50 : (old_x > 1150 ? 1150 : old_x);
+    return old_x < 50 ? 50 : (old_x > WindowDimensions.WIDTH - 50 ? WindowDimensions.WIDTH - 50 : old_x);
   }
   
   private double normalize_y(double old_y) {
-    return old_y < 50 ? 50 : (old_y > 700 ? -1 : (old_y > 650 ? 650 : old_y));
+    return old_y < 50 ? 50 : (old_y > WindowDimensions.HEIGHT / 1.1357 ? -1 : (old_y > (WindowDimensions.HEIGHT / 1.1357) - 50 ? (WindowDimensions.HEIGHT / 1.1357) - 50 : old_y));
   }
   
   public boolean coords_on_path(double x, double y){
-    int radius = 40;
+    int radius = (int) (WindowDimensions.WIDTH / 29.6);
     for (int i = 0;i < this.get_path().size(); i++) {
       double tmpX = this.get_path().get(i).getX();
       double tmpY = this.get_path().get(i).getY();
@@ -262,7 +262,7 @@ public class Game {
     for (int i = 0;i < this.get_towers().size(); i++) {
       double tmpX = this.get_towers().get(i).getX();
       double tmpY = this.get_towers().get(i).getY();
-      if ((x > (tmpX-50)&&x < (tmpX+150))&&(y > (tmpY-50)&&y < (tmpY+150))) {
+      if ((x > (tmpX + (WindowDimensions.WIDTH / (-23.68))) && (x < (tmpX + (WindowDimensions.WIDTH / 7.893)))) && (y > (tmpY + (WindowDimensions.WIDTH / (-23.68))) && (y < (tmpY + (WindowDimensions.WIDTH / 7.893))))) {
         return true; 
       }
       

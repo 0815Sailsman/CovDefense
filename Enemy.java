@@ -21,9 +21,9 @@ class Enemy extends Basis{
   public static final int ENEMY_PURPLE = 5;
   
   public Enemy(Enemy_parameters params) {
-    super(new Image(params.sprite_path), params.x, params.y);
-    this.getIV().setFitHeight(50);
-    this.getIV().setFitWidth(85);
+    super(new Image(params.sprite_path), (WindowDimensions.WIDTH / (1184.0 / params.x)), (WindowDimensions.HEIGHT / (795.0 / params.y)));
+    this.getIV().setFitHeight(WindowDimensions.HEIGHT / 15.9);
+    this.getIV().setFitWidth(WindowDimensions.WIDTH / 13.93);
     this.speed = params.speed;
     this.hp = params.hp;
     this.damage = params.damage;

@@ -6,6 +6,7 @@ Corona-themed tower defense game we built using JavaFX and our custom "Game-Engi
 - [x] Separate GUI and engine
 - [x] Rework buttons and towers to load their data from files
 - [x] Load towers from file
+- [x] Switch IDEs from Java-Editor to IntellIJ
 
 ## Sigma-Update (Content Update) ##
 - [ ] New skins

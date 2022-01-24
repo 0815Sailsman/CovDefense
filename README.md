@@ -8,16 +8,24 @@ Corona-themed tower defense game we built using JavaFX and our custom "Game-Engi
 - [x] Switch IDEs from Java-Editor to IntellIJ
 
 ## Sigma-Update (Content Update) ##
-- [ ] New skins
-- [ ] Mor eanimations (towers when shooting, projectile-collision...)
+- [ ] Highlight where towers can(not) be placed
 - [ ] Main menu
+- [ ] See stats ingame
+- [ ] New skins
+- [ ] More animations (towers when shooting, projectile-collision...)
 - [ ] Scores
 - [ ] Icons for the program
-- [ ] Highlight where towers can(not) be placed
-- [ ] Balance Changes
 - [ ] Add "Scholz"
+- [ ] Difficulties with more rounds
+- [ ] Balance Changes
 
-Thanks to
-https://github.com/kuuriios
-https://github.com/Spodymun
+## General Ideas ##
+- [ ] More towers
+- [ ] More enemies
+- [ ] Abilties (active and passive)
+- [ ] Upgrade towers
+
+Thanks to  
+https://github.com/kuuriios  
+https://github.com/Spodymun  
 For contributing during early development when this was still a school assignment

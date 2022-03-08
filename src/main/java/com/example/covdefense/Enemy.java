@@ -108,7 +108,7 @@ class Enemy extends Basis{
     this.target = newTarget;
   }
   
-  public void move(ArrayList<map_point> path) {
+  public void move(ArrayList<Map_point> path) {
     double total_x = path.get(this.getTarget()).getX() - this.getX();
     double total_y = path.get(this.getTarget()).getY() - this.getY();
     

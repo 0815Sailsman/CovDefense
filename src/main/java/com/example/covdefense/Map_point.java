@@ -1,16 +1,16 @@
 package com.example.covdefense;
 
-public class map_point {
+public class Map_point {
   
   private final double x;
   private final double y;
   
-  public map_point(double x, double y) {
+  public Map_point(double x, double y) {
     this.x = x;
     this.y = y;
   }
   
-  public map_point(String[] split) {
+  public Map_point(String[] split) {
     this(WindowDimensions.WIDTH / (1184 / Float.parseFloat(split[0])), WindowDimensions.HEIGHT / (795.0 / Float.parseFloat(split[1])));
   }
 

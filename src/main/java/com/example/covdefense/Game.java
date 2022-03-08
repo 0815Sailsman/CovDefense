@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Game {
   
-  private final ArrayList<map_point> path;
+  private final ArrayList<Map_point> path;
   private final ArrayList<Runde> rounds;
   private int round_count;
   private final ArrayList<Enemy> enemies;
@@ -34,8 +34,8 @@ public class Game {
     money = 100;
   }
 
-  private ArrayList<map_point> load_map() {
-    ArrayList<map_point> path = new ArrayList<>();
+  private ArrayList<Map_point> load_map() {
+    ArrayList<Map_point> path = new ArrayList<>();
     try {
       File map_points_file = new File("map.txt");
       Scanner sc = new Scanner(map_points_file);
@@ -43,7 +43,7 @@ public class Game {
       while (sc.hasNextLine()) { 
         String text = sc.nextLine();
         String[] split = text.split(",");
-        path.add(new map_point(split));
+        path.add(new Map_point(split));
       }  
       sc.close();
     } catch(FileNotFoundException e) {
@@ -217,13 +217,11 @@ public class Game {
         return null;
     }
     
-    if (!coords_on_path(x,y) && !coords_on_tower(x,y)) { 
-      if (this.money >= params.cost) {
-        this.money = this.money - params.cost;
-        Tower temp_tower = new Tower(x, y, params);
-        this.towers.add(temp_tower);
-        return temp_tower;
-      }      
+    if (!coords_on_path(x,y) && !coords_on_tower(x,y)) {
+      this.money = this.money - params.cost;
+      Tower temp_tower = new Tower(x, y, params);
+      this.towers.add(temp_tower);
+      return temp_tower;
     }
     return null;
   }  
@@ -253,7 +251,9 @@ public class Game {
     for (int i = 0;i < this.get_towers().size(); i++) {
       double tmpX = this.get_towers().get(i).getX();
       double tmpY = this.get_towers().get(i).getY();
-      if ((x > (tmpX + (WindowDimensions.WIDTH / (-23.68))) && (x < (tmpX + (WindowDimensions.WIDTH / 7.893)))) && (y > (tmpY + (WindowDimensions.WIDTH / (-23.68))) && (y < (tmpY + (WindowDimensions.WIDTH / 7.893))))) {
+      double radius1 = WindowDimensions.WIDTH / (-23.68);
+      double radius2 = WindowDimensions.WIDTH / 7.893;
+      if ((x > (tmpX + radius1) && (x < (tmpX + radius2))) && (y > (tmpY + radius1) && (y < (tmpY + radius2)))) {
         return true; 
       }
       
@@ -272,7 +272,7 @@ public class Game {
     return this.hp;
   }
 
-  public ArrayList<map_point> get_path() {
+  public ArrayList<Map_point> get_path() {
     return this.path;
   }
 

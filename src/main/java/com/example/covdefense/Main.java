@@ -6,9 +6,12 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -16,10 +19,13 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -37,6 +43,7 @@ public class Main extends Application {
   
   private boolean running = false;
   private boolean bumming = false;
+  private boolean is_path_overlay_active = false;
   private final Label label_HP = new Label();
 
   private final Tower_spawner rezo_spawner = new Tower_spawner(Tower.REZO, 0, root, this);
@@ -48,7 +55,9 @@ public class Main extends Application {
   private final Label label_money = new Label();
   private final Label label_Runde = new Label();
   private final Label label_status_out = new Label();
-  
+
+  Group path_overlay = init_path_overlay();
+
   public void start(Stage primaryStage) { 
     // Were 1184 and 795
     Scene scene = new Scene(root, WindowDimensions.WIDTH, WindowDimensions.HEIGHT);
@@ -243,15 +252,17 @@ public class Main extends Application {
   }
   
   public void place_tower(Tower new_tower) {
+    // Deactivate overlay (function call from this class -> main)
     if (new_tower == null) {
       label_status_out.setText("Turm wurde nicht platziert!");
     }
     else {
+      toogle_path_overlay();
       label_money.setText("Money: " + game_engine.get_money());
       root.getChildren().add(new_tower.getIV());
       label_status_out.setText("Turm wurde platziert!");
+      root.setOnMouseClicked(null);
     }
-    root.setOnMouseClicked(null);
   }
   
   public void disable_buttons() {
@@ -262,6 +273,51 @@ public class Main extends Application {
     lauterbach_spawner.get_button().setDisable(true);
     spahn_spawner.get_button().setDisable(true);
     merkel_spawner.get_button().setDisable(true);
+  }
+
+  // TODO extract radius from here and game (coords on path)
+  // TODO Also draw circles over already placed towers
+  public Group init_path_overlay() {
+    Group path_overlay = new Group();
+    Blend blend = new Blend();
+    blend.setMode(BlendMode.OVERLAY);;
+    path_overlay.setEffect(blend);
+    for (Map_point current_point: game_engine.get_path()) {
+      Circle temp_circle = new Circle(current_point.getX(), current_point.getY(), (WindowDimensions.WIDTH / 29.6), Paint.valueOf("RED"));
+      temp_circle.setOpacity(0.5);
+      //temp_circle.setBlendMode(BlendMode.RED);
+      path_overlay.getChildren().add(temp_circle);
+    }
+    return path_overlay;
+  }
+
+  // Look if there are new towers and potentially add needed red circles
+  public void update_path_overlay() {
+    double circle_radius = WindowDimensions.WIDTH / (11.85);
+    // Calculate the index in the towers list where the first new tower would be
+    int first_tower_index_to_add = path_overlay.getChildren().size() - game_engine.get_path().size();
+    // If there is actually a tower at least at this index
+    if (game_engine.get_towers().size() > first_tower_index_to_add) {
+      for (int i = first_tower_index_to_add; i < game_engine.get_towers().size(); i++) {
+        Tower current_tower = game_engine.get_towers().get(i);
+        double new_circle_x = current_tower.getX() + (WindowDimensions.WIDTH / 23.68);
+        double new_circle_y = current_tower.getY() + (WindowDimensions.HEIGHT / 15.9);
+        path_overlay.getChildren().add(new Circle(new_circle_x, new_circle_y, circle_radius, Paint.valueOf("RED")));
+      }
+    }
+  }
+
+  public void toogle_path_overlay() {
+    update_path_overlay();
+    if (is_path_overlay_active) {
+      root.getChildren().remove(path_overlay);
+      is_path_overlay_active = false;
+    }
+    else {
+      // Activate overlay
+      root.getChildren().add(path_overlay);
+      is_path_overlay_active = true;
+    }
   }
 } 
 

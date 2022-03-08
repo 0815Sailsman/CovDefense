@@ -56,7 +56,14 @@ class Tower_spawner {
 
 
   public void button_Action(Tower_parameters params, Main main) {
-    this.root.setOnMouseClicked(event -> main.place_tower(main.game_engine.place_tower_logic(event, params)));
+    if (main.game_engine.get_money() >= params.cost) {
+      main.toogle_path_overlay();
+      this.root.setOnMouseClicked(event -> main.place_tower(main.game_engine.place_tower_logic(event, params)));
+    }
+    else {
+      // This triggers the "exception"-thingy, where the status-label is updated properly
+      main.place_tower(null);
+    }
   }
 
   public Button get_button() {
